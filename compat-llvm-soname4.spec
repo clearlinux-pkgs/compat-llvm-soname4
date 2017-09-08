@@ -6,7 +6,7 @@
 #
 Name     : compat-llvm-soname4
 Version  : 4.0.1
-Release  : 1
+Release  : 2
 URL      : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source0  : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source1  : http://releases.llvm.org/4.0.1/cfe-4.0.1.src.tar.xz
@@ -98,7 +98,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504833215
+export SOURCE_DATE_EPOCH=1504833854
 mkdir clr-build
 pushd clr-build
 cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=/usr/lib64 -DCMAKE_AR=/usr/bin/gcc-ar -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -DLLVM_ENABLE_ZLIB:BOOL=ON  -DLLVM_LIBDIR_SUFFIX=64   -DLLVM_BINUTILS_INCDIR=/usr/include -DLLVM_TARGETS_TO_BUILD="X86;BPF;AMDGPU;NVPTX" -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_CXX1Y=ON  -DC_INCLUDE_DIRS="/usr/include/c++:/usr/include/c++/x86_64-generic-linux:/usr/include"  -DLLVM_ENABLE_LTO=OFF -DLLVM_USE_LINKER=ld
@@ -106,7 +106,7 @@ make VERBOSE=1  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1504833215
+export SOURCE_DATE_EPOCH=1504833854
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -117,1648 +117,1743 @@ install cmake/modules/CheckAtomic.cmake %{buildroot}/usr/lib64/cmake/llvm/CheckA
 
 %files
 %defattr(-,root,root,-)
-/usr/lib
+%exclude /usr/lib64/cmake/clang/ClangConfig.cmake
+%exclude /usr/lib64/cmake/clang/ClangTargets-relwithdebinfo.cmake
+%exclude /usr/lib64/cmake/clang/ClangTargets.cmake
+%exclude /usr/lib64/cmake/llvm/AddLLVM.cmake
+%exclude /usr/lib64/cmake/llvm/AddLLVMDefinitions.cmake
+%exclude /usr/lib64/cmake/llvm/AddOCaml.cmake
+%exclude /usr/lib64/cmake/llvm/AddSphinxTarget.cmake
+%exclude /usr/lib64/cmake/llvm/CheckAtomic.cmake
+%exclude /usr/lib64/cmake/llvm/CheckCompilerVersion.cmake
+%exclude /usr/lib64/cmake/llvm/CheckLinkerFlag.cmake
+%exclude /usr/lib64/cmake/llvm/ChooseMSVCCRT.cmake
+%exclude /usr/lib64/cmake/llvm/CrossCompile.cmake
+%exclude /usr/lib64/cmake/llvm/DetermineGCCCompatible.cmake
+%exclude /usr/lib64/cmake/llvm/FindOCaml.cmake
+%exclude /usr/lib64/cmake/llvm/FindSphinx.cmake
+%exclude /usr/lib64/cmake/llvm/GenerateVersionFromCVS.cmake
+%exclude /usr/lib64/cmake/llvm/GetSVN.cmake
+%exclude /usr/lib64/cmake/llvm/HandleLLVMOptions.cmake
+%exclude /usr/lib64/cmake/llvm/HandleLLVMStdlib.cmake
+%exclude /usr/lib64/cmake/llvm/LLVM-Config.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMConfig.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMConfigVersion.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMExports-relwithdebinfo.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMExports.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMExternalProjectUtils.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMInstallSymlink.cmake
+%exclude /usr/lib64/cmake/llvm/LLVMProcessSources.cmake
+%exclude /usr/lib64/cmake/llvm/TableGen.cmake
+%exclude /usr/lib64/cmake/llvm/VersionFromVCS.cmake
 /usr/lib64/clang/4.0.1/include/cuda_wrappers/algorithm
 /usr/lib64/clang/4.0.1/include/cuda_wrappers/complex
 /usr/lib64/clang/4.0.1/include/cuda_wrappers/new
 /usr/lib64/clang/4.0.1/include/module.modulemap
-/usr/lib64/cmake/clang/ClangConfig.cmake
-/usr/lib64/cmake/clang/ClangTargets-relwithdebinfo.cmake
-/usr/lib64/cmake/clang/ClangTargets.cmake
-/usr/lib64/cmake/llvm/AddLLVM.cmake
-/usr/lib64/cmake/llvm/AddLLVMDefinitions.cmake
-/usr/lib64/cmake/llvm/AddOCaml.cmake
-/usr/lib64/cmake/llvm/AddSphinxTarget.cmake
-/usr/lib64/cmake/llvm/CheckAtomic.cmake
-/usr/lib64/cmake/llvm/CheckCompilerVersion.cmake
-/usr/lib64/cmake/llvm/CheckLinkerFlag.cmake
-/usr/lib64/cmake/llvm/ChooseMSVCCRT.cmake
-/usr/lib64/cmake/llvm/CrossCompile.cmake
-/usr/lib64/cmake/llvm/DetermineGCCCompatible.cmake
-/usr/lib64/cmake/llvm/FindOCaml.cmake
-/usr/lib64/cmake/llvm/FindSphinx.cmake
-/usr/lib64/cmake/llvm/GenerateVersionFromCVS.cmake
-/usr/lib64/cmake/llvm/GetSVN.cmake
-/usr/lib64/cmake/llvm/HandleLLVMOptions.cmake
-/usr/lib64/cmake/llvm/HandleLLVMStdlib.cmake
-/usr/lib64/cmake/llvm/LLVM-Config.cmake
-/usr/lib64/cmake/llvm/LLVMConfig.cmake
-/usr/lib64/cmake/llvm/LLVMConfigVersion.cmake
-/usr/lib64/cmake/llvm/LLVMExports-relwithdebinfo.cmake
-/usr/lib64/cmake/llvm/LLVMExports.cmake
-/usr/lib64/cmake/llvm/LLVMExternalProjectUtils.cmake
-/usr/lib64/cmake/llvm/LLVMInstallSymlink.cmake
-/usr/lib64/cmake/llvm/LLVMProcessSources.cmake
-/usr/lib64/cmake/llvm/TableGen.cmake
-/usr/lib64/cmake/llvm/VersionFromVCS.cmake
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/FileCheck
-/usr/bin/bugpoint
-/usr/bin/c-index-test
-/usr/bin/clang
-/usr/bin/clang++
-/usr/bin/clang-4.0
-/usr/bin/clang-check
-/usr/bin/clang-cl
-/usr/bin/clang-cpp
-/usr/bin/clang-format
-/usr/bin/clang-import-test
-/usr/bin/clang-offload-bundler
-/usr/bin/count
-/usr/bin/git-clang-format
-/usr/bin/llc
-/usr/bin/lli
-/usr/bin/lli-child-target
-/usr/bin/llvm-PerfectShuffle
-/usr/bin/llvm-ar
-/usr/bin/llvm-as
-/usr/bin/llvm-bcanalyzer
-/usr/bin/llvm-c-test
-/usr/bin/llvm-cat
-/usr/bin/llvm-config
-/usr/bin/llvm-cov
-/usr/bin/llvm-cxxdump
-/usr/bin/llvm-cxxfilt
-/usr/bin/llvm-diff
-/usr/bin/llvm-dis
-/usr/bin/llvm-dsymutil
-/usr/bin/llvm-dwarfdump
-/usr/bin/llvm-dwp
-/usr/bin/llvm-extract
-/usr/bin/llvm-lib
-/usr/bin/llvm-link
-/usr/bin/llvm-lto
-/usr/bin/llvm-lto2
-/usr/bin/llvm-mc
-/usr/bin/llvm-mcmarkup
-/usr/bin/llvm-modextract
-/usr/bin/llvm-nm
-/usr/bin/llvm-objdump
-/usr/bin/llvm-opt-report
-/usr/bin/llvm-pdbdump
-/usr/bin/llvm-profdata
-/usr/bin/llvm-ranlib
-/usr/bin/llvm-readobj
-/usr/bin/llvm-rtdyld
-/usr/bin/llvm-size
-/usr/bin/llvm-split
-/usr/bin/llvm-stress
-/usr/bin/llvm-strings
-/usr/bin/llvm-symbolizer
-/usr/bin/llvm-tblgen
-/usr/bin/llvm-xray
-/usr/bin/not
-/usr/bin/obj2yaml
-/usr/bin/opt
-/usr/bin/sancov
-/usr/bin/sanstats
-/usr/bin/scan-build
-/usr/bin/scan-view
-/usr/bin/verify-uselistorder
-/usr/bin/yaml-bench
-/usr/bin/yaml2obj
-/usr/libexec/c++-analyzer
-/usr/libexec/ccc-analyzer
+%exclude /usr/bin/FileCheck
+%exclude /usr/bin/bugpoint
+%exclude /usr/bin/c-index-test
+%exclude /usr/bin/clang
+%exclude /usr/bin/clang++
+%exclude /usr/bin/clang-4.0
+%exclude /usr/bin/clang-check
+%exclude /usr/bin/clang-cl
+%exclude /usr/bin/clang-cpp
+%exclude /usr/bin/clang-format
+%exclude /usr/bin/clang-import-test
+%exclude /usr/bin/clang-offload-bundler
+%exclude /usr/bin/count
+%exclude /usr/bin/git-clang-format
+%exclude /usr/bin/llc
+%exclude /usr/bin/lli
+%exclude /usr/bin/lli-child-target
+%exclude /usr/bin/llvm-PerfectShuffle
+%exclude /usr/bin/llvm-ar
+%exclude /usr/bin/llvm-as
+%exclude /usr/bin/llvm-bcanalyzer
+%exclude /usr/bin/llvm-c-test
+%exclude /usr/bin/llvm-cat
+%exclude /usr/bin/llvm-config
+%exclude /usr/bin/llvm-cov
+%exclude /usr/bin/llvm-cxxdump
+%exclude /usr/bin/llvm-cxxfilt
+%exclude /usr/bin/llvm-diff
+%exclude /usr/bin/llvm-dis
+%exclude /usr/bin/llvm-dsymutil
+%exclude /usr/bin/llvm-dwarfdump
+%exclude /usr/bin/llvm-dwp
+%exclude /usr/bin/llvm-extract
+%exclude /usr/bin/llvm-lib
+%exclude /usr/bin/llvm-link
+%exclude /usr/bin/llvm-lto
+%exclude /usr/bin/llvm-lto2
+%exclude /usr/bin/llvm-mc
+%exclude /usr/bin/llvm-mcmarkup
+%exclude /usr/bin/llvm-modextract
+%exclude /usr/bin/llvm-nm
+%exclude /usr/bin/llvm-objdump
+%exclude /usr/bin/llvm-opt-report
+%exclude /usr/bin/llvm-pdbdump
+%exclude /usr/bin/llvm-profdata
+%exclude /usr/bin/llvm-ranlib
+%exclude /usr/bin/llvm-readobj
+%exclude /usr/bin/llvm-rtdyld
+%exclude /usr/bin/llvm-size
+%exclude /usr/bin/llvm-split
+%exclude /usr/bin/llvm-stress
+%exclude /usr/bin/llvm-strings
+%exclude /usr/bin/llvm-symbolizer
+%exclude /usr/bin/llvm-tblgen
+%exclude /usr/bin/llvm-xray
+%exclude /usr/bin/not
+%exclude /usr/bin/obj2yaml
+%exclude /usr/bin/opt
+%exclude /usr/bin/sancov
+%exclude /usr/bin/sanstats
+%exclude /usr/bin/scan-build
+%exclude /usr/bin/scan-view
+%exclude /usr/bin/verify-uselistorder
+%exclude /usr/bin/yaml-bench
+%exclude /usr/bin/yaml2obj
+%exclude /usr/libexec/c++-analyzer
+%exclude /usr/libexec/ccc-analyzer
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/clang/clang-format-bbedit.applescript
-/usr/share/clang/clang-format-diff.py
-/usr/share/clang/clang-format-diff.pyc
-/usr/share/clang/clang-format-diff.pyo
-/usr/share/clang/clang-format-sublime.py
-/usr/share/clang/clang-format-sublime.pyc
-/usr/share/clang/clang-format-sublime.pyo
-/usr/share/clang/clang-format.el
-/usr/share/clang/clang-format.py
-/usr/share/clang/clang-format.pyc
-/usr/share/clang/clang-format.pyo
-/usr/share/scan-build/scanview.css
-/usr/share/scan-build/sorttable.js
-/usr/share/scan-view/FileRadar.scpt
-/usr/share/scan-view/GetRadarVersion.scpt
-/usr/share/scan-view/Reporter.py
-/usr/share/scan-view/Reporter.pyc
-/usr/share/scan-view/Reporter.pyo
-/usr/share/scan-view/ScanView.py
-/usr/share/scan-view/ScanView.pyc
-/usr/share/scan-view/ScanView.pyo
-/usr/share/scan-view/bugcatcher.ico
-/usr/share/scan-view/startfile.py
-/usr/share/scan-view/startfile.pyc
-/usr/share/scan-view/startfile.pyo
+%exclude /usr/share/clang/clang-format-bbedit.applescript
+%exclude /usr/share/clang/clang-format-diff.py
+%exclude /usr/share/clang/clang-format-diff.pyc
+%exclude /usr/share/clang/clang-format-diff.pyo
+%exclude /usr/share/clang/clang-format-sublime.py
+%exclude /usr/share/clang/clang-format-sublime.pyc
+%exclude /usr/share/clang/clang-format-sublime.pyo
+%exclude /usr/share/clang/clang-format.el
+%exclude /usr/share/clang/clang-format.py
+%exclude /usr/share/clang/clang-format.pyc
+%exclude /usr/share/clang/clang-format.pyo
+%exclude /usr/share/scan-build/scanview.css
+%exclude /usr/share/scan-build/sorttable.js
+%exclude /usr/share/scan-view/FileRadar.scpt
+%exclude /usr/share/scan-view/GetRadarVersion.scpt
+%exclude /usr/share/scan-view/Reporter.py
+%exclude /usr/share/scan-view/Reporter.pyc
+%exclude /usr/share/scan-view/Reporter.pyo
+%exclude /usr/share/scan-view/ScanView.py
+%exclude /usr/share/scan-view/ScanView.pyc
+%exclude /usr/share/scan-view/ScanView.pyo
+%exclude /usr/share/scan-view/bugcatcher.ico
+%exclude /usr/share/scan-view/startfile.py
+%exclude /usr/share/scan-view/startfile.pyc
+%exclude /usr/share/scan-view/startfile.pyo
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/clang-c/BuildSystem.h
-/usr/include/clang-c/CXCompilationDatabase.h
-/usr/include/clang-c/CXErrorCode.h
-/usr/include/clang-c/CXString.h
-/usr/include/clang-c/Documentation.h
-/usr/include/clang-c/Index.h
-/usr/include/clang-c/Platform.h
-/usr/include/clang/ARCMigrate/ARCMT.h
-/usr/include/clang/ARCMigrate/ARCMTActions.h
-/usr/include/clang/ARCMigrate/FileRemapper.h
-/usr/include/clang/AST/APValue.h
-/usr/include/clang/AST/AST.h
-/usr/include/clang/AST/ASTConsumer.h
-/usr/include/clang/AST/ASTContext.h
-/usr/include/clang/AST/ASTDiagnostic.h
-/usr/include/clang/AST/ASTFwd.h
-/usr/include/clang/AST/ASTImporter.h
-/usr/include/clang/AST/ASTLambda.h
-/usr/include/clang/AST/ASTMutationListener.h
-/usr/include/clang/AST/ASTTypeTraits.h
-/usr/include/clang/AST/ASTUnresolvedSet.h
-/usr/include/clang/AST/ASTVector.h
-/usr/include/clang/AST/Attr.h
-/usr/include/clang/AST/AttrDump.inc
-/usr/include/clang/AST/AttrImpl.inc
-/usr/include/clang/AST/AttrIterator.h
-/usr/include/clang/AST/AttrVisitor.inc
-/usr/include/clang/AST/Attrs.inc
-/usr/include/clang/AST/Availability.h
-/usr/include/clang/AST/BaseSubobject.h
-/usr/include/clang/AST/BuiltinTypes.def
-/usr/include/clang/AST/CXXInheritance.h
-/usr/include/clang/AST/CanonicalType.h
-/usr/include/clang/AST/CharUnits.h
-/usr/include/clang/AST/Comment.h
-/usr/include/clang/AST/CommentBriefParser.h
-/usr/include/clang/AST/CommentCommandInfo.inc
-/usr/include/clang/AST/CommentCommandList.inc
-/usr/include/clang/AST/CommentCommandTraits.h
-/usr/include/clang/AST/CommentDiagnostic.h
-/usr/include/clang/AST/CommentHTMLNamedCharacterReferences.inc
-/usr/include/clang/AST/CommentHTMLTags.inc
-/usr/include/clang/AST/CommentHTMLTagsProperties.inc
-/usr/include/clang/AST/CommentLexer.h
-/usr/include/clang/AST/CommentNodes.inc
-/usr/include/clang/AST/CommentParser.h
-/usr/include/clang/AST/CommentSema.h
-/usr/include/clang/AST/CommentVisitor.h
-/usr/include/clang/AST/Decl.h
-/usr/include/clang/AST/DeclAccessPair.h
-/usr/include/clang/AST/DeclBase.h
-/usr/include/clang/AST/DeclCXX.h
-/usr/include/clang/AST/DeclContextInternals.h
-/usr/include/clang/AST/DeclFriend.h
-/usr/include/clang/AST/DeclGroup.h
-/usr/include/clang/AST/DeclLookups.h
-/usr/include/clang/AST/DeclNodes.inc
-/usr/include/clang/AST/DeclObjC.h
-/usr/include/clang/AST/DeclOpenMP.h
-/usr/include/clang/AST/DeclTemplate.h
-/usr/include/clang/AST/DeclVisitor.h
-/usr/include/clang/AST/DeclarationName.h
-/usr/include/clang/AST/DependentDiagnostic.h
-/usr/include/clang/AST/EvaluatedExprVisitor.h
-/usr/include/clang/AST/Expr.h
-/usr/include/clang/AST/ExprCXX.h
-/usr/include/clang/AST/ExprObjC.h
-/usr/include/clang/AST/ExprOpenMP.h
-/usr/include/clang/AST/ExternalASTSource.h
-/usr/include/clang/AST/GlobalDecl.h
-/usr/include/clang/AST/LambdaCapture.h
-/usr/include/clang/AST/LocInfoType.h
-/usr/include/clang/AST/Mangle.h
-/usr/include/clang/AST/MangleNumberingContext.h
-/usr/include/clang/AST/NSAPI.h
-/usr/include/clang/AST/NestedNameSpecifier.h
-/usr/include/clang/AST/OpenMPClause.h
-/usr/include/clang/AST/OperationKinds.def
-/usr/include/clang/AST/OperationKinds.h
-/usr/include/clang/AST/ParentMap.h
-/usr/include/clang/AST/PrettyPrinter.h
-/usr/include/clang/AST/RawCommentList.h
-/usr/include/clang/AST/RecordLayout.h
-/usr/include/clang/AST/RecursiveASTVisitor.h
-/usr/include/clang/AST/Redeclarable.h
-/usr/include/clang/AST/SelectorLocationsKind.h
-/usr/include/clang/AST/Stmt.h
-/usr/include/clang/AST/StmtCXX.h
-/usr/include/clang/AST/StmtGraphTraits.h
-/usr/include/clang/AST/StmtIterator.h
-/usr/include/clang/AST/StmtNodes.inc
-/usr/include/clang/AST/StmtObjC.h
-/usr/include/clang/AST/StmtOpenMP.h
-/usr/include/clang/AST/StmtVisitor.h
-/usr/include/clang/AST/TemplateBase.h
-/usr/include/clang/AST/TemplateName.h
-/usr/include/clang/AST/Type.h
-/usr/include/clang/AST/TypeLoc.h
-/usr/include/clang/AST/TypeLocNodes.def
-/usr/include/clang/AST/TypeLocVisitor.h
-/usr/include/clang/AST/TypeNodes.def
-/usr/include/clang/AST/TypeOrdering.h
-/usr/include/clang/AST/TypeVisitor.h
-/usr/include/clang/AST/UnresolvedSet.h
-/usr/include/clang/AST/VTTBuilder.h
-/usr/include/clang/AST/VTableBuilder.h
-/usr/include/clang/ASTMatchers/ASTMatchFinder.h
-/usr/include/clang/ASTMatchers/ASTMatchers.h
-/usr/include/clang/ASTMatchers/ASTMatchersInternal.h
-/usr/include/clang/ASTMatchers/ASTMatchersMacros.h
-/usr/include/clang/ASTMatchers/Dynamic/Diagnostics.h
-/usr/include/clang/ASTMatchers/Dynamic/Parser.h
-/usr/include/clang/ASTMatchers/Dynamic/Registry.h
-/usr/include/clang/ASTMatchers/Dynamic/VariantValue.h
-/usr/include/clang/Analysis/Analyses/CFGReachabilityAnalysis.h
-/usr/include/clang/Analysis/Analyses/Consumed.h
-/usr/include/clang/Analysis/Analyses/Dominators.h
-/usr/include/clang/Analysis/Analyses/FormatString.h
-/usr/include/clang/Analysis/Analyses/LiveVariables.h
-/usr/include/clang/Analysis/Analyses/OSLog.h
-/usr/include/clang/Analysis/Analyses/PostOrderCFGView.h
-/usr/include/clang/Analysis/Analyses/PseudoConstantAnalysis.h
-/usr/include/clang/Analysis/Analyses/ReachableCode.h
-/usr/include/clang/Analysis/Analyses/ThreadSafety.h
-/usr/include/clang/Analysis/Analyses/ThreadSafetyCommon.h
-/usr/include/clang/Analysis/Analyses/ThreadSafetyLogical.h
-/usr/include/clang/Analysis/Analyses/ThreadSafetyOps.def
-/usr/include/clang/Analysis/Analyses/ThreadSafetyTIL.h
-/usr/include/clang/Analysis/Analyses/ThreadSafetyTraverse.h
-/usr/include/clang/Analysis/Analyses/ThreadSafetyUtil.h
-/usr/include/clang/Analysis/Analyses/UninitializedValues.h
-/usr/include/clang/Analysis/AnalysisContext.h
-/usr/include/clang/Analysis/AnalysisDiagnostic.h
-/usr/include/clang/Analysis/CFG.h
-/usr/include/clang/Analysis/CFGStmtMap.h
-/usr/include/clang/Analysis/CallGraph.h
-/usr/include/clang/Analysis/CloneDetection.h
-/usr/include/clang/Analysis/CodeInjector.h
-/usr/include/clang/Analysis/DomainSpecific/CocoaConventions.h
-/usr/include/clang/Analysis/DomainSpecific/ObjCNoReturn.h
-/usr/include/clang/Analysis/FlowSensitive/DataflowValues.h
-/usr/include/clang/Analysis/ProgramPoint.h
-/usr/include/clang/Analysis/Support/BumpVector.h
-/usr/include/clang/Basic/ABI.h
-/usr/include/clang/Basic/AddressSpaces.h
-/usr/include/clang/Basic/AllDiagnostics.h
-/usr/include/clang/Basic/AttrHasAttributeImpl.inc
-/usr/include/clang/Basic/AttrKinds.h
-/usr/include/clang/Basic/AttrList.inc
-/usr/include/clang/Basic/Attributes.h
-/usr/include/clang/Basic/Builtins.def
-/usr/include/clang/Basic/Builtins.h
-/usr/include/clang/Basic/BuiltinsAArch64.def
-/usr/include/clang/Basic/BuiltinsAMDGPU.def
-/usr/include/clang/Basic/BuiltinsARM.def
-/usr/include/clang/Basic/BuiltinsHexagon.def
-/usr/include/clang/Basic/BuiltinsLe64.def
-/usr/include/clang/Basic/BuiltinsMips.def
-/usr/include/clang/Basic/BuiltinsNEON.def
-/usr/include/clang/Basic/BuiltinsNVPTX.def
-/usr/include/clang/Basic/BuiltinsPPC.def
-/usr/include/clang/Basic/BuiltinsSystemZ.def
-/usr/include/clang/Basic/BuiltinsWebAssembly.def
-/usr/include/clang/Basic/BuiltinsX86.def
-/usr/include/clang/Basic/BuiltinsX86_64.def
-/usr/include/clang/Basic/BuiltinsXCore.def
-/usr/include/clang/Basic/CapturedStmt.h
-/usr/include/clang/Basic/CharInfo.h
-/usr/include/clang/Basic/CommentOptions.h
-/usr/include/clang/Basic/Cuda.h
-/usr/include/clang/Basic/DebugInfoOptions.h
-/usr/include/clang/Basic/Diagnostic.h
-/usr/include/clang/Basic/DiagnosticASTKinds.inc
-/usr/include/clang/Basic/DiagnosticAnalysisKinds.inc
-/usr/include/clang/Basic/DiagnosticCategories.h
-/usr/include/clang/Basic/DiagnosticCommentKinds.inc
-/usr/include/clang/Basic/DiagnosticCommonKinds.inc
-/usr/include/clang/Basic/DiagnosticDriverKinds.inc
-/usr/include/clang/Basic/DiagnosticFrontendKinds.inc
-/usr/include/clang/Basic/DiagnosticGroups.inc
-/usr/include/clang/Basic/DiagnosticIDs.h
-/usr/include/clang/Basic/DiagnosticIndexName.inc
-/usr/include/clang/Basic/DiagnosticLexKinds.inc
-/usr/include/clang/Basic/DiagnosticOptions.def
-/usr/include/clang/Basic/DiagnosticOptions.h
-/usr/include/clang/Basic/DiagnosticParseKinds.inc
-/usr/include/clang/Basic/DiagnosticSemaKinds.inc
-/usr/include/clang/Basic/DiagnosticSerializationKinds.inc
-/usr/include/clang/Basic/ExceptionSpecificationType.h
-/usr/include/clang/Basic/ExpressionTraits.h
-/usr/include/clang/Basic/FileManager.h
-/usr/include/clang/Basic/FileSystemOptions.h
-/usr/include/clang/Basic/FileSystemStatCache.h
-/usr/include/clang/Basic/IdentifierTable.h
-/usr/include/clang/Basic/LLVM.h
-/usr/include/clang/Basic/Lambda.h
-/usr/include/clang/Basic/LangOptions.def
-/usr/include/clang/Basic/LangOptions.h
-/usr/include/clang/Basic/Linkage.h
-/usr/include/clang/Basic/MacroBuilder.h
-/usr/include/clang/Basic/Module.h
-/usr/include/clang/Basic/ObjCRuntime.h
-/usr/include/clang/Basic/OpenCLExtensions.def
-/usr/include/clang/Basic/OpenCLImageTypes.def
-/usr/include/clang/Basic/OpenCLOptions.h
-/usr/include/clang/Basic/OpenMPKinds.def
-/usr/include/clang/Basic/OpenMPKinds.h
-/usr/include/clang/Basic/OperatorKinds.def
-/usr/include/clang/Basic/OperatorKinds.h
-/usr/include/clang/Basic/OperatorPrecedence.h
-/usr/include/clang/Basic/PartialDiagnostic.h
-/usr/include/clang/Basic/PlistSupport.h
-/usr/include/clang/Basic/PragmaKinds.h
-/usr/include/clang/Basic/PrettyStackTrace.h
-/usr/include/clang/Basic/SanitizerBlacklist.h
-/usr/include/clang/Basic/Sanitizers.def
-/usr/include/clang/Basic/Sanitizers.h
-/usr/include/clang/Basic/SourceLocation.h
-/usr/include/clang/Basic/SourceManager.h
-/usr/include/clang/Basic/SourceManagerInternals.h
-/usr/include/clang/Basic/Specifiers.h
-/usr/include/clang/Basic/TargetBuiltins.h
-/usr/include/clang/Basic/TargetCXXABI.h
-/usr/include/clang/Basic/TargetInfo.h
-/usr/include/clang/Basic/TargetOptions.h
-/usr/include/clang/Basic/TemplateKinds.h
-/usr/include/clang/Basic/TokenKinds.def
-/usr/include/clang/Basic/TokenKinds.h
-/usr/include/clang/Basic/TypeTraits.h
-/usr/include/clang/Basic/Version.h
-/usr/include/clang/Basic/Version.inc
-/usr/include/clang/Basic/VersionTuple.h
-/usr/include/clang/Basic/VirtualFileSystem.h
-/usr/include/clang/Basic/Visibility.h
-/usr/include/clang/Basic/arm_neon.inc
-/usr/include/clang/CodeGen/BackendUtil.h
-/usr/include/clang/CodeGen/CGFunctionInfo.h
-/usr/include/clang/CodeGen/CodeGenABITypes.h
-/usr/include/clang/CodeGen/CodeGenAction.h
-/usr/include/clang/CodeGen/ModuleBuilder.h
-/usr/include/clang/CodeGen/ObjectFilePCHContainerOperations.h
-/usr/include/clang/CodeGen/SwiftCallingConv.h
-/usr/include/clang/Config/config.h
-/usr/include/clang/Driver/Action.h
-/usr/include/clang/Driver/Compilation.h
-/usr/include/clang/Driver/Distro.h
-/usr/include/clang/Driver/Driver.h
-/usr/include/clang/Driver/DriverDiagnostic.h
-/usr/include/clang/Driver/Job.h
-/usr/include/clang/Driver/Multilib.h
-/usr/include/clang/Driver/Options.h
-/usr/include/clang/Driver/Options.inc
-/usr/include/clang/Driver/Phases.h
-/usr/include/clang/Driver/SanitizerArgs.h
-/usr/include/clang/Driver/Tool.h
-/usr/include/clang/Driver/ToolChain.h
-/usr/include/clang/Driver/Types.def
-/usr/include/clang/Driver/Types.h
-/usr/include/clang/Driver/Util.h
-/usr/include/clang/Edit/Commit.h
-/usr/include/clang/Edit/EditedSource.h
-/usr/include/clang/Edit/EditsReceiver.h
-/usr/include/clang/Edit/FileOffset.h
-/usr/include/clang/Edit/Rewriters.h
-/usr/include/clang/Format/Format.h
-/usr/include/clang/Frontend/ASTConsumers.h
-/usr/include/clang/Frontend/ASTUnit.h
-/usr/include/clang/Frontend/ChainedDiagnosticConsumer.h
-/usr/include/clang/Frontend/CodeGenOptions.def
-/usr/include/clang/Frontend/CodeGenOptions.h
-/usr/include/clang/Frontend/CommandLineSourceLoc.h
-/usr/include/clang/Frontend/CompilerInstance.h
-/usr/include/clang/Frontend/CompilerInvocation.h
-/usr/include/clang/Frontend/DependencyOutputOptions.h
-/usr/include/clang/Frontend/DiagnosticRenderer.h
-/usr/include/clang/Frontend/FrontendAction.h
-/usr/include/clang/Frontend/FrontendActions.h
-/usr/include/clang/Frontend/FrontendDiagnostic.h
-/usr/include/clang/Frontend/FrontendOptions.h
-/usr/include/clang/Frontend/FrontendPluginRegistry.h
-/usr/include/clang/Frontend/LangStandard.h
-/usr/include/clang/Frontend/LangStandards.def
-/usr/include/clang/Frontend/LayoutOverrideSource.h
-/usr/include/clang/Frontend/LogDiagnosticPrinter.h
-/usr/include/clang/Frontend/MigratorOptions.h
-/usr/include/clang/Frontend/MultiplexConsumer.h
-/usr/include/clang/Frontend/PCHContainerOperations.h
-/usr/include/clang/Frontend/PreprocessorOutputOptions.h
-/usr/include/clang/Frontend/SerializedDiagnosticPrinter.h
-/usr/include/clang/Frontend/SerializedDiagnosticReader.h
-/usr/include/clang/Frontend/SerializedDiagnostics.h
-/usr/include/clang/Frontend/TextDiagnostic.h
-/usr/include/clang/Frontend/TextDiagnosticBuffer.h
-/usr/include/clang/Frontend/TextDiagnosticPrinter.h
-/usr/include/clang/Frontend/Utils.h
-/usr/include/clang/Frontend/VerifyDiagnosticConsumer.h
-/usr/include/clang/FrontendTool/Utils.h
-/usr/include/clang/Index/CodegenNameGenerator.h
-/usr/include/clang/Index/CommentToXML.h
-/usr/include/clang/Index/IndexDataConsumer.h
-/usr/include/clang/Index/IndexSymbol.h
-/usr/include/clang/Index/IndexingAction.h
-/usr/include/clang/Index/USRGeneration.h
-/usr/include/clang/Lex/CodeCompletionHandler.h
-/usr/include/clang/Lex/DirectoryLookup.h
-/usr/include/clang/Lex/ExternalPreprocessorSource.h
-/usr/include/clang/Lex/HeaderMap.h
-/usr/include/clang/Lex/HeaderMapTypes.h
-/usr/include/clang/Lex/HeaderSearch.h
-/usr/include/clang/Lex/HeaderSearchOptions.h
-/usr/include/clang/Lex/LexDiagnostic.h
-/usr/include/clang/Lex/Lexer.h
-/usr/include/clang/Lex/LiteralSupport.h
-/usr/include/clang/Lex/MacroArgs.h
-/usr/include/clang/Lex/MacroInfo.h
-/usr/include/clang/Lex/ModuleLoader.h
-/usr/include/clang/Lex/ModuleMap.h
-/usr/include/clang/Lex/MultipleIncludeOpt.h
-/usr/include/clang/Lex/PPCallbacks.h
-/usr/include/clang/Lex/PPConditionalDirectiveRecord.h
-/usr/include/clang/Lex/PTHLexer.h
-/usr/include/clang/Lex/PTHManager.h
-/usr/include/clang/Lex/Pragma.h
-/usr/include/clang/Lex/PreprocessingRecord.h
-/usr/include/clang/Lex/Preprocessor.h
-/usr/include/clang/Lex/PreprocessorLexer.h
-/usr/include/clang/Lex/PreprocessorOptions.h
-/usr/include/clang/Lex/ScratchBuffer.h
-/usr/include/clang/Lex/Token.h
-/usr/include/clang/Lex/TokenConcatenation.h
-/usr/include/clang/Lex/TokenLexer.h
-/usr/include/clang/Parse/AttrParserStringSwitches.inc
-/usr/include/clang/Parse/ParseAST.h
-/usr/include/clang/Parse/ParseDiagnostic.h
-/usr/include/clang/Parse/Parser.h
-/usr/include/clang/Rewrite/Core/DeltaTree.h
-/usr/include/clang/Rewrite/Core/HTMLRewrite.h
-/usr/include/clang/Rewrite/Core/RewriteBuffer.h
-/usr/include/clang/Rewrite/Core/RewriteRope.h
-/usr/include/clang/Rewrite/Core/Rewriter.h
-/usr/include/clang/Rewrite/Core/TokenRewriter.h
-/usr/include/clang/Rewrite/Frontend/ASTConsumers.h
-/usr/include/clang/Rewrite/Frontend/FixItRewriter.h
-/usr/include/clang/Rewrite/Frontend/FrontendActions.h
-/usr/include/clang/Rewrite/Frontend/Rewriters.h
-/usr/include/clang/Sema/AnalysisBasedWarnings.h
-/usr/include/clang/Sema/AttrParsedAttrImpl.inc
-/usr/include/clang/Sema/AttrParsedAttrKinds.inc
-/usr/include/clang/Sema/AttrParsedAttrList.inc
-/usr/include/clang/Sema/AttrSpellingListIndex.inc
-/usr/include/clang/Sema/AttrTemplateInstantiate.inc
-/usr/include/clang/Sema/AttributeList.h
-/usr/include/clang/Sema/CXXFieldCollector.h
-/usr/include/clang/Sema/CleanupInfo.h
-/usr/include/clang/Sema/CodeCompleteConsumer.h
-/usr/include/clang/Sema/CodeCompleteOptions.h
-/usr/include/clang/Sema/DeclSpec.h
-/usr/include/clang/Sema/DelayedDiagnostic.h
-/usr/include/clang/Sema/Designator.h
-/usr/include/clang/Sema/ExternalSemaSource.h
-/usr/include/clang/Sema/IdentifierResolver.h
-/usr/include/clang/Sema/Initialization.h
-/usr/include/clang/Sema/Lookup.h
-/usr/include/clang/Sema/LoopHint.h
-/usr/include/clang/Sema/MultiplexExternalSemaSource.h
-/usr/include/clang/Sema/ObjCMethodList.h
-/usr/include/clang/Sema/Overload.h
-/usr/include/clang/Sema/Ownership.h
-/usr/include/clang/Sema/ParsedTemplate.h
-/usr/include/clang/Sema/PrettyDeclStackTrace.h
-/usr/include/clang/Sema/Scope.h
-/usr/include/clang/Sema/ScopeInfo.h
-/usr/include/clang/Sema/Sema.h
-/usr/include/clang/Sema/SemaConsumer.h
-/usr/include/clang/Sema/SemaDiagnostic.h
-/usr/include/clang/Sema/SemaFixItUtils.h
-/usr/include/clang/Sema/SemaInternal.h
-/usr/include/clang/Sema/SemaLambda.h
-/usr/include/clang/Sema/Template.h
-/usr/include/clang/Sema/TemplateDeduction.h
-/usr/include/clang/Sema/TypoCorrection.h
-/usr/include/clang/Sema/Weak.h
-/usr/include/clang/Serialization/ASTBitCodes.h
-/usr/include/clang/Serialization/ASTDeserializationListener.h
-/usr/include/clang/Serialization/ASTReader.h
-/usr/include/clang/Serialization/ASTWriter.h
-/usr/include/clang/Serialization/AttrPCHRead.inc
-/usr/include/clang/Serialization/AttrPCHWrite.inc
-/usr/include/clang/Serialization/ContinuousRangeMap.h
-/usr/include/clang/Serialization/GlobalModuleIndex.h
-/usr/include/clang/Serialization/Module.h
-/usr/include/clang/Serialization/ModuleFileExtension.h
-/usr/include/clang/Serialization/ModuleManager.h
-/usr/include/clang/Serialization/SerializationDiagnostic.h
-/usr/include/clang/StaticAnalyzer/Checkers/Checkers.inc
-/usr/include/clang/StaticAnalyzer/Checkers/ClangCheckers.h
-/usr/include/clang/StaticAnalyzer/Checkers/LocalCheckers.h
-/usr/include/clang/StaticAnalyzer/Checkers/MPIFunctionClassifier.h
-/usr/include/clang/StaticAnalyzer/Checkers/ObjCRetainCount.h
-/usr/include/clang/StaticAnalyzer/Checkers/SValExplainer.h
-/usr/include/clang/StaticAnalyzer/Core/Analyses.def
-/usr/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h
-/usr/include/clang/StaticAnalyzer/Core/BugReporter/BugReporter.h
-/usr/include/clang/StaticAnalyzer/Core/BugReporter/BugReporterVisitor.h
-/usr/include/clang/StaticAnalyzer/Core/BugReporter/BugType.h
-/usr/include/clang/StaticAnalyzer/Core/BugReporter/CommonBugCategories.h
-/usr/include/clang/StaticAnalyzer/Core/BugReporter/PathDiagnostic.h
-/usr/include/clang/StaticAnalyzer/Core/Checker.h
-/usr/include/clang/StaticAnalyzer/Core/CheckerManager.h
-/usr/include/clang/StaticAnalyzer/Core/CheckerOptInfo.h
-/usr/include/clang/StaticAnalyzer/Core/CheckerRegistry.h
-/usr/include/clang/StaticAnalyzer/Core/IssueHash.h
-/usr/include/clang/StaticAnalyzer/Core/PathDiagnosticConsumers.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/APSIntType.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/AnalysisManager.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/BasicValueFactory.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/BlockCounter.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/CallEvent.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/CheckerContext.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/CheckerHelpers.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ConstraintManager.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/CoreEngine.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/DynamicTypeInfo.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/DynamicTypeMap.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/Environment.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ExplodedGraph.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ExprEngine.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/FunctionSummary.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/LoopWidening.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/MemRegion.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramState.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramStateTrait.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramState_Fwd.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/Regions.def
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SValBuilder.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SValVisitor.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SVals.def
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SVals.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/Store.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/StoreRef.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SubEngine.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SummaryManager.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SymExpr.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/SymbolManager.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/Symbols.def
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/TaintManager.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/TaintTag.h
-/usr/include/clang/StaticAnalyzer/Core/PathSensitive/WorkList.h
-/usr/include/clang/StaticAnalyzer/Frontend/AnalysisConsumer.h
-/usr/include/clang/StaticAnalyzer/Frontend/CheckerRegistration.h
-/usr/include/clang/StaticAnalyzer/Frontend/FrontendActions.h
-/usr/include/clang/StaticAnalyzer/Frontend/ModelConsumer.h
-/usr/include/clang/Tooling/ArgumentsAdjusters.h
-/usr/include/clang/Tooling/CommonOptionsParser.h
-/usr/include/clang/Tooling/CompilationDatabase.h
-/usr/include/clang/Tooling/CompilationDatabasePluginRegistry.h
-/usr/include/clang/Tooling/Core/Diagnostic.h
-/usr/include/clang/Tooling/Core/Lookup.h
-/usr/include/clang/Tooling/Core/QualTypeNames.h
-/usr/include/clang/Tooling/Core/Replacement.h
-/usr/include/clang/Tooling/DiagnosticsYaml.h
-/usr/include/clang/Tooling/FileMatchTrie.h
-/usr/include/clang/Tooling/FixIt.h
-/usr/include/clang/Tooling/JSONCompilationDatabase.h
-/usr/include/clang/Tooling/Refactoring.h
-/usr/include/clang/Tooling/RefactoringCallbacks.h
-/usr/include/clang/Tooling/ReplacementsYaml.h
-/usr/include/clang/Tooling/Tooling.h
-/usr/include/llvm-c/Analysis.h
-/usr/include/llvm-c/BitReader.h
-/usr/include/llvm-c/BitWriter.h
-/usr/include/llvm-c/Core.h
-/usr/include/llvm-c/Disassembler.h
-/usr/include/llvm-c/ErrorHandling.h
-/usr/include/llvm-c/ExecutionEngine.h
-/usr/include/llvm-c/IRReader.h
-/usr/include/llvm-c/Initialization.h
-/usr/include/llvm-c/LinkTimeOptimizer.h
-/usr/include/llvm-c/Linker.h
-/usr/include/llvm-c/Object.h
-/usr/include/llvm-c/OrcBindings.h
-/usr/include/llvm-c/Support.h
-/usr/include/llvm-c/Target.h
-/usr/include/llvm-c/TargetMachine.h
-/usr/include/llvm-c/Transforms/IPO.h
-/usr/include/llvm-c/Transforms/PassManagerBuilder.h
-/usr/include/llvm-c/Transforms/Scalar.h
-/usr/include/llvm-c/Transforms/Vectorize.h
-/usr/include/llvm-c/Types.h
-/usr/include/llvm-c/lto.h
-/usr/include/llvm/ADT/APFloat.h
-/usr/include/llvm/ADT/APInt.h
-/usr/include/llvm/ADT/APSInt.h
-/usr/include/llvm/ADT/AllocatorList.h
-/usr/include/llvm/ADT/ArrayRef.h
-/usr/include/llvm/ADT/BitVector.h
-/usr/include/llvm/ADT/BitmaskEnum.h
-/usr/include/llvm/ADT/CachedHashString.h
-/usr/include/llvm/ADT/DAGDeltaAlgorithm.h
-/usr/include/llvm/ADT/DeltaAlgorithm.h
-/usr/include/llvm/ADT/DenseMap.h
-/usr/include/llvm/ADT/DenseMapInfo.h
-/usr/include/llvm/ADT/DenseSet.h
-/usr/include/llvm/ADT/DepthFirstIterator.h
-/usr/include/llvm/ADT/EpochTracker.h
-/usr/include/llvm/ADT/EquivalenceClasses.h
-/usr/include/llvm/ADT/FoldingSet.h
-/usr/include/llvm/ADT/GraphTraits.h
-/usr/include/llvm/ADT/Hashing.h
-/usr/include/llvm/ADT/ImmutableList.h
-/usr/include/llvm/ADT/ImmutableMap.h
-/usr/include/llvm/ADT/ImmutableSet.h
-/usr/include/llvm/ADT/IndexedMap.h
-/usr/include/llvm/ADT/IntEqClasses.h
-/usr/include/llvm/ADT/IntervalMap.h
-/usr/include/llvm/ADT/IntrusiveRefCntPtr.h
-/usr/include/llvm/ADT/MapVector.h
-/usr/include/llvm/ADT/None.h
-/usr/include/llvm/ADT/Optional.h
-/usr/include/llvm/ADT/PackedVector.h
-/usr/include/llvm/ADT/PointerEmbeddedInt.h
-/usr/include/llvm/ADT/PointerIntPair.h
-/usr/include/llvm/ADT/PointerSumType.h
-/usr/include/llvm/ADT/PointerUnion.h
-/usr/include/llvm/ADT/PostOrderIterator.h
-/usr/include/llvm/ADT/PriorityQueue.h
-/usr/include/llvm/ADT/PriorityWorklist.h
-/usr/include/llvm/ADT/SCCIterator.h
-/usr/include/llvm/ADT/STLExtras.h
-/usr/include/llvm/ADT/ScopeExit.h
-/usr/include/llvm/ADT/ScopedHashTable.h
-/usr/include/llvm/ADT/Sequence.h
-/usr/include/llvm/ADT/SetOperations.h
-/usr/include/llvm/ADT/SetVector.h
-/usr/include/llvm/ADT/SmallBitVector.h
-/usr/include/llvm/ADT/SmallPtrSet.h
-/usr/include/llvm/ADT/SmallSet.h
-/usr/include/llvm/ADT/SmallString.h
-/usr/include/llvm/ADT/SmallVector.h
-/usr/include/llvm/ADT/SparseBitVector.h
-/usr/include/llvm/ADT/SparseMultiSet.h
-/usr/include/llvm/ADT/SparseSet.h
-/usr/include/llvm/ADT/Statistic.h
-/usr/include/llvm/ADT/StringExtras.h
-/usr/include/llvm/ADT/StringMap.h
-/usr/include/llvm/ADT/StringRef.h
-/usr/include/llvm/ADT/StringSet.h
-/usr/include/llvm/ADT/StringSwitch.h
-/usr/include/llvm/ADT/TinyPtrVector.h
-/usr/include/llvm/ADT/Triple.h
-/usr/include/llvm/ADT/Twine.h
-/usr/include/llvm/ADT/UniqueVector.h
-/usr/include/llvm/ADT/VariadicFunction.h
-/usr/include/llvm/ADT/edit_distance.h
-/usr/include/llvm/ADT/ilist.h
-/usr/include/llvm/ADT/ilist_base.h
-/usr/include/llvm/ADT/ilist_iterator.h
-/usr/include/llvm/ADT/ilist_node.h
-/usr/include/llvm/ADT/ilist_node_base.h
-/usr/include/llvm/ADT/ilist_node_options.h
-/usr/include/llvm/ADT/iterator.h
-/usr/include/llvm/ADT/iterator_range.h
-/usr/include/llvm/ADT/simple_ilist.h
-/usr/include/llvm/Analysis/AliasAnalysis.h
-/usr/include/llvm/Analysis/AliasAnalysisEvaluator.h
-/usr/include/llvm/Analysis/AliasSetTracker.h
-/usr/include/llvm/Analysis/AssumptionCache.h
-/usr/include/llvm/Analysis/BasicAliasAnalysis.h
-/usr/include/llvm/Analysis/BlockFrequencyInfo.h
-/usr/include/llvm/Analysis/BlockFrequencyInfoImpl.h
-/usr/include/llvm/Analysis/BranchProbabilityInfo.h
-/usr/include/llvm/Analysis/CFG.h
-/usr/include/llvm/Analysis/CFGPrinter.h
-/usr/include/llvm/Analysis/CFLAndersAliasAnalysis.h
-/usr/include/llvm/Analysis/CFLSteensAliasAnalysis.h
-/usr/include/llvm/Analysis/CGSCCPassManager.h
-/usr/include/llvm/Analysis/CallGraph.h
-/usr/include/llvm/Analysis/CallGraphSCCPass.h
-/usr/include/llvm/Analysis/CallPrinter.h
-/usr/include/llvm/Analysis/CaptureTracking.h
-/usr/include/llvm/Analysis/CodeMetrics.h
-/usr/include/llvm/Analysis/ConstantFolding.h
-/usr/include/llvm/Analysis/DOTGraphTraitsPass.h
-/usr/include/llvm/Analysis/DemandedBits.h
-/usr/include/llvm/Analysis/DependenceAnalysis.h
-/usr/include/llvm/Analysis/DivergenceAnalysis.h
-/usr/include/llvm/Analysis/DomPrinter.h
-/usr/include/llvm/Analysis/DominanceFrontier.h
-/usr/include/llvm/Analysis/DominanceFrontierImpl.h
-/usr/include/llvm/Analysis/EHPersonalities.h
-/usr/include/llvm/Analysis/GlobalsModRef.h
-/usr/include/llvm/Analysis/IVUsers.h
-/usr/include/llvm/Analysis/IndirectCallPromotionAnalysis.h
-/usr/include/llvm/Analysis/IndirectCallSiteVisitor.h
-/usr/include/llvm/Analysis/InlineCost.h
-/usr/include/llvm/Analysis/InstructionSimplify.h
-/usr/include/llvm/Analysis/Interval.h
-/usr/include/llvm/Analysis/IntervalIterator.h
-/usr/include/llvm/Analysis/IntervalPartition.h
-/usr/include/llvm/Analysis/IteratedDominanceFrontier.h
-/usr/include/llvm/Analysis/LazyBlockFrequencyInfo.h
-/usr/include/llvm/Analysis/LazyBranchProbabilityInfo.h
-/usr/include/llvm/Analysis/LazyCallGraph.h
-/usr/include/llvm/Analysis/LazyValueInfo.h
-/usr/include/llvm/Analysis/Lint.h
-/usr/include/llvm/Analysis/Loads.h
-/usr/include/llvm/Analysis/LoopAccessAnalysis.h
-/usr/include/llvm/Analysis/LoopAnalysisManager.h
-/usr/include/llvm/Analysis/LoopInfo.h
-/usr/include/llvm/Analysis/LoopInfoImpl.h
-/usr/include/llvm/Analysis/LoopIterator.h
-/usr/include/llvm/Analysis/LoopPass.h
-/usr/include/llvm/Analysis/LoopUnrollAnalyzer.h
-/usr/include/llvm/Analysis/MemoryBuiltins.h
-/usr/include/llvm/Analysis/MemoryDependenceAnalysis.h
-/usr/include/llvm/Analysis/MemoryLocation.h
-/usr/include/llvm/Analysis/ModuleSummaryAnalysis.h
-/usr/include/llvm/Analysis/ObjCARCAliasAnalysis.h
-/usr/include/llvm/Analysis/ObjCARCAnalysisUtils.h
-/usr/include/llvm/Analysis/ObjCARCInstKind.h
-/usr/include/llvm/Analysis/OptimizationDiagnosticInfo.h
-/usr/include/llvm/Analysis/OrderedBasicBlock.h
-/usr/include/llvm/Analysis/PHITransAddr.h
-/usr/include/llvm/Analysis/Passes.h
-/usr/include/llvm/Analysis/PostDominators.h
-/usr/include/llvm/Analysis/ProfileSummaryInfo.h
-/usr/include/llvm/Analysis/PtrUseVisitor.h
-/usr/include/llvm/Analysis/RegionInfo.h
-/usr/include/llvm/Analysis/RegionInfoImpl.h
-/usr/include/llvm/Analysis/RegionIterator.h
-/usr/include/llvm/Analysis/RegionPass.h
-/usr/include/llvm/Analysis/RegionPrinter.h
-/usr/include/llvm/Analysis/ScalarEvolution.h
-/usr/include/llvm/Analysis/ScalarEvolutionAliasAnalysis.h
-/usr/include/llvm/Analysis/ScalarEvolutionExpander.h
-/usr/include/llvm/Analysis/ScalarEvolutionExpressions.h
-/usr/include/llvm/Analysis/ScalarEvolutionNormalization.h
-/usr/include/llvm/Analysis/ScopedNoAliasAA.h
-/usr/include/llvm/Analysis/SparsePropagation.h
-/usr/include/llvm/Analysis/TargetFolder.h
-/usr/include/llvm/Analysis/TargetLibraryInfo.def
-/usr/include/llvm/Analysis/TargetLibraryInfo.h
-/usr/include/llvm/Analysis/TargetTransformInfo.h
-/usr/include/llvm/Analysis/TargetTransformInfoImpl.h
-/usr/include/llvm/Analysis/Trace.h
-/usr/include/llvm/Analysis/TypeBasedAliasAnalysis.h
-/usr/include/llvm/Analysis/TypeMetadataUtils.h
-/usr/include/llvm/Analysis/ValueTracking.h
-/usr/include/llvm/Analysis/VectorUtils.h
-/usr/include/llvm/AsmParser/Parser.h
-/usr/include/llvm/AsmParser/SlotMapping.h
-/usr/include/llvm/Bitcode/BitCodes.h
-/usr/include/llvm/Bitcode/BitcodeReader.h
-/usr/include/llvm/Bitcode/BitcodeWriter.h
-/usr/include/llvm/Bitcode/BitcodeWriterPass.h
-/usr/include/llvm/Bitcode/BitstreamReader.h
-/usr/include/llvm/Bitcode/BitstreamWriter.h
-/usr/include/llvm/Bitcode/LLVMBitCodes.h
-/usr/include/llvm/CodeGen/Analysis.h
-/usr/include/llvm/CodeGen/AsmPrinter.h
-/usr/include/llvm/CodeGen/AtomicExpandUtils.h
-/usr/include/llvm/CodeGen/BasicTTIImpl.h
-/usr/include/llvm/CodeGen/CalcSpillWeights.h
-/usr/include/llvm/CodeGen/CallingConvLower.h
-/usr/include/llvm/CodeGen/CommandFlags.h
-/usr/include/llvm/CodeGen/DAGCombine.h
-/usr/include/llvm/CodeGen/DFAPacketizer.h
-/usr/include/llvm/CodeGen/DIE.h
-/usr/include/llvm/CodeGen/DIEValue.def
-/usr/include/llvm/CodeGen/DwarfStringPoolEntry.h
-/usr/include/llvm/CodeGen/EdgeBundles.h
-/usr/include/llvm/CodeGen/FastISel.h
-/usr/include/llvm/CodeGen/FaultMaps.h
-/usr/include/llvm/CodeGen/FunctionLoweringInfo.h
-/usr/include/llvm/CodeGen/GCMetadata.h
-/usr/include/llvm/CodeGen/GCMetadataPrinter.h
-/usr/include/llvm/CodeGen/GCStrategy.h
-/usr/include/llvm/CodeGen/GCs.h
-/usr/include/llvm/CodeGen/GlobalISel/CallLowering.h
-/usr/include/llvm/CodeGen/GlobalISel/GISelAccessor.h
-/usr/include/llvm/CodeGen/GlobalISel/IRTranslator.h
-/usr/include/llvm/CodeGen/GlobalISel/InstructionSelect.h
-/usr/include/llvm/CodeGen/GlobalISel/InstructionSelector.h
-/usr/include/llvm/CodeGen/GlobalISel/Legalizer.h
-/usr/include/llvm/CodeGen/GlobalISel/LegalizerHelper.h
-/usr/include/llvm/CodeGen/GlobalISel/LegalizerInfo.h
-/usr/include/llvm/CodeGen/GlobalISel/MachineIRBuilder.h
-/usr/include/llvm/CodeGen/GlobalISel/RegBankSelect.h
-/usr/include/llvm/CodeGen/GlobalISel/RegisterBank.h
-/usr/include/llvm/CodeGen/GlobalISel/RegisterBankInfo.h
-/usr/include/llvm/CodeGen/GlobalISel/Types.h
-/usr/include/llvm/CodeGen/GlobalISel/Utils.h
-/usr/include/llvm/CodeGen/ISDOpcodes.h
-/usr/include/llvm/CodeGen/IntrinsicLowering.h
-/usr/include/llvm/CodeGen/LatencyPriorityQueue.h
-/usr/include/llvm/CodeGen/LexicalScopes.h
-/usr/include/llvm/CodeGen/LinkAllAsmWriterComponents.h
-/usr/include/llvm/CodeGen/LinkAllCodegenComponents.h
-/usr/include/llvm/CodeGen/LiveInterval.h
-/usr/include/llvm/CodeGen/LiveIntervalAnalysis.h
-/usr/include/llvm/CodeGen/LiveIntervalUnion.h
-/usr/include/llvm/CodeGen/LivePhysRegs.h
-/usr/include/llvm/CodeGen/LiveRangeEdit.h
-/usr/include/llvm/CodeGen/LiveRegMatrix.h
-/usr/include/llvm/CodeGen/LiveStackAnalysis.h
-/usr/include/llvm/CodeGen/LiveVariables.h
-/usr/include/llvm/CodeGen/LowLevelType.h
-/usr/include/llvm/CodeGen/MIRParser/MIRParser.h
-/usr/include/llvm/CodeGen/MIRYamlMapping.h
-/usr/include/llvm/CodeGen/MachORelocation.h
-/usr/include/llvm/CodeGen/MachineBasicBlock.h
-/usr/include/llvm/CodeGen/MachineBlockFrequencyInfo.h
-/usr/include/llvm/CodeGen/MachineBranchProbabilityInfo.h
-/usr/include/llvm/CodeGen/MachineCombinerPattern.h
-/usr/include/llvm/CodeGen/MachineConstantPool.h
-/usr/include/llvm/CodeGen/MachineDominanceFrontier.h
-/usr/include/llvm/CodeGen/MachineDominators.h
-/usr/include/llvm/CodeGen/MachineFrameInfo.h
-/usr/include/llvm/CodeGen/MachineFunction.h
-/usr/include/llvm/CodeGen/MachineFunctionInitializer.h
-/usr/include/llvm/CodeGen/MachineFunctionPass.h
-/usr/include/llvm/CodeGen/MachineInstr.h
-/usr/include/llvm/CodeGen/MachineInstrBuilder.h
-/usr/include/llvm/CodeGen/MachineInstrBundle.h
-/usr/include/llvm/CodeGen/MachineInstrBundleIterator.h
-/usr/include/llvm/CodeGen/MachineJumpTableInfo.h
-/usr/include/llvm/CodeGen/MachineLoopInfo.h
-/usr/include/llvm/CodeGen/MachineMemOperand.h
-/usr/include/llvm/CodeGen/MachineModuleInfo.h
-/usr/include/llvm/CodeGen/MachineModuleInfoImpls.h
-/usr/include/llvm/CodeGen/MachineOperand.h
-/usr/include/llvm/CodeGen/MachinePassRegistry.h
-/usr/include/llvm/CodeGen/MachinePostDominators.h
-/usr/include/llvm/CodeGen/MachineRegionInfo.h
-/usr/include/llvm/CodeGen/MachineRegisterInfo.h
-/usr/include/llvm/CodeGen/MachineSSAUpdater.h
-/usr/include/llvm/CodeGen/MachineScheduler.h
-/usr/include/llvm/CodeGen/MachineTraceMetrics.h
-/usr/include/llvm/CodeGen/MachineValueType.h
-/usr/include/llvm/CodeGen/PBQP/CostAllocator.h
-/usr/include/llvm/CodeGen/PBQP/Graph.h
-/usr/include/llvm/CodeGen/PBQP/Math.h
-/usr/include/llvm/CodeGen/PBQP/ReductionRules.h
-/usr/include/llvm/CodeGen/PBQP/Solution.h
-/usr/include/llvm/CodeGen/PBQPRAConstraint.h
-/usr/include/llvm/CodeGen/ParallelCG.h
-/usr/include/llvm/CodeGen/Passes.h
-/usr/include/llvm/CodeGen/PreISelIntrinsicLowering.h
-/usr/include/llvm/CodeGen/PseudoSourceValue.h
-/usr/include/llvm/CodeGen/RegAllocPBQP.h
-/usr/include/llvm/CodeGen/RegAllocRegistry.h
-/usr/include/llvm/CodeGen/RegisterClassInfo.h
-/usr/include/llvm/CodeGen/RegisterPressure.h
-/usr/include/llvm/CodeGen/RegisterScavenging.h
-/usr/include/llvm/CodeGen/RegisterUsageInfo.h
-/usr/include/llvm/CodeGen/ResourcePriorityQueue.h
-/usr/include/llvm/CodeGen/RuntimeLibcalls.h
-/usr/include/llvm/CodeGen/ScheduleDAG.h
-/usr/include/llvm/CodeGen/ScheduleDAGInstrs.h
-/usr/include/llvm/CodeGen/ScheduleDAGMutation.h
-/usr/include/llvm/CodeGen/ScheduleDFS.h
-/usr/include/llvm/CodeGen/ScheduleHazardRecognizer.h
-/usr/include/llvm/CodeGen/SchedulerRegistry.h
-/usr/include/llvm/CodeGen/ScoreboardHazardRecognizer.h
-/usr/include/llvm/CodeGen/SelectionDAG.h
-/usr/include/llvm/CodeGen/SelectionDAGISel.h
-/usr/include/llvm/CodeGen/SelectionDAGNodes.h
-/usr/include/llvm/CodeGen/SelectionDAGTargetInfo.h
-/usr/include/llvm/CodeGen/SlotIndexes.h
-/usr/include/llvm/CodeGen/StackMaps.h
-/usr/include/llvm/CodeGen/StackProtector.h
-/usr/include/llvm/CodeGen/TailDuplicator.h
-/usr/include/llvm/CodeGen/TargetLoweringObjectFileImpl.h
-/usr/include/llvm/CodeGen/TargetPassConfig.h
-/usr/include/llvm/CodeGen/TargetSchedule.h
-/usr/include/llvm/CodeGen/UnreachableBlockElim.h
-/usr/include/llvm/CodeGen/ValueTypes.h
-/usr/include/llvm/CodeGen/ValueTypes.td
-/usr/include/llvm/CodeGen/VirtRegMap.h
-/usr/include/llvm/CodeGen/WinEHFuncInfo.h
-/usr/include/llvm/Config/AsmParsers.def
-/usr/include/llvm/Config/AsmPrinters.def
-/usr/include/llvm/Config/Disassemblers.def
-/usr/include/llvm/Config/Targets.def
-/usr/include/llvm/Config/abi-breaking.h
-/usr/include/llvm/Config/llvm-config.h
-/usr/include/llvm/DebugInfo/CodeView/CVDebugRecord.h
-/usr/include/llvm/DebugInfo/CodeView/CVRecord.h
-/usr/include/llvm/DebugInfo/CodeView/CVSymbolTypes.def
-/usr/include/llvm/DebugInfo/CodeView/CVSymbolVisitor.h
-/usr/include/llvm/DebugInfo/CodeView/CVTypeDumper.h
-/usr/include/llvm/DebugInfo/CodeView/CVTypeVisitor.h
-/usr/include/llvm/DebugInfo/CodeView/CodeView.h
-/usr/include/llvm/DebugInfo/CodeView/CodeViewError.h
-/usr/include/llvm/DebugInfo/CodeView/CodeViewRecordIO.h
-/usr/include/llvm/DebugInfo/CodeView/EnumTables.h
-/usr/include/llvm/DebugInfo/CodeView/FunctionId.h
-/usr/include/llvm/DebugInfo/CodeView/Line.h
-/usr/include/llvm/DebugInfo/CodeView/ModuleSubstream.h
-/usr/include/llvm/DebugInfo/CodeView/ModuleSubstreamVisitor.h
-/usr/include/llvm/DebugInfo/CodeView/RecordSerialization.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolDeserializer.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolDumpDelegate.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolDumper.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolRecord.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolRecordMapping.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolSerializer.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolVisitorCallbackPipeline.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolVisitorCallbacks.h
-/usr/include/llvm/DebugInfo/CodeView/SymbolVisitorDelegate.h
-/usr/include/llvm/DebugInfo/CodeView/TypeDatabase.h
-/usr/include/llvm/DebugInfo/CodeView/TypeDatabaseVisitor.h
-/usr/include/llvm/DebugInfo/CodeView/TypeDeserializer.h
-/usr/include/llvm/DebugInfo/CodeView/TypeDumpVisitor.h
-/usr/include/llvm/DebugInfo/CodeView/TypeDumperBase.h
-/usr/include/llvm/DebugInfo/CodeView/TypeIndex.h
-/usr/include/llvm/DebugInfo/CodeView/TypeRecord.h
-/usr/include/llvm/DebugInfo/CodeView/TypeRecordBuilder.h
-/usr/include/llvm/DebugInfo/CodeView/TypeRecordMapping.h
-/usr/include/llvm/DebugInfo/CodeView/TypeRecords.def
-/usr/include/llvm/DebugInfo/CodeView/TypeSerializer.h
-/usr/include/llvm/DebugInfo/CodeView/TypeStreamMerger.h
-/usr/include/llvm/DebugInfo/CodeView/TypeSymbolEmitter.h
-/usr/include/llvm/DebugInfo/CodeView/TypeTableBuilder.h
-/usr/include/llvm/DebugInfo/CodeView/TypeVisitorCallbackPipeline.h
-/usr/include/llvm/DebugInfo/CodeView/TypeVisitorCallbacks.h
-/usr/include/llvm/DebugInfo/DIContext.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFAbbreviationDeclaration.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFAcceleratorTable.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFCompileUnit.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFContext.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugAbbrev.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugArangeSet.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugAranges.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugFrame.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugInfoEntry.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugLine.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugLoc.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugMacro.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugPubTable.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDebugRangeList.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFDie.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFFormValue.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFGdbIndex.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFRelocMap.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFSection.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFTypeUnit.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFUnit.h
-/usr/include/llvm/DebugInfo/DWARF/DWARFUnitIndex.h
-/usr/include/llvm/DebugInfo/MSF/ByteStream.h
-/usr/include/llvm/DebugInfo/MSF/IMSFFile.h
-/usr/include/llvm/DebugInfo/MSF/MSFBuilder.h
-/usr/include/llvm/DebugInfo/MSF/MSFCommon.h
-/usr/include/llvm/DebugInfo/MSF/MSFError.h
-/usr/include/llvm/DebugInfo/MSF/MSFStreamLayout.h
-/usr/include/llvm/DebugInfo/MSF/MappedBlockStream.h
-/usr/include/llvm/DebugInfo/MSF/SequencedItemStream.h
-/usr/include/llvm/DebugInfo/MSF/StreamArray.h
-/usr/include/llvm/DebugInfo/MSF/StreamInterface.h
-/usr/include/llvm/DebugInfo/MSF/StreamReader.h
-/usr/include/llvm/DebugInfo/MSF/StreamRef.h
-/usr/include/llvm/DebugInfo/MSF/StreamWriter.h
-/usr/include/llvm/DebugInfo/PDB/ConcreteSymbolEnumerator.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIADataStream.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumDebugStreams.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumLineNumbers.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumSourceFiles.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumSymbols.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIAError.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIALineNumber.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIARawSymbol.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIASession.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIASourceFile.h
-/usr/include/llvm/DebugInfo/PDB/DIA/DIASupport.h
-/usr/include/llvm/DebugInfo/PDB/GenericError.h
-/usr/include/llvm/DebugInfo/PDB/IPDBDataStream.h
-/usr/include/llvm/DebugInfo/PDB/IPDBEnumChildren.h
-/usr/include/llvm/DebugInfo/PDB/IPDBLineNumber.h
-/usr/include/llvm/DebugInfo/PDB/IPDBRawSymbol.h
-/usr/include/llvm/DebugInfo/PDB/IPDBSession.h
-/usr/include/llvm/DebugInfo/PDB/IPDBSourceFile.h
-/usr/include/llvm/DebugInfo/PDB/PDB.h
-/usr/include/llvm/DebugInfo/PDB/PDBContext.h
-/usr/include/llvm/DebugInfo/PDB/PDBExtras.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymDumper.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbol.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolAnnotation.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolBlock.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolCompiland.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolCompilandDetails.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolCompilandEnv.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolCustom.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolData.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolExe.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolFunc.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolFuncDebugEnd.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolFuncDebugStart.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolLabel.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolPublicSymbol.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolThunk.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeArray.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeBaseClass.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeBuiltin.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeCustom.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeDimension.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeEnum.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFriend.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFunctionArg.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFunctionSig.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeManaged.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypePointer.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeTypedef.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeUDT.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeVTable.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeVTableShape.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolUnknown.h
-/usr/include/llvm/DebugInfo/PDB/PDBSymbolUsingNamespace.h
-/usr/include/llvm/DebugInfo/PDB/PDBTypes.h
-/usr/include/llvm/DebugInfo/PDB/Raw/DbiStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/DbiStreamBuilder.h
-/usr/include/llvm/DebugInfo/PDB/Raw/EnumTables.h
-/usr/include/llvm/DebugInfo/PDB/Raw/GlobalsStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/Hash.h
-/usr/include/llvm/DebugInfo/PDB/Raw/ISectionContribVisitor.h
-/usr/include/llvm/DebugInfo/PDB/Raw/InfoStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/InfoStreamBuilder.h
-/usr/include/llvm/DebugInfo/PDB/Raw/ModInfo.h
-/usr/include/llvm/DebugInfo/PDB/Raw/ModStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/NameHashTable.h
-/usr/include/llvm/DebugInfo/PDB/Raw/NameMap.h
-/usr/include/llvm/DebugInfo/PDB/Raw/NameMapBuilder.h
-/usr/include/llvm/DebugInfo/PDB/Raw/PDBFile.h
-/usr/include/llvm/DebugInfo/PDB/Raw/PDBFileBuilder.h
-/usr/include/llvm/DebugInfo/PDB/Raw/PublicsStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/RawConstants.h
-/usr/include/llvm/DebugInfo/PDB/Raw/RawError.h
-/usr/include/llvm/DebugInfo/PDB/Raw/RawSession.h
-/usr/include/llvm/DebugInfo/PDB/Raw/RawTypes.h
-/usr/include/llvm/DebugInfo/PDB/Raw/SymbolStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/TpiHashing.h
-/usr/include/llvm/DebugInfo/PDB/Raw/TpiStream.h
-/usr/include/llvm/DebugInfo/PDB/Raw/TpiStreamBuilder.h
-/usr/include/llvm/DebugInfo/Symbolize/DIPrinter.h
-/usr/include/llvm/DebugInfo/Symbolize/SymbolizableModule.h
-/usr/include/llvm/DebugInfo/Symbolize/Symbolize.h
-/usr/include/llvm/Demangle/Demangle.h
-/usr/include/llvm/ExecutionEngine/ExecutionEngine.h
-/usr/include/llvm/ExecutionEngine/GenericValue.h
-/usr/include/llvm/ExecutionEngine/Interpreter.h
-/usr/include/llvm/ExecutionEngine/JITEventListener.h
-/usr/include/llvm/ExecutionEngine/JITSymbol.h
-/usr/include/llvm/ExecutionEngine/MCJIT.h
-/usr/include/llvm/ExecutionEngine/OProfileWrapper.h
-/usr/include/llvm/ExecutionEngine/ObjectCache.h
-/usr/include/llvm/ExecutionEngine/ObjectMemoryBuffer.h
-/usr/include/llvm/ExecutionEngine/Orc/CompileOnDemandLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/CompileUtils.h
-/usr/include/llvm/ExecutionEngine/Orc/ExecutionUtils.h
-/usr/include/llvm/ExecutionEngine/Orc/GlobalMappingLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/IRCompileLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/IRTransformLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/IndirectionUtils.h
-/usr/include/llvm/ExecutionEngine/Orc/LambdaResolver.h
-/usr/include/llvm/ExecutionEngine/Orc/LazyEmittingLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/NullResolver.h
-/usr/include/llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/ObjectTransformLayer.h
-/usr/include/llvm/ExecutionEngine/Orc/OrcABISupport.h
-/usr/include/llvm/ExecutionEngine/Orc/OrcError.h
-/usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetClient.h
-/usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetRPCAPI.h
-/usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetServer.h
-/usr/include/llvm/ExecutionEngine/Orc/RPCSerialization.h
-/usr/include/llvm/ExecutionEngine/Orc/RPCUtils.h
-/usr/include/llvm/ExecutionEngine/Orc/RawByteChannel.h
-/usr/include/llvm/ExecutionEngine/OrcMCJITReplacement.h
-/usr/include/llvm/ExecutionEngine/RTDyldMemoryManager.h
-/usr/include/llvm/ExecutionEngine/RuntimeDyld.h
-/usr/include/llvm/ExecutionEngine/RuntimeDyldChecker.h
-/usr/include/llvm/ExecutionEngine/SectionMemoryManager.h
-/usr/include/llvm/IR/Argument.h
-/usr/include/llvm/IR/AssemblyAnnotationWriter.h
-/usr/include/llvm/IR/Attributes.gen
-/usr/include/llvm/IR/Attributes.h
-/usr/include/llvm/IR/Attributes.td
-/usr/include/llvm/IR/AutoUpgrade.h
-/usr/include/llvm/IR/BasicBlock.h
-/usr/include/llvm/IR/CFG.h
-/usr/include/llvm/IR/CallSite.h
-/usr/include/llvm/IR/CallingConv.h
-/usr/include/llvm/IR/Comdat.h
-/usr/include/llvm/IR/Constant.h
-/usr/include/llvm/IR/ConstantFolder.h
-/usr/include/llvm/IR/ConstantRange.h
-/usr/include/llvm/IR/Constants.h
-/usr/include/llvm/IR/DIBuilder.h
-/usr/include/llvm/IR/DataLayout.h
-/usr/include/llvm/IR/DebugInfo.h
-/usr/include/llvm/IR/DebugInfoFlags.def
-/usr/include/llvm/IR/DebugInfoMetadata.h
-/usr/include/llvm/IR/DebugLoc.h
-/usr/include/llvm/IR/DerivedTypes.h
-/usr/include/llvm/IR/DiagnosticInfo.h
-/usr/include/llvm/IR/DiagnosticPrinter.h
-/usr/include/llvm/IR/Dominators.h
-/usr/include/llvm/IR/Function.h
-/usr/include/llvm/IR/GVMaterializer.h
-/usr/include/llvm/IR/GetElementPtrTypeIterator.h
-/usr/include/llvm/IR/GlobalAlias.h
-/usr/include/llvm/IR/GlobalIFunc.h
-/usr/include/llvm/IR/GlobalIndirectSymbol.h
-/usr/include/llvm/IR/GlobalObject.h
-/usr/include/llvm/IR/GlobalValue.h
-/usr/include/llvm/IR/GlobalVariable.h
-/usr/include/llvm/IR/IRBuilder.h
-/usr/include/llvm/IR/IRPrintingPasses.h
-/usr/include/llvm/IR/InlineAsm.h
-/usr/include/llvm/IR/InstIterator.h
-/usr/include/llvm/IR/InstVisitor.h
-/usr/include/llvm/IR/InstrTypes.h
-/usr/include/llvm/IR/Instruction.def
-/usr/include/llvm/IR/Instruction.h
-/usr/include/llvm/IR/Instructions.h
-/usr/include/llvm/IR/IntrinsicInst.h
-/usr/include/llvm/IR/Intrinsics.gen
-/usr/include/llvm/IR/Intrinsics.h
-/usr/include/llvm/IR/Intrinsics.td
-/usr/include/llvm/IR/IntrinsicsAArch64.td
-/usr/include/llvm/IR/IntrinsicsAMDGPU.td
-/usr/include/llvm/IR/IntrinsicsARM.td
-/usr/include/llvm/IR/IntrinsicsBPF.td
-/usr/include/llvm/IR/IntrinsicsHexagon.td
-/usr/include/llvm/IR/IntrinsicsMips.td
-/usr/include/llvm/IR/IntrinsicsNVVM.td
-/usr/include/llvm/IR/IntrinsicsPowerPC.td
-/usr/include/llvm/IR/IntrinsicsSystemZ.td
-/usr/include/llvm/IR/IntrinsicsWebAssembly.td
-/usr/include/llvm/IR/IntrinsicsX86.td
-/usr/include/llvm/IR/IntrinsicsXCore.td
-/usr/include/llvm/IR/LLVMContext.h
-/usr/include/llvm/IR/LegacyPassManager.h
-/usr/include/llvm/IR/LegacyPassManagers.h
-/usr/include/llvm/IR/LegacyPassNameParser.h
-/usr/include/llvm/IR/MDBuilder.h
-/usr/include/llvm/IR/Mangler.h
-/usr/include/llvm/IR/Metadata.def
-/usr/include/llvm/IR/Metadata.h
-/usr/include/llvm/IR/Module.h
-/usr/include/llvm/IR/ModuleSlotTracker.h
-/usr/include/llvm/IR/ModuleSummaryIndex.h
-/usr/include/llvm/IR/ModuleSummaryIndexYAML.h
-/usr/include/llvm/IR/NoFolder.h
-/usr/include/llvm/IR/OperandTraits.h
-/usr/include/llvm/IR/Operator.h
-/usr/include/llvm/IR/OptBisect.h
-/usr/include/llvm/IR/PassManager.h
-/usr/include/llvm/IR/PassManagerInternal.h
-/usr/include/llvm/IR/PatternMatch.h
-/usr/include/llvm/IR/PredIteratorCache.h
-/usr/include/llvm/IR/ProfileSummary.h
-/usr/include/llvm/IR/Statepoint.h
-/usr/include/llvm/IR/SymbolTableListTraits.h
-/usr/include/llvm/IR/TrackingMDRef.h
-/usr/include/llvm/IR/Type.h
-/usr/include/llvm/IR/TypeBuilder.h
-/usr/include/llvm/IR/TypeFinder.h
-/usr/include/llvm/IR/Use.h
-/usr/include/llvm/IR/UseListOrder.h
-/usr/include/llvm/IR/User.h
-/usr/include/llvm/IR/Value.def
-/usr/include/llvm/IR/Value.h
-/usr/include/llvm/IR/ValueHandle.h
-/usr/include/llvm/IR/ValueMap.h
-/usr/include/llvm/IR/ValueSymbolTable.h
-/usr/include/llvm/IR/Verifier.h
-/usr/include/llvm/IRReader/IRReader.h
-/usr/include/llvm/InitializePasses.h
-/usr/include/llvm/LTO/Caching.h
-/usr/include/llvm/LTO/Config.h
-/usr/include/llvm/LTO/LTO.h
-/usr/include/llvm/LTO/LTOBackend.h
-/usr/include/llvm/LTO/legacy/LTOCodeGenerator.h
-/usr/include/llvm/LTO/legacy/LTOModule.h
-/usr/include/llvm/LTO/legacy/ThinLTOCodeGenerator.h
-/usr/include/llvm/LTO/legacy/UpdateCompilerUsed.h
-/usr/include/llvm/LibDriver/LibDriver.h
-/usr/include/llvm/LineEditor/LineEditor.h
-/usr/include/llvm/LinkAllIR.h
-/usr/include/llvm/LinkAllPasses.h
-/usr/include/llvm/Linker/IRMover.h
-/usr/include/llvm/Linker/Linker.h
-/usr/include/llvm/MC/ConstantPools.h
-/usr/include/llvm/MC/LaneBitmask.h
-/usr/include/llvm/MC/MCAsmBackend.h
-/usr/include/llvm/MC/MCAsmInfo.h
-/usr/include/llvm/MC/MCAsmInfoCOFF.h
-/usr/include/llvm/MC/MCAsmInfoDarwin.h
-/usr/include/llvm/MC/MCAsmInfoELF.h
-/usr/include/llvm/MC/MCAsmLayout.h
-/usr/include/llvm/MC/MCAssembler.h
-/usr/include/llvm/MC/MCCodeEmitter.h
-/usr/include/llvm/MC/MCCodeView.h
-/usr/include/llvm/MC/MCContext.h
-/usr/include/llvm/MC/MCDirectives.h
-/usr/include/llvm/MC/MCDisassembler/MCDisassembler.h
-/usr/include/llvm/MC/MCDisassembler/MCExternalSymbolizer.h
-/usr/include/llvm/MC/MCDisassembler/MCRelocationInfo.h
-/usr/include/llvm/MC/MCDisassembler/MCSymbolizer.h
-/usr/include/llvm/MC/MCDwarf.h
-/usr/include/llvm/MC/MCELFObjectWriter.h
-/usr/include/llvm/MC/MCELFStreamer.h
-/usr/include/llvm/MC/MCExpr.h
-/usr/include/llvm/MC/MCFixedLenDisassembler.h
-/usr/include/llvm/MC/MCFixup.h
-/usr/include/llvm/MC/MCFixupKindInfo.h
-/usr/include/llvm/MC/MCFragment.h
-/usr/include/llvm/MC/MCInst.h
-/usr/include/llvm/MC/MCInstBuilder.h
-/usr/include/llvm/MC/MCInstPrinter.h
-/usr/include/llvm/MC/MCInstrAnalysis.h
-/usr/include/llvm/MC/MCInstrDesc.h
-/usr/include/llvm/MC/MCInstrInfo.h
-/usr/include/llvm/MC/MCInstrItineraries.h
-/usr/include/llvm/MC/MCLabel.h
-/usr/include/llvm/MC/MCLinkerOptimizationHint.h
-/usr/include/llvm/MC/MCMachObjectWriter.h
-/usr/include/llvm/MC/MCObjectFileInfo.h
-/usr/include/llvm/MC/MCObjectStreamer.h
-/usr/include/llvm/MC/MCObjectWriter.h
-/usr/include/llvm/MC/MCParser/AsmCond.h
-/usr/include/llvm/MC/MCParser/AsmLexer.h
-/usr/include/llvm/MC/MCParser/MCAsmLexer.h
-/usr/include/llvm/MC/MCParser/MCAsmParser.h
-/usr/include/llvm/MC/MCParser/MCAsmParserExtension.h
-/usr/include/llvm/MC/MCParser/MCAsmParserUtils.h
-/usr/include/llvm/MC/MCParser/MCParsedAsmOperand.h
-/usr/include/llvm/MC/MCParser/MCTargetAsmParser.h
-/usr/include/llvm/MC/MCRegisterInfo.h
-/usr/include/llvm/MC/MCSchedule.h
-/usr/include/llvm/MC/MCSection.h
-/usr/include/llvm/MC/MCSectionCOFF.h
-/usr/include/llvm/MC/MCSectionELF.h
-/usr/include/llvm/MC/MCSectionMachO.h
-/usr/include/llvm/MC/MCStreamer.h
-/usr/include/llvm/MC/MCSubtargetInfo.h
-/usr/include/llvm/MC/MCSymbol.h
-/usr/include/llvm/MC/MCSymbolCOFF.h
-/usr/include/llvm/MC/MCSymbolELF.h
-/usr/include/llvm/MC/MCSymbolMachO.h
-/usr/include/llvm/MC/MCTargetOptions.h
-/usr/include/llvm/MC/MCTargetOptionsCommandFlags.h
-/usr/include/llvm/MC/MCValue.h
-/usr/include/llvm/MC/MCWin64EH.h
-/usr/include/llvm/MC/MCWinCOFFObjectWriter.h
-/usr/include/llvm/MC/MCWinCOFFStreamer.h
-/usr/include/llvm/MC/MCWinEH.h
-/usr/include/llvm/MC/MachineLocation.h
-/usr/include/llvm/MC/SectionKind.h
-/usr/include/llvm/MC/StringTableBuilder.h
-/usr/include/llvm/MC/SubtargetFeature.h
-/usr/include/llvm/Object/Archive.h
-/usr/include/llvm/Object/ArchiveWriter.h
-/usr/include/llvm/Object/Binary.h
-/usr/include/llvm/Object/COFF.h
-/usr/include/llvm/Object/COFFImportFile.h
-/usr/include/llvm/Object/Decompressor.h
-/usr/include/llvm/Object/ELF.h
-/usr/include/llvm/Object/ELFObjectFile.h
-/usr/include/llvm/Object/ELFTypes.h
-/usr/include/llvm/Object/Error.h
-/usr/include/llvm/Object/IRObjectFile.h
-/usr/include/llvm/Object/MachO.h
-/usr/include/llvm/Object/MachOUniversal.h
-/usr/include/llvm/Object/ModuleSummaryIndexObjectFile.h
-/usr/include/llvm/Object/ModuleSymbolTable.h
-/usr/include/llvm/Object/ObjectFile.h
-/usr/include/llvm/Object/RelocVisitor.h
-/usr/include/llvm/Object/StackMapParser.h
-/usr/include/llvm/Object/SymbolSize.h
-/usr/include/llvm/Object/SymbolicFile.h
-/usr/include/llvm/Object/Wasm.h
-/usr/include/llvm/ObjectYAML/COFFYAML.h
-/usr/include/llvm/ObjectYAML/DWARFYAML.h
-/usr/include/llvm/ObjectYAML/ELFYAML.h
-/usr/include/llvm/ObjectYAML/MachOYAML.h
-/usr/include/llvm/ObjectYAML/ObjectYAML.h
-/usr/include/llvm/ObjectYAML/YAML.h
-/usr/include/llvm/Option/Arg.h
-/usr/include/llvm/Option/ArgList.h
-/usr/include/llvm/Option/OptParser.td
-/usr/include/llvm/Option/OptSpecifier.h
-/usr/include/llvm/Option/OptTable.h
-/usr/include/llvm/Option/Option.h
-/usr/include/llvm/Pass.h
-/usr/include/llvm/PassAnalysisSupport.h
-/usr/include/llvm/PassInfo.h
-/usr/include/llvm/PassRegistry.h
-/usr/include/llvm/PassSupport.h
-/usr/include/llvm/Passes/PassBuilder.h
-/usr/include/llvm/ProfileData/Coverage/CoverageMapping.h
-/usr/include/llvm/ProfileData/Coverage/CoverageMappingReader.h
-/usr/include/llvm/ProfileData/Coverage/CoverageMappingWriter.h
-/usr/include/llvm/ProfileData/InstrProf.h
-/usr/include/llvm/ProfileData/InstrProfData.inc
-/usr/include/llvm/ProfileData/InstrProfReader.h
-/usr/include/llvm/ProfileData/InstrProfWriter.h
-/usr/include/llvm/ProfileData/ProfileCommon.h
-/usr/include/llvm/ProfileData/SampleProf.h
-/usr/include/llvm/ProfileData/SampleProfReader.h
-/usr/include/llvm/ProfileData/SampleProfWriter.h
-/usr/include/llvm/Support/AArch64TargetParser.def
-/usr/include/llvm/Support/ARMBuildAttributes.h
-/usr/include/llvm/Support/ARMEHABI.h
-/usr/include/llvm/Support/ARMTargetParser.def
-/usr/include/llvm/Support/ARMWinEH.h
-/usr/include/llvm/Support/AlignOf.h
-/usr/include/llvm/Support/Allocator.h
-/usr/include/llvm/Support/ArrayRecycler.h
-/usr/include/llvm/Support/Atomic.h
-/usr/include/llvm/Support/AtomicOrdering.h
-/usr/include/llvm/Support/BlockFrequency.h
-/usr/include/llvm/Support/BranchProbability.h
-/usr/include/llvm/Support/CBindingWrapping.h
-/usr/include/llvm/Support/COFF.h
-/usr/include/llvm/Support/COM.h
-/usr/include/llvm/Support/CachePruning.h
-/usr/include/llvm/Support/Capacity.h
-/usr/include/llvm/Support/Casting.h
-/usr/include/llvm/Support/Chrono.h
-/usr/include/llvm/Support/CodeGen.h
-/usr/include/llvm/Support/CodeGenCWrappers.h
-/usr/include/llvm/Support/CommandLine.h
-/usr/include/llvm/Support/Compiler.h
-/usr/include/llvm/Support/Compression.h
-/usr/include/llvm/Support/ConvertUTF.h
-/usr/include/llvm/Support/CrashRecoveryContext.h
-/usr/include/llvm/Support/DOTGraphTraits.h
-/usr/include/llvm/Support/DataExtractor.h
-/usr/include/llvm/Support/DataTypes.h
-/usr/include/llvm/Support/Debug.h
-/usr/include/llvm/Support/Dwarf.def
-/usr/include/llvm/Support/Dwarf.h
-/usr/include/llvm/Support/DynamicLibrary.h
-/usr/include/llvm/Support/ELF.h
-/usr/include/llvm/Support/ELFRelocs/AArch64.def
-/usr/include/llvm/Support/ELFRelocs/AMDGPU.def
-/usr/include/llvm/Support/ELFRelocs/ARM.def
-/usr/include/llvm/Support/ELFRelocs/AVR.def
-/usr/include/llvm/Support/ELFRelocs/BPF.def
-/usr/include/llvm/Support/ELFRelocs/Hexagon.def
-/usr/include/llvm/Support/ELFRelocs/Lanai.def
-/usr/include/llvm/Support/ELFRelocs/Mips.def
-/usr/include/llvm/Support/ELFRelocs/PowerPC.def
-/usr/include/llvm/Support/ELFRelocs/PowerPC64.def
-/usr/include/llvm/Support/ELFRelocs/RISCV.def
-/usr/include/llvm/Support/ELFRelocs/Sparc.def
-/usr/include/llvm/Support/ELFRelocs/SystemZ.def
-/usr/include/llvm/Support/ELFRelocs/WebAssembly.def
-/usr/include/llvm/Support/ELFRelocs/i386.def
-/usr/include/llvm/Support/ELFRelocs/x86_64.def
-/usr/include/llvm/Support/Endian.h
-/usr/include/llvm/Support/EndianStream.h
-/usr/include/llvm/Support/Errc.h
-/usr/include/llvm/Support/Errno.h
-/usr/include/llvm/Support/Error.h
-/usr/include/llvm/Support/ErrorHandling.h
-/usr/include/llvm/Support/ErrorOr.h
-/usr/include/llvm/Support/FileOutputBuffer.h
-/usr/include/llvm/Support/FileSystem.h
-/usr/include/llvm/Support/FileUtilities.h
-/usr/include/llvm/Support/Format.h
-/usr/include/llvm/Support/FormatAdapters.h
-/usr/include/llvm/Support/FormatCommon.h
-/usr/include/llvm/Support/FormatProviders.h
-/usr/include/llvm/Support/FormatVariadic.h
-/usr/include/llvm/Support/FormatVariadicDetails.h
-/usr/include/llvm/Support/FormattedStream.h
-/usr/include/llvm/Support/GCOV.h
-/usr/include/llvm/Support/GenericDomTree.h
-/usr/include/llvm/Support/GenericDomTreeConstruction.h
-/usr/include/llvm/Support/GlobPattern.h
-/usr/include/llvm/Support/GraphWriter.h
-/usr/include/llvm/Support/Host.h
-/usr/include/llvm/Support/JamCRC.h
-/usr/include/llvm/Support/LEB128.h
-/usr/include/llvm/Support/LICENSE.TXT
-/usr/include/llvm/Support/LineIterator.h
-/usr/include/llvm/Support/Locale.h
-/usr/include/llvm/Support/LockFileManager.h
-/usr/include/llvm/Support/MD5.h
-/usr/include/llvm/Support/MachO.def
-/usr/include/llvm/Support/MachO.h
-/usr/include/llvm/Support/ManagedStatic.h
-/usr/include/llvm/Support/MathExtras.h
-/usr/include/llvm/Support/Memory.h
-/usr/include/llvm/Support/MemoryBuffer.h
-/usr/include/llvm/Support/MipsABIFlags.h
-/usr/include/llvm/Support/Mutex.h
-/usr/include/llvm/Support/MutexGuard.h
-/usr/include/llvm/Support/NativeFormatting.h
-/usr/include/llvm/Support/OnDiskHashTable.h
-/usr/include/llvm/Support/Options.h
-/usr/include/llvm/Support/Path.h
-/usr/include/llvm/Support/PluginLoader.h
-/usr/include/llvm/Support/PointerLikeTypeTraits.h
-/usr/include/llvm/Support/PrettyStackTrace.h
-/usr/include/llvm/Support/Printable.h
-/usr/include/llvm/Support/Process.h
-/usr/include/llvm/Support/Program.h
-/usr/include/llvm/Support/RWMutex.h
-/usr/include/llvm/Support/RandomNumberGenerator.h
-/usr/include/llvm/Support/Recycler.h
-/usr/include/llvm/Support/RecyclingAllocator.h
-/usr/include/llvm/Support/Regex.h
-/usr/include/llvm/Support/Registry.h
-/usr/include/llvm/Support/SHA1.h
-/usr/include/llvm/Support/SMLoc.h
-/usr/include/llvm/Support/SaveAndRestore.h
-/usr/include/llvm/Support/ScaledNumber.h
-/usr/include/llvm/Support/ScopedPrinter.h
-/usr/include/llvm/Support/Signals.h
-/usr/include/llvm/Support/Solaris.h
-/usr/include/llvm/Support/SourceMgr.h
-/usr/include/llvm/Support/SpecialCaseList.h
-/usr/include/llvm/Support/StringPool.h
-/usr/include/llvm/Support/StringSaver.h
-/usr/include/llvm/Support/SwapByteOrder.h
-/usr/include/llvm/Support/SystemUtils.h
-/usr/include/llvm/Support/TarWriter.h
-/usr/include/llvm/Support/TargetParser.h
-/usr/include/llvm/Support/TargetRegistry.h
-/usr/include/llvm/Support/TargetSelect.h
-/usr/include/llvm/Support/ThreadLocal.h
-/usr/include/llvm/Support/ThreadPool.h
-/usr/include/llvm/Support/Threading.h
-/usr/include/llvm/Support/Timer.h
-/usr/include/llvm/Support/ToolOutputFile.h
-/usr/include/llvm/Support/TrailingObjects.h
-/usr/include/llvm/Support/TrigramIndex.h
-/usr/include/llvm/Support/TypeName.h
-/usr/include/llvm/Support/Unicode.h
-/usr/include/llvm/Support/UnicodeCharRanges.h
-/usr/include/llvm/Support/UniqueLock.h
-/usr/include/llvm/Support/Valgrind.h
-/usr/include/llvm/Support/Wasm.h
-/usr/include/llvm/Support/Watchdog.h
-/usr/include/llvm/Support/Win64EH.h
-/usr/include/llvm/Support/WindowsError.h
-/usr/include/llvm/Support/YAMLParser.h
-/usr/include/llvm/Support/YAMLTraits.h
-/usr/include/llvm/Support/circular_raw_ostream.h
-/usr/include/llvm/Support/raw_os_ostream.h
-/usr/include/llvm/Support/raw_ostream.h
-/usr/include/llvm/Support/raw_sha1_ostream.h
-/usr/include/llvm/Support/thread.h
-/usr/include/llvm/Support/type_traits.h
-/usr/include/llvm/Support/xxhash.h
-/usr/include/llvm/TableGen/Error.h
-/usr/include/llvm/TableGen/Main.h
-/usr/include/llvm/TableGen/Record.h
-/usr/include/llvm/TableGen/SearchableTable.td
-/usr/include/llvm/TableGen/SetTheory.h
-/usr/include/llvm/TableGen/StringMatcher.h
-/usr/include/llvm/TableGen/StringToOffsetTable.h
-/usr/include/llvm/TableGen/TableGenBackend.h
-/usr/include/llvm/Target/CostTable.h
-/usr/include/llvm/Target/GenericOpcodes.td
-/usr/include/llvm/Target/Target.td
-/usr/include/llvm/Target/TargetCallingConv.h
-/usr/include/llvm/Target/TargetCallingConv.td
-/usr/include/llvm/Target/TargetFrameLowering.h
-/usr/include/llvm/Target/TargetGlobalISel.td
-/usr/include/llvm/Target/TargetInstrInfo.h
-/usr/include/llvm/Target/TargetIntrinsicInfo.h
-/usr/include/llvm/Target/TargetItinerary.td
-/usr/include/llvm/Target/TargetLowering.h
-/usr/include/llvm/Target/TargetLoweringObjectFile.h
-/usr/include/llvm/Target/TargetMachine.h
-/usr/include/llvm/Target/TargetOpcodes.def
-/usr/include/llvm/Target/TargetOpcodes.h
-/usr/include/llvm/Target/TargetOptions.h
-/usr/include/llvm/Target/TargetRegisterInfo.h
-/usr/include/llvm/Target/TargetSchedule.td
-/usr/include/llvm/Target/TargetSelectionDAG.td
-/usr/include/llvm/Target/TargetSubtargetInfo.h
-/usr/include/llvm/Transforms/Coroutines.h
-/usr/include/llvm/Transforms/GCOVProfiler.h
-/usr/include/llvm/Transforms/IPO.h
-/usr/include/llvm/Transforms/IPO/AlwaysInliner.h
-/usr/include/llvm/Transforms/IPO/ConstantMerge.h
-/usr/include/llvm/Transforms/IPO/CrossDSOCFI.h
-/usr/include/llvm/Transforms/IPO/DeadArgumentElimination.h
-/usr/include/llvm/Transforms/IPO/ElimAvailExtern.h
-/usr/include/llvm/Transforms/IPO/ForceFunctionAttrs.h
-/usr/include/llvm/Transforms/IPO/FunctionAttrs.h
-/usr/include/llvm/Transforms/IPO/FunctionImport.h
-/usr/include/llvm/Transforms/IPO/GlobalDCE.h
-/usr/include/llvm/Transforms/IPO/GlobalOpt.h
-/usr/include/llvm/Transforms/IPO/GlobalSplit.h
-/usr/include/llvm/Transforms/IPO/InferFunctionAttrs.h
-/usr/include/llvm/Transforms/IPO/Inliner.h
-/usr/include/llvm/Transforms/IPO/Internalize.h
-/usr/include/llvm/Transforms/IPO/LowerTypeTests.h
-/usr/include/llvm/Transforms/IPO/PartialInlining.h
-/usr/include/llvm/Transforms/IPO/PassManagerBuilder.h
-/usr/include/llvm/Transforms/IPO/SCCP.h
-/usr/include/llvm/Transforms/IPO/StripDeadPrototypes.h
-/usr/include/llvm/Transforms/IPO/WholeProgramDevirt.h
-/usr/include/llvm/Transforms/InstCombine/InstCombine.h
-/usr/include/llvm/Transforms/InstCombine/InstCombineWorklist.h
-/usr/include/llvm/Transforms/InstrProfiling.h
-/usr/include/llvm/Transforms/Instrumentation.h
-/usr/include/llvm/Transforms/ObjCARC.h
-/usr/include/llvm/Transforms/PGOInstrumentation.h
-/usr/include/llvm/Transforms/SampleProfile.h
-/usr/include/llvm/Transforms/Scalar.h
-/usr/include/llvm/Transforms/Scalar/ADCE.h
-/usr/include/llvm/Transforms/Scalar/AlignmentFromAssumptions.h
-/usr/include/llvm/Transforms/Scalar/BDCE.h
-/usr/include/llvm/Transforms/Scalar/ConstantHoisting.h
-/usr/include/llvm/Transforms/Scalar/CorrelatedValuePropagation.h
-/usr/include/llvm/Transforms/Scalar/DCE.h
-/usr/include/llvm/Transforms/Scalar/DeadStoreElimination.h
-/usr/include/llvm/Transforms/Scalar/EarlyCSE.h
-/usr/include/llvm/Transforms/Scalar/Float2Int.h
-/usr/include/llvm/Transforms/Scalar/GVN.h
-/usr/include/llvm/Transforms/Scalar/GVNExpression.h
-/usr/include/llvm/Transforms/Scalar/GuardWidening.h
-/usr/include/llvm/Transforms/Scalar/IVUsersPrinter.h
-/usr/include/llvm/Transforms/Scalar/IndVarSimplify.h
-/usr/include/llvm/Transforms/Scalar/JumpThreading.h
-/usr/include/llvm/Transforms/Scalar/LICM.h
-/usr/include/llvm/Transforms/Scalar/LoopAccessAnalysisPrinter.h
-/usr/include/llvm/Transforms/Scalar/LoopDataPrefetch.h
-/usr/include/llvm/Transforms/Scalar/LoopDeletion.h
-/usr/include/llvm/Transforms/Scalar/LoopDistribute.h
-/usr/include/llvm/Transforms/Scalar/LoopIdiomRecognize.h
-/usr/include/llvm/Transforms/Scalar/LoopInstSimplify.h
-/usr/include/llvm/Transforms/Scalar/LoopPassManager.h
-/usr/include/llvm/Transforms/Scalar/LoopRotation.h
-/usr/include/llvm/Transforms/Scalar/LoopSimplifyCFG.h
-/usr/include/llvm/Transforms/Scalar/LoopStrengthReduce.h
-/usr/include/llvm/Transforms/Scalar/LoopUnrollPass.h
-/usr/include/llvm/Transforms/Scalar/LowerAtomic.h
-/usr/include/llvm/Transforms/Scalar/LowerExpectIntrinsic.h
-/usr/include/llvm/Transforms/Scalar/LowerGuardIntrinsic.h
-/usr/include/llvm/Transforms/Scalar/MemCpyOptimizer.h
-/usr/include/llvm/Transforms/Scalar/MergedLoadStoreMotion.h
-/usr/include/llvm/Transforms/Scalar/NaryReassociate.h
-/usr/include/llvm/Transforms/Scalar/NewGVN.h
-/usr/include/llvm/Transforms/Scalar/PartiallyInlineLibCalls.h
-/usr/include/llvm/Transforms/Scalar/Reassociate.h
-/usr/include/llvm/Transforms/Scalar/SCCP.h
-/usr/include/llvm/Transforms/Scalar/SROA.h
-/usr/include/llvm/Transforms/Scalar/SimplifyCFG.h
-/usr/include/llvm/Transforms/Scalar/Sink.h
-/usr/include/llvm/Transforms/Scalar/SpeculativeExecution.h
-/usr/include/llvm/Transforms/Scalar/TailRecursionElimination.h
-/usr/include/llvm/Transforms/Utils/ASanStackFrameLayout.h
-/usr/include/llvm/Transforms/Utils/AddDiscriminators.h
-/usr/include/llvm/Transforms/Utils/BasicBlockUtils.h
-/usr/include/llvm/Transforms/Utils/BreakCriticalEdges.h
-/usr/include/llvm/Transforms/Utils/BuildLibCalls.h
-/usr/include/llvm/Transforms/Utils/BypassSlowDivision.h
-/usr/include/llvm/Transforms/Utils/Cloning.h
-/usr/include/llvm/Transforms/Utils/CmpInstAnalysis.h
-/usr/include/llvm/Transforms/Utils/CodeExtractor.h
-/usr/include/llvm/Transforms/Utils/CtorUtils.h
-/usr/include/llvm/Transforms/Utils/EscapeEnumerator.h
-/usr/include/llvm/Transforms/Utils/Evaluator.h
-/usr/include/llvm/Transforms/Utils/FunctionComparator.h
-/usr/include/llvm/Transforms/Utils/FunctionImportUtils.h
-/usr/include/llvm/Transforms/Utils/GlobalStatus.h
-/usr/include/llvm/Transforms/Utils/ImportedFunctionsInliningStatistics.h
-/usr/include/llvm/Transforms/Utils/IntegerDivision.h
-/usr/include/llvm/Transforms/Utils/LCSSA.h
-/usr/include/llvm/Transforms/Utils/LibCallsShrinkWrap.h
-/usr/include/llvm/Transforms/Utils/Local.h
-/usr/include/llvm/Transforms/Utils/LoopSimplify.h
-/usr/include/llvm/Transforms/Utils/LoopUtils.h
-/usr/include/llvm/Transforms/Utils/LoopVersioning.h
-/usr/include/llvm/Transforms/Utils/LowerInvoke.h
-/usr/include/llvm/Transforms/Utils/Mem2Reg.h
-/usr/include/llvm/Transforms/Utils/MemorySSA.h
-/usr/include/llvm/Transforms/Utils/ModuleUtils.h
-/usr/include/llvm/Transforms/Utils/NameAnonGlobals.h
-/usr/include/llvm/Transforms/Utils/PromoteMemToReg.h
-/usr/include/llvm/Transforms/Utils/SSAUpdater.h
-/usr/include/llvm/Transforms/Utils/SSAUpdaterImpl.h
-/usr/include/llvm/Transforms/Utils/SanitizerStats.h
-/usr/include/llvm/Transforms/Utils/SimplifyIndVar.h
-/usr/include/llvm/Transforms/Utils/SimplifyInstructions.h
-/usr/include/llvm/Transforms/Utils/SimplifyLibCalls.h
-/usr/include/llvm/Transforms/Utils/SplitModule.h
-/usr/include/llvm/Transforms/Utils/SymbolRewriter.h
-/usr/include/llvm/Transforms/Utils/UnifyFunctionExitNodes.h
-/usr/include/llvm/Transforms/Utils/UnrollLoop.h
-/usr/include/llvm/Transforms/Utils/ValueMapper.h
-/usr/include/llvm/Transforms/Vectorize.h
-/usr/include/llvm/Transforms/Vectorize/LoopVectorize.h
-/usr/include/llvm/Transforms/Vectorize/SLPVectorizer.h
-/usr/include/llvm/XRay/Trace.h
-/usr/include/llvm/XRay/XRayRecord.h
-/usr/include/llvm/XRay/YAMLXRayRecord.h
-/usr/lib64/BugpointPasses.so
-/usr/lib64/LLVMHello.so
-/usr/lib64/LLVMgold.so
+%exclude /usr/include/clang-c/BuildSystem.h
+%exclude /usr/include/clang-c/CXCompilationDatabase.h
+%exclude /usr/include/clang-c/CXErrorCode.h
+%exclude /usr/include/clang-c/CXString.h
+%exclude /usr/include/clang-c/Documentation.h
+%exclude /usr/include/clang-c/Index.h
+%exclude /usr/include/clang-c/Platform.h
+%exclude /usr/include/clang/ARCMigrate/ARCMT.h
+%exclude /usr/include/clang/ARCMigrate/ARCMTActions.h
+%exclude /usr/include/clang/ARCMigrate/FileRemapper.h
+%exclude /usr/include/clang/AST/APValue.h
+%exclude /usr/include/clang/AST/AST.h
+%exclude /usr/include/clang/AST/ASTConsumer.h
+%exclude /usr/include/clang/AST/ASTContext.h
+%exclude /usr/include/clang/AST/ASTDiagnostic.h
+%exclude /usr/include/clang/AST/ASTFwd.h
+%exclude /usr/include/clang/AST/ASTImporter.h
+%exclude /usr/include/clang/AST/ASTLambda.h
+%exclude /usr/include/clang/AST/ASTMutationListener.h
+%exclude /usr/include/clang/AST/ASTTypeTraits.h
+%exclude /usr/include/clang/AST/ASTUnresolvedSet.h
+%exclude /usr/include/clang/AST/ASTVector.h
+%exclude /usr/include/clang/AST/Attr.h
+%exclude /usr/include/clang/AST/AttrDump.inc
+%exclude /usr/include/clang/AST/AttrImpl.inc
+%exclude /usr/include/clang/AST/AttrIterator.h
+%exclude /usr/include/clang/AST/AttrVisitor.inc
+%exclude /usr/include/clang/AST/Attrs.inc
+%exclude /usr/include/clang/AST/Availability.h
+%exclude /usr/include/clang/AST/BaseSubobject.h
+%exclude /usr/include/clang/AST/BuiltinTypes.def
+%exclude /usr/include/clang/AST/CXXInheritance.h
+%exclude /usr/include/clang/AST/CanonicalType.h
+%exclude /usr/include/clang/AST/CharUnits.h
+%exclude /usr/include/clang/AST/Comment.h
+%exclude /usr/include/clang/AST/CommentBriefParser.h
+%exclude /usr/include/clang/AST/CommentCommandInfo.inc
+%exclude /usr/include/clang/AST/CommentCommandList.inc
+%exclude /usr/include/clang/AST/CommentCommandTraits.h
+%exclude /usr/include/clang/AST/CommentDiagnostic.h
+%exclude /usr/include/clang/AST/CommentHTMLNamedCharacterReferences.inc
+%exclude /usr/include/clang/AST/CommentHTMLTags.inc
+%exclude /usr/include/clang/AST/CommentHTMLTagsProperties.inc
+%exclude /usr/include/clang/AST/CommentLexer.h
+%exclude /usr/include/clang/AST/CommentNodes.inc
+%exclude /usr/include/clang/AST/CommentParser.h
+%exclude /usr/include/clang/AST/CommentSema.h
+%exclude /usr/include/clang/AST/CommentVisitor.h
+%exclude /usr/include/clang/AST/Decl.h
+%exclude /usr/include/clang/AST/DeclAccessPair.h
+%exclude /usr/include/clang/AST/DeclBase.h
+%exclude /usr/include/clang/AST/DeclCXX.h
+%exclude /usr/include/clang/AST/DeclContextInternals.h
+%exclude /usr/include/clang/AST/DeclFriend.h
+%exclude /usr/include/clang/AST/DeclGroup.h
+%exclude /usr/include/clang/AST/DeclLookups.h
+%exclude /usr/include/clang/AST/DeclNodes.inc
+%exclude /usr/include/clang/AST/DeclObjC.h
+%exclude /usr/include/clang/AST/DeclOpenMP.h
+%exclude /usr/include/clang/AST/DeclTemplate.h
+%exclude /usr/include/clang/AST/DeclVisitor.h
+%exclude /usr/include/clang/AST/DeclarationName.h
+%exclude /usr/include/clang/AST/DependentDiagnostic.h
+%exclude /usr/include/clang/AST/EvaluatedExprVisitor.h
+%exclude /usr/include/clang/AST/Expr.h
+%exclude /usr/include/clang/AST/ExprCXX.h
+%exclude /usr/include/clang/AST/ExprObjC.h
+%exclude /usr/include/clang/AST/ExprOpenMP.h
+%exclude /usr/include/clang/AST/ExternalASTSource.h
+%exclude /usr/include/clang/AST/GlobalDecl.h
+%exclude /usr/include/clang/AST/LambdaCapture.h
+%exclude /usr/include/clang/AST/LocInfoType.h
+%exclude /usr/include/clang/AST/Mangle.h
+%exclude /usr/include/clang/AST/MangleNumberingContext.h
+%exclude /usr/include/clang/AST/NSAPI.h
+%exclude /usr/include/clang/AST/NestedNameSpecifier.h
+%exclude /usr/include/clang/AST/OpenMPClause.h
+%exclude /usr/include/clang/AST/OperationKinds.def
+%exclude /usr/include/clang/AST/OperationKinds.h
+%exclude /usr/include/clang/AST/ParentMap.h
+%exclude /usr/include/clang/AST/PrettyPrinter.h
+%exclude /usr/include/clang/AST/RawCommentList.h
+%exclude /usr/include/clang/AST/RecordLayout.h
+%exclude /usr/include/clang/AST/RecursiveASTVisitor.h
+%exclude /usr/include/clang/AST/Redeclarable.h
+%exclude /usr/include/clang/AST/SelectorLocationsKind.h
+%exclude /usr/include/clang/AST/Stmt.h
+%exclude /usr/include/clang/AST/StmtCXX.h
+%exclude /usr/include/clang/AST/StmtGraphTraits.h
+%exclude /usr/include/clang/AST/StmtIterator.h
+%exclude /usr/include/clang/AST/StmtNodes.inc
+%exclude /usr/include/clang/AST/StmtObjC.h
+%exclude /usr/include/clang/AST/StmtOpenMP.h
+%exclude /usr/include/clang/AST/StmtVisitor.h
+%exclude /usr/include/clang/AST/TemplateBase.h
+%exclude /usr/include/clang/AST/TemplateName.h
+%exclude /usr/include/clang/AST/Type.h
+%exclude /usr/include/clang/AST/TypeLoc.h
+%exclude /usr/include/clang/AST/TypeLocNodes.def
+%exclude /usr/include/clang/AST/TypeLocVisitor.h
+%exclude /usr/include/clang/AST/TypeNodes.def
+%exclude /usr/include/clang/AST/TypeOrdering.h
+%exclude /usr/include/clang/AST/TypeVisitor.h
+%exclude /usr/include/clang/AST/UnresolvedSet.h
+%exclude /usr/include/clang/AST/VTTBuilder.h
+%exclude /usr/include/clang/AST/VTableBuilder.h
+%exclude /usr/include/clang/ASTMatchers/ASTMatchFinder.h
+%exclude /usr/include/clang/ASTMatchers/ASTMatchers.h
+%exclude /usr/include/clang/ASTMatchers/ASTMatchersInternal.h
+%exclude /usr/include/clang/ASTMatchers/ASTMatchersMacros.h
+%exclude /usr/include/clang/ASTMatchers/Dynamic/Diagnostics.h
+%exclude /usr/include/clang/ASTMatchers/Dynamic/Parser.h
+%exclude /usr/include/clang/ASTMatchers/Dynamic/Registry.h
+%exclude /usr/include/clang/ASTMatchers/Dynamic/VariantValue.h
+%exclude /usr/include/clang/Analysis/Analyses/CFGReachabilityAnalysis.h
+%exclude /usr/include/clang/Analysis/Analyses/Consumed.h
+%exclude /usr/include/clang/Analysis/Analyses/Dominators.h
+%exclude /usr/include/clang/Analysis/Analyses/FormatString.h
+%exclude /usr/include/clang/Analysis/Analyses/LiveVariables.h
+%exclude /usr/include/clang/Analysis/Analyses/OSLog.h
+%exclude /usr/include/clang/Analysis/Analyses/PostOrderCFGView.h
+%exclude /usr/include/clang/Analysis/Analyses/PseudoConstantAnalysis.h
+%exclude /usr/include/clang/Analysis/Analyses/ReachableCode.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafety.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyCommon.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyLogical.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyOps.def
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyTIL.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyTraverse.h
+%exclude /usr/include/clang/Analysis/Analyses/ThreadSafetyUtil.h
+%exclude /usr/include/clang/Analysis/Analyses/UninitializedValues.h
+%exclude /usr/include/clang/Analysis/AnalysisContext.h
+%exclude /usr/include/clang/Analysis/AnalysisDiagnostic.h
+%exclude /usr/include/clang/Analysis/CFG.h
+%exclude /usr/include/clang/Analysis/CFGStmtMap.h
+%exclude /usr/include/clang/Analysis/CallGraph.h
+%exclude /usr/include/clang/Analysis/CloneDetection.h
+%exclude /usr/include/clang/Analysis/CodeInjector.h
+%exclude /usr/include/clang/Analysis/DomainSpecific/CocoaConventions.h
+%exclude /usr/include/clang/Analysis/DomainSpecific/ObjCNoReturn.h
+%exclude /usr/include/clang/Analysis/FlowSensitive/DataflowValues.h
+%exclude /usr/include/clang/Analysis/ProgramPoint.h
+%exclude /usr/include/clang/Analysis/Support/BumpVector.h
+%exclude /usr/include/clang/Basic/ABI.h
+%exclude /usr/include/clang/Basic/AddressSpaces.h
+%exclude /usr/include/clang/Basic/AllDiagnostics.h
+%exclude /usr/include/clang/Basic/AttrHasAttributeImpl.inc
+%exclude /usr/include/clang/Basic/AttrKinds.h
+%exclude /usr/include/clang/Basic/AttrList.inc
+%exclude /usr/include/clang/Basic/Attributes.h
+%exclude /usr/include/clang/Basic/Builtins.def
+%exclude /usr/include/clang/Basic/Builtins.h
+%exclude /usr/include/clang/Basic/BuiltinsAArch64.def
+%exclude /usr/include/clang/Basic/BuiltinsAMDGPU.def
+%exclude /usr/include/clang/Basic/BuiltinsARM.def
+%exclude /usr/include/clang/Basic/BuiltinsHexagon.def
+%exclude /usr/include/clang/Basic/BuiltinsLe64.def
+%exclude /usr/include/clang/Basic/BuiltinsMips.def
+%exclude /usr/include/clang/Basic/BuiltinsNEON.def
+%exclude /usr/include/clang/Basic/BuiltinsNVPTX.def
+%exclude /usr/include/clang/Basic/BuiltinsPPC.def
+%exclude /usr/include/clang/Basic/BuiltinsSystemZ.def
+%exclude /usr/include/clang/Basic/BuiltinsWebAssembly.def
+%exclude /usr/include/clang/Basic/BuiltinsX86.def
+%exclude /usr/include/clang/Basic/BuiltinsX86_64.def
+%exclude /usr/include/clang/Basic/BuiltinsXCore.def
+%exclude /usr/include/clang/Basic/CapturedStmt.h
+%exclude /usr/include/clang/Basic/CharInfo.h
+%exclude /usr/include/clang/Basic/CommentOptions.h
+%exclude /usr/include/clang/Basic/Cuda.h
+%exclude /usr/include/clang/Basic/DebugInfoOptions.h
+%exclude /usr/include/clang/Basic/Diagnostic.h
+%exclude /usr/include/clang/Basic/DiagnosticASTKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticAnalysisKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticCategories.h
+%exclude /usr/include/clang/Basic/DiagnosticCommentKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticCommonKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticDriverKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticFrontendKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticGroups.inc
+%exclude /usr/include/clang/Basic/DiagnosticIDs.h
+%exclude /usr/include/clang/Basic/DiagnosticIndexName.inc
+%exclude /usr/include/clang/Basic/DiagnosticLexKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticOptions.def
+%exclude /usr/include/clang/Basic/DiagnosticOptions.h
+%exclude /usr/include/clang/Basic/DiagnosticParseKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticSemaKinds.inc
+%exclude /usr/include/clang/Basic/DiagnosticSerializationKinds.inc
+%exclude /usr/include/clang/Basic/ExceptionSpecificationType.h
+%exclude /usr/include/clang/Basic/ExpressionTraits.h
+%exclude /usr/include/clang/Basic/FileManager.h
+%exclude /usr/include/clang/Basic/FileSystemOptions.h
+%exclude /usr/include/clang/Basic/FileSystemStatCache.h
+%exclude /usr/include/clang/Basic/IdentifierTable.h
+%exclude /usr/include/clang/Basic/LLVM.h
+%exclude /usr/include/clang/Basic/Lambda.h
+%exclude /usr/include/clang/Basic/LangOptions.def
+%exclude /usr/include/clang/Basic/LangOptions.h
+%exclude /usr/include/clang/Basic/Linkage.h
+%exclude /usr/include/clang/Basic/MacroBuilder.h
+%exclude /usr/include/clang/Basic/Module.h
+%exclude /usr/include/clang/Basic/ObjCRuntime.h
+%exclude /usr/include/clang/Basic/OpenCLExtensions.def
+%exclude /usr/include/clang/Basic/OpenCLImageTypes.def
+%exclude /usr/include/clang/Basic/OpenCLOptions.h
+%exclude /usr/include/clang/Basic/OpenMPKinds.def
+%exclude /usr/include/clang/Basic/OpenMPKinds.h
+%exclude /usr/include/clang/Basic/OperatorKinds.def
+%exclude /usr/include/clang/Basic/OperatorKinds.h
+%exclude /usr/include/clang/Basic/OperatorPrecedence.h
+%exclude /usr/include/clang/Basic/PartialDiagnostic.h
+%exclude /usr/include/clang/Basic/PlistSupport.h
+%exclude /usr/include/clang/Basic/PragmaKinds.h
+%exclude /usr/include/clang/Basic/PrettyStackTrace.h
+%exclude /usr/include/clang/Basic/SanitizerBlacklist.h
+%exclude /usr/include/clang/Basic/Sanitizers.def
+%exclude /usr/include/clang/Basic/Sanitizers.h
+%exclude /usr/include/clang/Basic/SourceLocation.h
+%exclude /usr/include/clang/Basic/SourceManager.h
+%exclude /usr/include/clang/Basic/SourceManagerInternals.h
+%exclude /usr/include/clang/Basic/Specifiers.h
+%exclude /usr/include/clang/Basic/TargetBuiltins.h
+%exclude /usr/include/clang/Basic/TargetCXXABI.h
+%exclude /usr/include/clang/Basic/TargetInfo.h
+%exclude /usr/include/clang/Basic/TargetOptions.h
+%exclude /usr/include/clang/Basic/TemplateKinds.h
+%exclude /usr/include/clang/Basic/TokenKinds.def
+%exclude /usr/include/clang/Basic/TokenKinds.h
+%exclude /usr/include/clang/Basic/TypeTraits.h
+%exclude /usr/include/clang/Basic/Version.h
+%exclude /usr/include/clang/Basic/Version.inc
+%exclude /usr/include/clang/Basic/VersionTuple.h
+%exclude /usr/include/clang/Basic/VirtualFileSystem.h
+%exclude /usr/include/clang/Basic/Visibility.h
+%exclude /usr/include/clang/Basic/arm_neon.inc
+%exclude /usr/include/clang/CodeGen/BackendUtil.h
+%exclude /usr/include/clang/CodeGen/CGFunctionInfo.h
+%exclude /usr/include/clang/CodeGen/CodeGenABITypes.h
+%exclude /usr/include/clang/CodeGen/CodeGenAction.h
+%exclude /usr/include/clang/CodeGen/ModuleBuilder.h
+%exclude /usr/include/clang/CodeGen/ObjectFilePCHContainerOperations.h
+%exclude /usr/include/clang/CodeGen/SwiftCallingConv.h
+%exclude /usr/include/clang/Config/config.h
+%exclude /usr/include/clang/Driver/Action.h
+%exclude /usr/include/clang/Driver/Compilation.h
+%exclude /usr/include/clang/Driver/Distro.h
+%exclude /usr/include/clang/Driver/Driver.h
+%exclude /usr/include/clang/Driver/DriverDiagnostic.h
+%exclude /usr/include/clang/Driver/Job.h
+%exclude /usr/include/clang/Driver/Multilib.h
+%exclude /usr/include/clang/Driver/Options.h
+%exclude /usr/include/clang/Driver/Options.inc
+%exclude /usr/include/clang/Driver/Phases.h
+%exclude /usr/include/clang/Driver/SanitizerArgs.h
+%exclude /usr/include/clang/Driver/Tool.h
+%exclude /usr/include/clang/Driver/ToolChain.h
+%exclude /usr/include/clang/Driver/Types.def
+%exclude /usr/include/clang/Driver/Types.h
+%exclude /usr/include/clang/Driver/Util.h
+%exclude /usr/include/clang/Edit/Commit.h
+%exclude /usr/include/clang/Edit/EditedSource.h
+%exclude /usr/include/clang/Edit/EditsReceiver.h
+%exclude /usr/include/clang/Edit/FileOffset.h
+%exclude /usr/include/clang/Edit/Rewriters.h
+%exclude /usr/include/clang/Format/Format.h
+%exclude /usr/include/clang/Frontend/ASTConsumers.h
+%exclude /usr/include/clang/Frontend/ASTUnit.h
+%exclude /usr/include/clang/Frontend/ChainedDiagnosticConsumer.h
+%exclude /usr/include/clang/Frontend/CodeGenOptions.def
+%exclude /usr/include/clang/Frontend/CodeGenOptions.h
+%exclude /usr/include/clang/Frontend/CommandLineSourceLoc.h
+%exclude /usr/include/clang/Frontend/CompilerInstance.h
+%exclude /usr/include/clang/Frontend/CompilerInvocation.h
+%exclude /usr/include/clang/Frontend/DependencyOutputOptions.h
+%exclude /usr/include/clang/Frontend/DiagnosticRenderer.h
+%exclude /usr/include/clang/Frontend/FrontendAction.h
+%exclude /usr/include/clang/Frontend/FrontendActions.h
+%exclude /usr/include/clang/Frontend/FrontendDiagnostic.h
+%exclude /usr/include/clang/Frontend/FrontendOptions.h
+%exclude /usr/include/clang/Frontend/FrontendPluginRegistry.h
+%exclude /usr/include/clang/Frontend/LangStandard.h
+%exclude /usr/include/clang/Frontend/LangStandards.def
+%exclude /usr/include/clang/Frontend/LayoutOverrideSource.h
+%exclude /usr/include/clang/Frontend/LogDiagnosticPrinter.h
+%exclude /usr/include/clang/Frontend/MigratorOptions.h
+%exclude /usr/include/clang/Frontend/MultiplexConsumer.h
+%exclude /usr/include/clang/Frontend/PCHContainerOperations.h
+%exclude /usr/include/clang/Frontend/PreprocessorOutputOptions.h
+%exclude /usr/include/clang/Frontend/SerializedDiagnosticPrinter.h
+%exclude /usr/include/clang/Frontend/SerializedDiagnosticReader.h
+%exclude /usr/include/clang/Frontend/SerializedDiagnostics.h
+%exclude /usr/include/clang/Frontend/TextDiagnostic.h
+%exclude /usr/include/clang/Frontend/TextDiagnosticBuffer.h
+%exclude /usr/include/clang/Frontend/TextDiagnosticPrinter.h
+%exclude /usr/include/clang/Frontend/Utils.h
+%exclude /usr/include/clang/Frontend/VerifyDiagnosticConsumer.h
+%exclude /usr/include/clang/FrontendTool/Utils.h
+%exclude /usr/include/clang/Index/CodegenNameGenerator.h
+%exclude /usr/include/clang/Index/CommentToXML.h
+%exclude /usr/include/clang/Index/IndexDataConsumer.h
+%exclude /usr/include/clang/Index/IndexSymbol.h
+%exclude /usr/include/clang/Index/IndexingAction.h
+%exclude /usr/include/clang/Index/USRGeneration.h
+%exclude /usr/include/clang/Lex/CodeCompletionHandler.h
+%exclude /usr/include/clang/Lex/DirectoryLookup.h
+%exclude /usr/include/clang/Lex/ExternalPreprocessorSource.h
+%exclude /usr/include/clang/Lex/HeaderMap.h
+%exclude /usr/include/clang/Lex/HeaderMapTypes.h
+%exclude /usr/include/clang/Lex/HeaderSearch.h
+%exclude /usr/include/clang/Lex/HeaderSearchOptions.h
+%exclude /usr/include/clang/Lex/LexDiagnostic.h
+%exclude /usr/include/clang/Lex/Lexer.h
+%exclude /usr/include/clang/Lex/LiteralSupport.h
+%exclude /usr/include/clang/Lex/MacroArgs.h
+%exclude /usr/include/clang/Lex/MacroInfo.h
+%exclude /usr/include/clang/Lex/ModuleLoader.h
+%exclude /usr/include/clang/Lex/ModuleMap.h
+%exclude /usr/include/clang/Lex/MultipleIncludeOpt.h
+%exclude /usr/include/clang/Lex/PPCallbacks.h
+%exclude /usr/include/clang/Lex/PPConditionalDirectiveRecord.h
+%exclude /usr/include/clang/Lex/PTHLexer.h
+%exclude /usr/include/clang/Lex/PTHManager.h
+%exclude /usr/include/clang/Lex/Pragma.h
+%exclude /usr/include/clang/Lex/PreprocessingRecord.h
+%exclude /usr/include/clang/Lex/Preprocessor.h
+%exclude /usr/include/clang/Lex/PreprocessorLexer.h
+%exclude /usr/include/clang/Lex/PreprocessorOptions.h
+%exclude /usr/include/clang/Lex/ScratchBuffer.h
+%exclude /usr/include/clang/Lex/Token.h
+%exclude /usr/include/clang/Lex/TokenConcatenation.h
+%exclude /usr/include/clang/Lex/TokenLexer.h
+%exclude /usr/include/clang/Parse/AttrParserStringSwitches.inc
+%exclude /usr/include/clang/Parse/ParseAST.h
+%exclude /usr/include/clang/Parse/ParseDiagnostic.h
+%exclude /usr/include/clang/Parse/Parser.h
+%exclude /usr/include/clang/Rewrite/Core/DeltaTree.h
+%exclude /usr/include/clang/Rewrite/Core/HTMLRewrite.h
+%exclude /usr/include/clang/Rewrite/Core/RewriteBuffer.h
+%exclude /usr/include/clang/Rewrite/Core/RewriteRope.h
+%exclude /usr/include/clang/Rewrite/Core/Rewriter.h
+%exclude /usr/include/clang/Rewrite/Core/TokenRewriter.h
+%exclude /usr/include/clang/Rewrite/Frontend/ASTConsumers.h
+%exclude /usr/include/clang/Rewrite/Frontend/FixItRewriter.h
+%exclude /usr/include/clang/Rewrite/Frontend/FrontendActions.h
+%exclude /usr/include/clang/Rewrite/Frontend/Rewriters.h
+%exclude /usr/include/clang/Sema/AnalysisBasedWarnings.h
+%exclude /usr/include/clang/Sema/AttrParsedAttrImpl.inc
+%exclude /usr/include/clang/Sema/AttrParsedAttrKinds.inc
+%exclude /usr/include/clang/Sema/AttrParsedAttrList.inc
+%exclude /usr/include/clang/Sema/AttrSpellingListIndex.inc
+%exclude /usr/include/clang/Sema/AttrTemplateInstantiate.inc
+%exclude /usr/include/clang/Sema/AttributeList.h
+%exclude /usr/include/clang/Sema/CXXFieldCollector.h
+%exclude /usr/include/clang/Sema/CleanupInfo.h
+%exclude /usr/include/clang/Sema/CodeCompleteConsumer.h
+%exclude /usr/include/clang/Sema/CodeCompleteOptions.h
+%exclude /usr/include/clang/Sema/DeclSpec.h
+%exclude /usr/include/clang/Sema/DelayedDiagnostic.h
+%exclude /usr/include/clang/Sema/Designator.h
+%exclude /usr/include/clang/Sema/ExternalSemaSource.h
+%exclude /usr/include/clang/Sema/IdentifierResolver.h
+%exclude /usr/include/clang/Sema/Initialization.h
+%exclude /usr/include/clang/Sema/Lookup.h
+%exclude /usr/include/clang/Sema/LoopHint.h
+%exclude /usr/include/clang/Sema/MultiplexExternalSemaSource.h
+%exclude /usr/include/clang/Sema/ObjCMethodList.h
+%exclude /usr/include/clang/Sema/Overload.h
+%exclude /usr/include/clang/Sema/Ownership.h
+%exclude /usr/include/clang/Sema/ParsedTemplate.h
+%exclude /usr/include/clang/Sema/PrettyDeclStackTrace.h
+%exclude /usr/include/clang/Sema/Scope.h
+%exclude /usr/include/clang/Sema/ScopeInfo.h
+%exclude /usr/include/clang/Sema/Sema.h
+%exclude /usr/include/clang/Sema/SemaConsumer.h
+%exclude /usr/include/clang/Sema/SemaDiagnostic.h
+%exclude /usr/include/clang/Sema/SemaFixItUtils.h
+%exclude /usr/include/clang/Sema/SemaInternal.h
+%exclude /usr/include/clang/Sema/SemaLambda.h
+%exclude /usr/include/clang/Sema/Template.h
+%exclude /usr/include/clang/Sema/TemplateDeduction.h
+%exclude /usr/include/clang/Sema/TypoCorrection.h
+%exclude /usr/include/clang/Sema/Weak.h
+%exclude /usr/include/clang/Serialization/ASTBitCodes.h
+%exclude /usr/include/clang/Serialization/ASTDeserializationListener.h
+%exclude /usr/include/clang/Serialization/ASTReader.h
+%exclude /usr/include/clang/Serialization/ASTWriter.h
+%exclude /usr/include/clang/Serialization/AttrPCHRead.inc
+%exclude /usr/include/clang/Serialization/AttrPCHWrite.inc
+%exclude /usr/include/clang/Serialization/ContinuousRangeMap.h
+%exclude /usr/include/clang/Serialization/GlobalModuleIndex.h
+%exclude /usr/include/clang/Serialization/Module.h
+%exclude /usr/include/clang/Serialization/ModuleFileExtension.h
+%exclude /usr/include/clang/Serialization/ModuleManager.h
+%exclude /usr/include/clang/Serialization/SerializationDiagnostic.h
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/Checkers.inc
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/ClangCheckers.h
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/LocalCheckers.h
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/MPIFunctionClassifier.h
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/ObjCRetainCount.h
+%exclude /usr/include/clang/StaticAnalyzer/Checkers/SValExplainer.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/Analyses.def
+%exclude /usr/include/clang/StaticAnalyzer/Core/AnalyzerOptions.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/BugReporter/BugReporter.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/BugReporter/BugReporterVisitor.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/BugReporter/BugType.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/BugReporter/CommonBugCategories.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/BugReporter/PathDiagnostic.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/Checker.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/CheckerManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/CheckerOptInfo.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/CheckerRegistry.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/IssueHash.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathDiagnosticConsumers.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/APSIntType.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/AnalysisManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/BasicValueFactory.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/BlockCounter.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/CallEvent.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/CheckerContext.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/CheckerHelpers.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ConstraintManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/CoreEngine.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/DynamicTypeInfo.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/DynamicTypeMap.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/Environment.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ExplodedGraph.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ExprEngine.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/FunctionSummary.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/LoopWidening.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/MemRegion.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramState.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramStateTrait.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/ProgramState_Fwd.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/Regions.def
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SValBuilder.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SValVisitor.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SVals.def
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SVals.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/Store.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/StoreRef.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SubEngine.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SummaryManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SymExpr.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/SymbolManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/Symbols.def
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/TaintManager.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/TaintTag.h
+%exclude /usr/include/clang/StaticAnalyzer/Core/PathSensitive/WorkList.h
+%exclude /usr/include/clang/StaticAnalyzer/Frontend/AnalysisConsumer.h
+%exclude /usr/include/clang/StaticAnalyzer/Frontend/CheckerRegistration.h
+%exclude /usr/include/clang/StaticAnalyzer/Frontend/FrontendActions.h
+%exclude /usr/include/clang/StaticAnalyzer/Frontend/ModelConsumer.h
+%exclude /usr/include/clang/Tooling/ArgumentsAdjusters.h
+%exclude /usr/include/clang/Tooling/CommonOptionsParser.h
+%exclude /usr/include/clang/Tooling/CompilationDatabase.h
+%exclude /usr/include/clang/Tooling/CompilationDatabasePluginRegistry.h
+%exclude /usr/include/clang/Tooling/Core/Diagnostic.h
+%exclude /usr/include/clang/Tooling/Core/Lookup.h
+%exclude /usr/include/clang/Tooling/Core/QualTypeNames.h
+%exclude /usr/include/clang/Tooling/Core/Replacement.h
+%exclude /usr/include/clang/Tooling/DiagnosticsYaml.h
+%exclude /usr/include/clang/Tooling/FileMatchTrie.h
+%exclude /usr/include/clang/Tooling/FixIt.h
+%exclude /usr/include/clang/Tooling/JSONCompilationDatabase.h
+%exclude /usr/include/clang/Tooling/Refactoring.h
+%exclude /usr/include/clang/Tooling/RefactoringCallbacks.h
+%exclude /usr/include/clang/Tooling/ReplacementsYaml.h
+%exclude /usr/include/clang/Tooling/Tooling.h
+%exclude /usr/include/llvm-c/Analysis.h
+%exclude /usr/include/llvm-c/BitReader.h
+%exclude /usr/include/llvm-c/BitWriter.h
+%exclude /usr/include/llvm-c/Core.h
+%exclude /usr/include/llvm-c/Disassembler.h
+%exclude /usr/include/llvm-c/ErrorHandling.h
+%exclude /usr/include/llvm-c/ExecutionEngine.h
+%exclude /usr/include/llvm-c/IRReader.h
+%exclude /usr/include/llvm-c/Initialization.h
+%exclude /usr/include/llvm-c/LinkTimeOptimizer.h
+%exclude /usr/include/llvm-c/Linker.h
+%exclude /usr/include/llvm-c/Object.h
+%exclude /usr/include/llvm-c/OrcBindings.h
+%exclude /usr/include/llvm-c/Support.h
+%exclude /usr/include/llvm-c/Target.h
+%exclude /usr/include/llvm-c/TargetMachine.h
+%exclude /usr/include/llvm-c/Transforms/IPO.h
+%exclude /usr/include/llvm-c/Transforms/PassManagerBuilder.h
+%exclude /usr/include/llvm-c/Transforms/Scalar.h
+%exclude /usr/include/llvm-c/Transforms/Vectorize.h
+%exclude /usr/include/llvm-c/Types.h
+%exclude /usr/include/llvm-c/lto.h
+%exclude /usr/include/llvm/ADT/APFloat.h
+%exclude /usr/include/llvm/ADT/APInt.h
+%exclude /usr/include/llvm/ADT/APSInt.h
+%exclude /usr/include/llvm/ADT/AllocatorList.h
+%exclude /usr/include/llvm/ADT/ArrayRef.h
+%exclude /usr/include/llvm/ADT/BitVector.h
+%exclude /usr/include/llvm/ADT/BitmaskEnum.h
+%exclude /usr/include/llvm/ADT/CachedHashString.h
+%exclude /usr/include/llvm/ADT/DAGDeltaAlgorithm.h
+%exclude /usr/include/llvm/ADT/DeltaAlgorithm.h
+%exclude /usr/include/llvm/ADT/DenseMap.h
+%exclude /usr/include/llvm/ADT/DenseMapInfo.h
+%exclude /usr/include/llvm/ADT/DenseSet.h
+%exclude /usr/include/llvm/ADT/DepthFirstIterator.h
+%exclude /usr/include/llvm/ADT/EpochTracker.h
+%exclude /usr/include/llvm/ADT/EquivalenceClasses.h
+%exclude /usr/include/llvm/ADT/FoldingSet.h
+%exclude /usr/include/llvm/ADT/GraphTraits.h
+%exclude /usr/include/llvm/ADT/Hashing.h
+%exclude /usr/include/llvm/ADT/ImmutableList.h
+%exclude /usr/include/llvm/ADT/ImmutableMap.h
+%exclude /usr/include/llvm/ADT/ImmutableSet.h
+%exclude /usr/include/llvm/ADT/IndexedMap.h
+%exclude /usr/include/llvm/ADT/IntEqClasses.h
+%exclude /usr/include/llvm/ADT/IntervalMap.h
+%exclude /usr/include/llvm/ADT/IntrusiveRefCntPtr.h
+%exclude /usr/include/llvm/ADT/MapVector.h
+%exclude /usr/include/llvm/ADT/None.h
+%exclude /usr/include/llvm/ADT/Optional.h
+%exclude /usr/include/llvm/ADT/PackedVector.h
+%exclude /usr/include/llvm/ADT/PointerEmbeddedInt.h
+%exclude /usr/include/llvm/ADT/PointerIntPair.h
+%exclude /usr/include/llvm/ADT/PointerSumType.h
+%exclude /usr/include/llvm/ADT/PointerUnion.h
+%exclude /usr/include/llvm/ADT/PostOrderIterator.h
+%exclude /usr/include/llvm/ADT/PriorityQueue.h
+%exclude /usr/include/llvm/ADT/PriorityWorklist.h
+%exclude /usr/include/llvm/ADT/SCCIterator.h
+%exclude /usr/include/llvm/ADT/STLExtras.h
+%exclude /usr/include/llvm/ADT/ScopeExit.h
+%exclude /usr/include/llvm/ADT/ScopedHashTable.h
+%exclude /usr/include/llvm/ADT/Sequence.h
+%exclude /usr/include/llvm/ADT/SetOperations.h
+%exclude /usr/include/llvm/ADT/SetVector.h
+%exclude /usr/include/llvm/ADT/SmallBitVector.h
+%exclude /usr/include/llvm/ADT/SmallPtrSet.h
+%exclude /usr/include/llvm/ADT/SmallSet.h
+%exclude /usr/include/llvm/ADT/SmallString.h
+%exclude /usr/include/llvm/ADT/SmallVector.h
+%exclude /usr/include/llvm/ADT/SparseBitVector.h
+%exclude /usr/include/llvm/ADT/SparseMultiSet.h
+%exclude /usr/include/llvm/ADT/SparseSet.h
+%exclude /usr/include/llvm/ADT/Statistic.h
+%exclude /usr/include/llvm/ADT/StringExtras.h
+%exclude /usr/include/llvm/ADT/StringMap.h
+%exclude /usr/include/llvm/ADT/StringRef.h
+%exclude /usr/include/llvm/ADT/StringSet.h
+%exclude /usr/include/llvm/ADT/StringSwitch.h
+%exclude /usr/include/llvm/ADT/TinyPtrVector.h
+%exclude /usr/include/llvm/ADT/Triple.h
+%exclude /usr/include/llvm/ADT/Twine.h
+%exclude /usr/include/llvm/ADT/UniqueVector.h
+%exclude /usr/include/llvm/ADT/VariadicFunction.h
+%exclude /usr/include/llvm/ADT/edit_distance.h
+%exclude /usr/include/llvm/ADT/ilist.h
+%exclude /usr/include/llvm/ADT/ilist_base.h
+%exclude /usr/include/llvm/ADT/ilist_iterator.h
+%exclude /usr/include/llvm/ADT/ilist_node.h
+%exclude /usr/include/llvm/ADT/ilist_node_base.h
+%exclude /usr/include/llvm/ADT/ilist_node_options.h
+%exclude /usr/include/llvm/ADT/iterator.h
+%exclude /usr/include/llvm/ADT/iterator_range.h
+%exclude /usr/include/llvm/ADT/simple_ilist.h
+%exclude /usr/include/llvm/Analysis/AliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/AliasAnalysisEvaluator.h
+%exclude /usr/include/llvm/Analysis/AliasSetTracker.h
+%exclude /usr/include/llvm/Analysis/AssumptionCache.h
+%exclude /usr/include/llvm/Analysis/BasicAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/BlockFrequencyInfo.h
+%exclude /usr/include/llvm/Analysis/BlockFrequencyInfoImpl.h
+%exclude /usr/include/llvm/Analysis/BranchProbabilityInfo.h
+%exclude /usr/include/llvm/Analysis/CFG.h
+%exclude /usr/include/llvm/Analysis/CFGPrinter.h
+%exclude /usr/include/llvm/Analysis/CFLAndersAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/CFLSteensAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/CGSCCPassManager.h
+%exclude /usr/include/llvm/Analysis/CallGraph.h
+%exclude /usr/include/llvm/Analysis/CallGraphSCCPass.h
+%exclude /usr/include/llvm/Analysis/CallPrinter.h
+%exclude /usr/include/llvm/Analysis/CaptureTracking.h
+%exclude /usr/include/llvm/Analysis/CodeMetrics.h
+%exclude /usr/include/llvm/Analysis/ConstantFolding.h
+%exclude /usr/include/llvm/Analysis/DOTGraphTraitsPass.h
+%exclude /usr/include/llvm/Analysis/DemandedBits.h
+%exclude /usr/include/llvm/Analysis/DependenceAnalysis.h
+%exclude /usr/include/llvm/Analysis/DivergenceAnalysis.h
+%exclude /usr/include/llvm/Analysis/DomPrinter.h
+%exclude /usr/include/llvm/Analysis/DominanceFrontier.h
+%exclude /usr/include/llvm/Analysis/DominanceFrontierImpl.h
+%exclude /usr/include/llvm/Analysis/EHPersonalities.h
+%exclude /usr/include/llvm/Analysis/GlobalsModRef.h
+%exclude /usr/include/llvm/Analysis/IVUsers.h
+%exclude /usr/include/llvm/Analysis/IndirectCallPromotionAnalysis.h
+%exclude /usr/include/llvm/Analysis/IndirectCallSiteVisitor.h
+%exclude /usr/include/llvm/Analysis/InlineCost.h
+%exclude /usr/include/llvm/Analysis/InstructionSimplify.h
+%exclude /usr/include/llvm/Analysis/Interval.h
+%exclude /usr/include/llvm/Analysis/IntervalIterator.h
+%exclude /usr/include/llvm/Analysis/IntervalPartition.h
+%exclude /usr/include/llvm/Analysis/IteratedDominanceFrontier.h
+%exclude /usr/include/llvm/Analysis/LazyBlockFrequencyInfo.h
+%exclude /usr/include/llvm/Analysis/LazyBranchProbabilityInfo.h
+%exclude /usr/include/llvm/Analysis/LazyCallGraph.h
+%exclude /usr/include/llvm/Analysis/LazyValueInfo.h
+%exclude /usr/include/llvm/Analysis/Lint.h
+%exclude /usr/include/llvm/Analysis/Loads.h
+%exclude /usr/include/llvm/Analysis/LoopAccessAnalysis.h
+%exclude /usr/include/llvm/Analysis/LoopAnalysisManager.h
+%exclude /usr/include/llvm/Analysis/LoopInfo.h
+%exclude /usr/include/llvm/Analysis/LoopInfoImpl.h
+%exclude /usr/include/llvm/Analysis/LoopIterator.h
+%exclude /usr/include/llvm/Analysis/LoopPass.h
+%exclude /usr/include/llvm/Analysis/LoopUnrollAnalyzer.h
+%exclude /usr/include/llvm/Analysis/MemoryBuiltins.h
+%exclude /usr/include/llvm/Analysis/MemoryDependenceAnalysis.h
+%exclude /usr/include/llvm/Analysis/MemoryLocation.h
+%exclude /usr/include/llvm/Analysis/ModuleSummaryAnalysis.h
+%exclude /usr/include/llvm/Analysis/ObjCARCAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/ObjCARCAnalysisUtils.h
+%exclude /usr/include/llvm/Analysis/ObjCARCInstKind.h
+%exclude /usr/include/llvm/Analysis/OptimizationDiagnosticInfo.h
+%exclude /usr/include/llvm/Analysis/OrderedBasicBlock.h
+%exclude /usr/include/llvm/Analysis/PHITransAddr.h
+%exclude /usr/include/llvm/Analysis/Passes.h
+%exclude /usr/include/llvm/Analysis/PostDominators.h
+%exclude /usr/include/llvm/Analysis/ProfileSummaryInfo.h
+%exclude /usr/include/llvm/Analysis/PtrUseVisitor.h
+%exclude /usr/include/llvm/Analysis/RegionInfo.h
+%exclude /usr/include/llvm/Analysis/RegionInfoImpl.h
+%exclude /usr/include/llvm/Analysis/RegionIterator.h
+%exclude /usr/include/llvm/Analysis/RegionPass.h
+%exclude /usr/include/llvm/Analysis/RegionPrinter.h
+%exclude /usr/include/llvm/Analysis/ScalarEvolution.h
+%exclude /usr/include/llvm/Analysis/ScalarEvolutionAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/ScalarEvolutionExpander.h
+%exclude /usr/include/llvm/Analysis/ScalarEvolutionExpressions.h
+%exclude /usr/include/llvm/Analysis/ScalarEvolutionNormalization.h
+%exclude /usr/include/llvm/Analysis/ScopedNoAliasAA.h
+%exclude /usr/include/llvm/Analysis/SparsePropagation.h
+%exclude /usr/include/llvm/Analysis/TargetFolder.h
+%exclude /usr/include/llvm/Analysis/TargetLibraryInfo.def
+%exclude /usr/include/llvm/Analysis/TargetLibraryInfo.h
+%exclude /usr/include/llvm/Analysis/TargetTransformInfo.h
+%exclude /usr/include/llvm/Analysis/TargetTransformInfoImpl.h
+%exclude /usr/include/llvm/Analysis/Trace.h
+%exclude /usr/include/llvm/Analysis/TypeBasedAliasAnalysis.h
+%exclude /usr/include/llvm/Analysis/TypeMetadataUtils.h
+%exclude /usr/include/llvm/Analysis/ValueTracking.h
+%exclude /usr/include/llvm/Analysis/VectorUtils.h
+%exclude /usr/include/llvm/AsmParser/Parser.h
+%exclude /usr/include/llvm/AsmParser/SlotMapping.h
+%exclude /usr/include/llvm/Bitcode/BitCodes.h
+%exclude /usr/include/llvm/Bitcode/BitcodeReader.h
+%exclude /usr/include/llvm/Bitcode/BitcodeWriter.h
+%exclude /usr/include/llvm/Bitcode/BitcodeWriterPass.h
+%exclude /usr/include/llvm/Bitcode/BitstreamReader.h
+%exclude /usr/include/llvm/Bitcode/BitstreamWriter.h
+%exclude /usr/include/llvm/Bitcode/LLVMBitCodes.h
+%exclude /usr/include/llvm/CodeGen/Analysis.h
+%exclude /usr/include/llvm/CodeGen/AsmPrinter.h
+%exclude /usr/include/llvm/CodeGen/AtomicExpandUtils.h
+%exclude /usr/include/llvm/CodeGen/BasicTTIImpl.h
+%exclude /usr/include/llvm/CodeGen/CalcSpillWeights.h
+%exclude /usr/include/llvm/CodeGen/CallingConvLower.h
+%exclude /usr/include/llvm/CodeGen/CommandFlags.h
+%exclude /usr/include/llvm/CodeGen/DAGCombine.h
+%exclude /usr/include/llvm/CodeGen/DFAPacketizer.h
+%exclude /usr/include/llvm/CodeGen/DIE.h
+%exclude /usr/include/llvm/CodeGen/DIEValue.def
+%exclude /usr/include/llvm/CodeGen/DwarfStringPoolEntry.h
+%exclude /usr/include/llvm/CodeGen/EdgeBundles.h
+%exclude /usr/include/llvm/CodeGen/FastISel.h
+%exclude /usr/include/llvm/CodeGen/FaultMaps.h
+%exclude /usr/include/llvm/CodeGen/FunctionLoweringInfo.h
+%exclude /usr/include/llvm/CodeGen/GCMetadata.h
+%exclude /usr/include/llvm/CodeGen/GCMetadataPrinter.h
+%exclude /usr/include/llvm/CodeGen/GCStrategy.h
+%exclude /usr/include/llvm/CodeGen/GCs.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/CallLowering.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/GISelAccessor.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/IRTranslator.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/InstructionSelect.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/InstructionSelector.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/Legalizer.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/LegalizerHelper.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/LegalizerInfo.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/MachineIRBuilder.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/RegBankSelect.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/RegisterBank.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/RegisterBankInfo.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/Types.h
+%exclude /usr/include/llvm/CodeGen/GlobalISel/Utils.h
+%exclude /usr/include/llvm/CodeGen/ISDOpcodes.h
+%exclude /usr/include/llvm/CodeGen/IntrinsicLowering.h
+%exclude /usr/include/llvm/CodeGen/LatencyPriorityQueue.h
+%exclude /usr/include/llvm/CodeGen/LexicalScopes.h
+%exclude /usr/include/llvm/CodeGen/LinkAllAsmWriterComponents.h
+%exclude /usr/include/llvm/CodeGen/LinkAllCodegenComponents.h
+%exclude /usr/include/llvm/CodeGen/LiveInterval.h
+%exclude /usr/include/llvm/CodeGen/LiveIntervalAnalysis.h
+%exclude /usr/include/llvm/CodeGen/LiveIntervalUnion.h
+%exclude /usr/include/llvm/CodeGen/LivePhysRegs.h
+%exclude /usr/include/llvm/CodeGen/LiveRangeEdit.h
+%exclude /usr/include/llvm/CodeGen/LiveRegMatrix.h
+%exclude /usr/include/llvm/CodeGen/LiveStackAnalysis.h
+%exclude /usr/include/llvm/CodeGen/LiveVariables.h
+%exclude /usr/include/llvm/CodeGen/LowLevelType.h
+%exclude /usr/include/llvm/CodeGen/MIRParser/MIRParser.h
+%exclude /usr/include/llvm/CodeGen/MIRYamlMapping.h
+%exclude /usr/include/llvm/CodeGen/MachORelocation.h
+%exclude /usr/include/llvm/CodeGen/MachineBasicBlock.h
+%exclude /usr/include/llvm/CodeGen/MachineBlockFrequencyInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineBranchProbabilityInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineCombinerPattern.h
+%exclude /usr/include/llvm/CodeGen/MachineConstantPool.h
+%exclude /usr/include/llvm/CodeGen/MachineDominanceFrontier.h
+%exclude /usr/include/llvm/CodeGen/MachineDominators.h
+%exclude /usr/include/llvm/CodeGen/MachineFrameInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineFunction.h
+%exclude /usr/include/llvm/CodeGen/MachineFunctionInitializer.h
+%exclude /usr/include/llvm/CodeGen/MachineFunctionPass.h
+%exclude /usr/include/llvm/CodeGen/MachineInstr.h
+%exclude /usr/include/llvm/CodeGen/MachineInstrBuilder.h
+%exclude /usr/include/llvm/CodeGen/MachineInstrBundle.h
+%exclude /usr/include/llvm/CodeGen/MachineInstrBundleIterator.h
+%exclude /usr/include/llvm/CodeGen/MachineJumpTableInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineLoopInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineMemOperand.h
+%exclude /usr/include/llvm/CodeGen/MachineModuleInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineModuleInfoImpls.h
+%exclude /usr/include/llvm/CodeGen/MachineOperand.h
+%exclude /usr/include/llvm/CodeGen/MachinePassRegistry.h
+%exclude /usr/include/llvm/CodeGen/MachinePostDominators.h
+%exclude /usr/include/llvm/CodeGen/MachineRegionInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineRegisterInfo.h
+%exclude /usr/include/llvm/CodeGen/MachineSSAUpdater.h
+%exclude /usr/include/llvm/CodeGen/MachineScheduler.h
+%exclude /usr/include/llvm/CodeGen/MachineTraceMetrics.h
+%exclude /usr/include/llvm/CodeGen/MachineValueType.h
+%exclude /usr/include/llvm/CodeGen/PBQP/CostAllocator.h
+%exclude /usr/include/llvm/CodeGen/PBQP/Graph.h
+%exclude /usr/include/llvm/CodeGen/PBQP/Math.h
+%exclude /usr/include/llvm/CodeGen/PBQP/ReductionRules.h
+%exclude /usr/include/llvm/CodeGen/PBQP/Solution.h
+%exclude /usr/include/llvm/CodeGen/PBQPRAConstraint.h
+%exclude /usr/include/llvm/CodeGen/ParallelCG.h
+%exclude /usr/include/llvm/CodeGen/Passes.h
+%exclude /usr/include/llvm/CodeGen/PreISelIntrinsicLowering.h
+%exclude /usr/include/llvm/CodeGen/PseudoSourceValue.h
+%exclude /usr/include/llvm/CodeGen/RegAllocPBQP.h
+%exclude /usr/include/llvm/CodeGen/RegAllocRegistry.h
+%exclude /usr/include/llvm/CodeGen/RegisterClassInfo.h
+%exclude /usr/include/llvm/CodeGen/RegisterPressure.h
+%exclude /usr/include/llvm/CodeGen/RegisterScavenging.h
+%exclude /usr/include/llvm/CodeGen/RegisterUsageInfo.h
+%exclude /usr/include/llvm/CodeGen/ResourcePriorityQueue.h
+%exclude /usr/include/llvm/CodeGen/RuntimeLibcalls.h
+%exclude /usr/include/llvm/CodeGen/ScheduleDAG.h
+%exclude /usr/include/llvm/CodeGen/ScheduleDAGInstrs.h
+%exclude /usr/include/llvm/CodeGen/ScheduleDAGMutation.h
+%exclude /usr/include/llvm/CodeGen/ScheduleDFS.h
+%exclude /usr/include/llvm/CodeGen/ScheduleHazardRecognizer.h
+%exclude /usr/include/llvm/CodeGen/SchedulerRegistry.h
+%exclude /usr/include/llvm/CodeGen/ScoreboardHazardRecognizer.h
+%exclude /usr/include/llvm/CodeGen/SelectionDAG.h
+%exclude /usr/include/llvm/CodeGen/SelectionDAGISel.h
+%exclude /usr/include/llvm/CodeGen/SelectionDAGNodes.h
+%exclude /usr/include/llvm/CodeGen/SelectionDAGTargetInfo.h
+%exclude /usr/include/llvm/CodeGen/SlotIndexes.h
+%exclude /usr/include/llvm/CodeGen/StackMaps.h
+%exclude /usr/include/llvm/CodeGen/StackProtector.h
+%exclude /usr/include/llvm/CodeGen/TailDuplicator.h
+%exclude /usr/include/llvm/CodeGen/TargetLoweringObjectFileImpl.h
+%exclude /usr/include/llvm/CodeGen/TargetPassConfig.h
+%exclude /usr/include/llvm/CodeGen/TargetSchedule.h
+%exclude /usr/include/llvm/CodeGen/UnreachableBlockElim.h
+%exclude /usr/include/llvm/CodeGen/ValueTypes.h
+%exclude /usr/include/llvm/CodeGen/ValueTypes.td
+%exclude /usr/include/llvm/CodeGen/VirtRegMap.h
+%exclude /usr/include/llvm/CodeGen/WinEHFuncInfo.h
+%exclude /usr/include/llvm/Config/AsmParsers.def
+%exclude /usr/include/llvm/Config/AsmPrinters.def
+%exclude /usr/include/llvm/Config/Disassemblers.def
+%exclude /usr/include/llvm/Config/Targets.def
+%exclude /usr/include/llvm/Config/abi-breaking.h
+%exclude /usr/include/llvm/Config/llvm-config.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVDebugRecord.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVRecord.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVSymbolTypes.def
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVSymbolVisitor.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVTypeDumper.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CVTypeVisitor.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CodeView.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CodeViewError.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/CodeViewRecordIO.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/EnumTables.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/FunctionId.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/Line.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/ModuleSubstream.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/ModuleSubstreamVisitor.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/RecordSerialization.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolDeserializer.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolDumpDelegate.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolDumper.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolRecord.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolRecordMapping.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolSerializer.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolVisitorCallbackPipeline.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolVisitorCallbacks.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/SymbolVisitorDelegate.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeDatabase.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeDatabaseVisitor.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeDeserializer.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeDumpVisitor.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeDumperBase.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeIndex.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeRecord.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeRecordBuilder.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeRecordMapping.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeRecords.def
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeSerializer.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeStreamMerger.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeSymbolEmitter.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeTableBuilder.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeVisitorCallbackPipeline.h
+%exclude /usr/include/llvm/DebugInfo/CodeView/TypeVisitorCallbacks.h
+%exclude /usr/include/llvm/DebugInfo/DIContext.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFAbbreviationDeclaration.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFAcceleratorTable.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFCompileUnit.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFContext.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugAbbrev.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugArangeSet.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugAranges.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugFrame.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugInfoEntry.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugLine.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugLoc.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugMacro.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugPubTable.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDebugRangeList.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFDie.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFFormValue.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFGdbIndex.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFRelocMap.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFSection.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFTypeUnit.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFUnit.h
+%exclude /usr/include/llvm/DebugInfo/DWARF/DWARFUnitIndex.h
+%exclude /usr/include/llvm/DebugInfo/MSF/ByteStream.h
+%exclude /usr/include/llvm/DebugInfo/MSF/IMSFFile.h
+%exclude /usr/include/llvm/DebugInfo/MSF/MSFBuilder.h
+%exclude /usr/include/llvm/DebugInfo/MSF/MSFCommon.h
+%exclude /usr/include/llvm/DebugInfo/MSF/MSFError.h
+%exclude /usr/include/llvm/DebugInfo/MSF/MSFStreamLayout.h
+%exclude /usr/include/llvm/DebugInfo/MSF/MappedBlockStream.h
+%exclude /usr/include/llvm/DebugInfo/MSF/SequencedItemStream.h
+%exclude /usr/include/llvm/DebugInfo/MSF/StreamArray.h
+%exclude /usr/include/llvm/DebugInfo/MSF/StreamInterface.h
+%exclude /usr/include/llvm/DebugInfo/MSF/StreamReader.h
+%exclude /usr/include/llvm/DebugInfo/MSF/StreamRef.h
+%exclude /usr/include/llvm/DebugInfo/MSF/StreamWriter.h
+%exclude /usr/include/llvm/DebugInfo/PDB/ConcreteSymbolEnumerator.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIADataStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumDebugStreams.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumLineNumbers.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumSourceFiles.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIAEnumSymbols.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIAError.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIALineNumber.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIARawSymbol.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIASession.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIASourceFile.h
+%exclude /usr/include/llvm/DebugInfo/PDB/DIA/DIASupport.h
+%exclude /usr/include/llvm/DebugInfo/PDB/GenericError.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBDataStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBEnumChildren.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBLineNumber.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBRawSymbol.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBSession.h
+%exclude /usr/include/llvm/DebugInfo/PDB/IPDBSourceFile.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDB.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBContext.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBExtras.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymDumper.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbol.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolAnnotation.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolBlock.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolCompiland.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolCompilandDetails.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolCompilandEnv.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolCustom.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolData.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolExe.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolFunc.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolFuncDebugEnd.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolFuncDebugStart.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolLabel.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolPublicSymbol.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolThunk.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeArray.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeBaseClass.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeBuiltin.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeCustom.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeDimension.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeEnum.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFriend.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFunctionArg.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeFunctionSig.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeManaged.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypePointer.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeTypedef.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeUDT.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeVTable.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolTypeVTableShape.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolUnknown.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBSymbolUsingNamespace.h
+%exclude /usr/include/llvm/DebugInfo/PDB/PDBTypes.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/DbiStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/DbiStreamBuilder.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/EnumTables.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/GlobalsStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/Hash.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/ISectionContribVisitor.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/InfoStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/InfoStreamBuilder.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/ModInfo.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/ModStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/NameHashTable.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/NameMap.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/NameMapBuilder.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/PDBFile.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/PDBFileBuilder.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/PublicsStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/RawConstants.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/RawError.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/RawSession.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/RawTypes.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/SymbolStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/TpiHashing.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/TpiStream.h
+%exclude /usr/include/llvm/DebugInfo/PDB/Raw/TpiStreamBuilder.h
+%exclude /usr/include/llvm/DebugInfo/Symbolize/DIPrinter.h
+%exclude /usr/include/llvm/DebugInfo/Symbolize/SymbolizableModule.h
+%exclude /usr/include/llvm/DebugInfo/Symbolize/Symbolize.h
+%exclude /usr/include/llvm/Demangle/Demangle.h
+%exclude /usr/include/llvm/ExecutionEngine/ExecutionEngine.h
+%exclude /usr/include/llvm/ExecutionEngine/GenericValue.h
+%exclude /usr/include/llvm/ExecutionEngine/Interpreter.h
+%exclude /usr/include/llvm/ExecutionEngine/JITEventListener.h
+%exclude /usr/include/llvm/ExecutionEngine/JITSymbol.h
+%exclude /usr/include/llvm/ExecutionEngine/MCJIT.h
+%exclude /usr/include/llvm/ExecutionEngine/OProfileWrapper.h
+%exclude /usr/include/llvm/ExecutionEngine/ObjectCache.h
+%exclude /usr/include/llvm/ExecutionEngine/ObjectMemoryBuffer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/CompileOnDemandLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/CompileUtils.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/ExecutionUtils.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/GlobalMappingLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/IRCompileLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/IRTransformLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/IndirectionUtils.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/LambdaResolver.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/LazyEmittingLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/NullResolver.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/ObjectLinkingLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/ObjectTransformLayer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/OrcABISupport.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/OrcError.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetClient.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetRPCAPI.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/OrcRemoteTargetServer.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/RPCSerialization.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/RPCUtils.h
+%exclude /usr/include/llvm/ExecutionEngine/Orc/RawByteChannel.h
+%exclude /usr/include/llvm/ExecutionEngine/OrcMCJITReplacement.h
+%exclude /usr/include/llvm/ExecutionEngine/RTDyldMemoryManager.h
+%exclude /usr/include/llvm/ExecutionEngine/RuntimeDyld.h
+%exclude /usr/include/llvm/ExecutionEngine/RuntimeDyldChecker.h
+%exclude /usr/include/llvm/ExecutionEngine/SectionMemoryManager.h
+%exclude /usr/include/llvm/IR/Argument.h
+%exclude /usr/include/llvm/IR/AssemblyAnnotationWriter.h
+%exclude /usr/include/llvm/IR/Attributes.gen
+%exclude /usr/include/llvm/IR/Attributes.h
+%exclude /usr/include/llvm/IR/Attributes.td
+%exclude /usr/include/llvm/IR/AutoUpgrade.h
+%exclude /usr/include/llvm/IR/BasicBlock.h
+%exclude /usr/include/llvm/IR/CFG.h
+%exclude /usr/include/llvm/IR/CallSite.h
+%exclude /usr/include/llvm/IR/CallingConv.h
+%exclude /usr/include/llvm/IR/Comdat.h
+%exclude /usr/include/llvm/IR/Constant.h
+%exclude /usr/include/llvm/IR/ConstantFolder.h
+%exclude /usr/include/llvm/IR/ConstantRange.h
+%exclude /usr/include/llvm/IR/Constants.h
+%exclude /usr/include/llvm/IR/DIBuilder.h
+%exclude /usr/include/llvm/IR/DataLayout.h
+%exclude /usr/include/llvm/IR/DebugInfo.h
+%exclude /usr/include/llvm/IR/DebugInfoFlags.def
+%exclude /usr/include/llvm/IR/DebugInfoMetadata.h
+%exclude /usr/include/llvm/IR/DebugLoc.h
+%exclude /usr/include/llvm/IR/DerivedTypes.h
+%exclude /usr/include/llvm/IR/DiagnosticInfo.h
+%exclude /usr/include/llvm/IR/DiagnosticPrinter.h
+%exclude /usr/include/llvm/IR/Dominators.h
+%exclude /usr/include/llvm/IR/Function.h
+%exclude /usr/include/llvm/IR/GVMaterializer.h
+%exclude /usr/include/llvm/IR/GetElementPtrTypeIterator.h
+%exclude /usr/include/llvm/IR/GlobalAlias.h
+%exclude /usr/include/llvm/IR/GlobalIFunc.h
+%exclude /usr/include/llvm/IR/GlobalIndirectSymbol.h
+%exclude /usr/include/llvm/IR/GlobalObject.h
+%exclude /usr/include/llvm/IR/GlobalValue.h
+%exclude /usr/include/llvm/IR/GlobalVariable.h
+%exclude /usr/include/llvm/IR/IRBuilder.h
+%exclude /usr/include/llvm/IR/IRPrintingPasses.h
+%exclude /usr/include/llvm/IR/InlineAsm.h
+%exclude /usr/include/llvm/IR/InstIterator.h
+%exclude /usr/include/llvm/IR/InstVisitor.h
+%exclude /usr/include/llvm/IR/InstrTypes.h
+%exclude /usr/include/llvm/IR/Instruction.def
+%exclude /usr/include/llvm/IR/Instruction.h
+%exclude /usr/include/llvm/IR/Instructions.h
+%exclude /usr/include/llvm/IR/IntrinsicInst.h
+%exclude /usr/include/llvm/IR/Intrinsics.gen
+%exclude /usr/include/llvm/IR/Intrinsics.h
+%exclude /usr/include/llvm/IR/Intrinsics.td
+%exclude /usr/include/llvm/IR/IntrinsicsAArch64.td
+%exclude /usr/include/llvm/IR/IntrinsicsAMDGPU.td
+%exclude /usr/include/llvm/IR/IntrinsicsARM.td
+%exclude /usr/include/llvm/IR/IntrinsicsBPF.td
+%exclude /usr/include/llvm/IR/IntrinsicsHexagon.td
+%exclude /usr/include/llvm/IR/IntrinsicsMips.td
+%exclude /usr/include/llvm/IR/IntrinsicsNVVM.td
+%exclude /usr/include/llvm/IR/IntrinsicsPowerPC.td
+%exclude /usr/include/llvm/IR/IntrinsicsSystemZ.td
+%exclude /usr/include/llvm/IR/IntrinsicsWebAssembly.td
+%exclude /usr/include/llvm/IR/IntrinsicsX86.td
+%exclude /usr/include/llvm/IR/IntrinsicsXCore.td
+%exclude /usr/include/llvm/IR/LLVMContext.h
+%exclude /usr/include/llvm/IR/LegacyPassManager.h
+%exclude /usr/include/llvm/IR/LegacyPassManagers.h
+%exclude /usr/include/llvm/IR/LegacyPassNameParser.h
+%exclude /usr/include/llvm/IR/MDBuilder.h
+%exclude /usr/include/llvm/IR/Mangler.h
+%exclude /usr/include/llvm/IR/Metadata.def
+%exclude /usr/include/llvm/IR/Metadata.h
+%exclude /usr/include/llvm/IR/Module.h
+%exclude /usr/include/llvm/IR/ModuleSlotTracker.h
+%exclude /usr/include/llvm/IR/ModuleSummaryIndex.h
+%exclude /usr/include/llvm/IR/ModuleSummaryIndexYAML.h
+%exclude /usr/include/llvm/IR/NoFolder.h
+%exclude /usr/include/llvm/IR/OperandTraits.h
+%exclude /usr/include/llvm/IR/Operator.h
+%exclude /usr/include/llvm/IR/OptBisect.h
+%exclude /usr/include/llvm/IR/PassManager.h
+%exclude /usr/include/llvm/IR/PassManagerInternal.h
+%exclude /usr/include/llvm/IR/PatternMatch.h
+%exclude /usr/include/llvm/IR/PredIteratorCache.h
+%exclude /usr/include/llvm/IR/ProfileSummary.h
+%exclude /usr/include/llvm/IR/Statepoint.h
+%exclude /usr/include/llvm/IR/SymbolTableListTraits.h
+%exclude /usr/include/llvm/IR/TrackingMDRef.h
+%exclude /usr/include/llvm/IR/Type.h
+%exclude /usr/include/llvm/IR/TypeBuilder.h
+%exclude /usr/include/llvm/IR/TypeFinder.h
+%exclude /usr/include/llvm/IR/Use.h
+%exclude /usr/include/llvm/IR/UseListOrder.h
+%exclude /usr/include/llvm/IR/User.h
+%exclude /usr/include/llvm/IR/Value.def
+%exclude /usr/include/llvm/IR/Value.h
+%exclude /usr/include/llvm/IR/ValueHandle.h
+%exclude /usr/include/llvm/IR/ValueMap.h
+%exclude /usr/include/llvm/IR/ValueSymbolTable.h
+%exclude /usr/include/llvm/IR/Verifier.h
+%exclude /usr/include/llvm/IRReader/IRReader.h
+%exclude /usr/include/llvm/InitializePasses.h
+%exclude /usr/include/llvm/LTO/Caching.h
+%exclude /usr/include/llvm/LTO/Config.h
+%exclude /usr/include/llvm/LTO/LTO.h
+%exclude /usr/include/llvm/LTO/LTOBackend.h
+%exclude /usr/include/llvm/LTO/legacy/LTOCodeGenerator.h
+%exclude /usr/include/llvm/LTO/legacy/LTOModule.h
+%exclude /usr/include/llvm/LTO/legacy/ThinLTOCodeGenerator.h
+%exclude /usr/include/llvm/LTO/legacy/UpdateCompilerUsed.h
+%exclude /usr/include/llvm/LibDriver/LibDriver.h
+%exclude /usr/include/llvm/LineEditor/LineEditor.h
+%exclude /usr/include/llvm/LinkAllIR.h
+%exclude /usr/include/llvm/LinkAllPasses.h
+%exclude /usr/include/llvm/Linker/IRMover.h
+%exclude /usr/include/llvm/Linker/Linker.h
+%exclude /usr/include/llvm/MC/ConstantPools.h
+%exclude /usr/include/llvm/MC/LaneBitmask.h
+%exclude /usr/include/llvm/MC/MCAsmBackend.h
+%exclude /usr/include/llvm/MC/MCAsmInfo.h
+%exclude /usr/include/llvm/MC/MCAsmInfoCOFF.h
+%exclude /usr/include/llvm/MC/MCAsmInfoDarwin.h
+%exclude /usr/include/llvm/MC/MCAsmInfoELF.h
+%exclude /usr/include/llvm/MC/MCAsmLayout.h
+%exclude /usr/include/llvm/MC/MCAssembler.h
+%exclude /usr/include/llvm/MC/MCCodeEmitter.h
+%exclude /usr/include/llvm/MC/MCCodeView.h
+%exclude /usr/include/llvm/MC/MCContext.h
+%exclude /usr/include/llvm/MC/MCDirectives.h
+%exclude /usr/include/llvm/MC/MCDisassembler/MCDisassembler.h
+%exclude /usr/include/llvm/MC/MCDisassembler/MCExternalSymbolizer.h
+%exclude /usr/include/llvm/MC/MCDisassembler/MCRelocationInfo.h
+%exclude /usr/include/llvm/MC/MCDisassembler/MCSymbolizer.h
+%exclude /usr/include/llvm/MC/MCDwarf.h
+%exclude /usr/include/llvm/MC/MCELFObjectWriter.h
+%exclude /usr/include/llvm/MC/MCELFStreamer.h
+%exclude /usr/include/llvm/MC/MCExpr.h
+%exclude /usr/include/llvm/MC/MCFixedLenDisassembler.h
+%exclude /usr/include/llvm/MC/MCFixup.h
+%exclude /usr/include/llvm/MC/MCFixupKindInfo.h
+%exclude /usr/include/llvm/MC/MCFragment.h
+%exclude /usr/include/llvm/MC/MCInst.h
+%exclude /usr/include/llvm/MC/MCInstBuilder.h
+%exclude /usr/include/llvm/MC/MCInstPrinter.h
+%exclude /usr/include/llvm/MC/MCInstrAnalysis.h
+%exclude /usr/include/llvm/MC/MCInstrDesc.h
+%exclude /usr/include/llvm/MC/MCInstrInfo.h
+%exclude /usr/include/llvm/MC/MCInstrItineraries.h
+%exclude /usr/include/llvm/MC/MCLabel.h
+%exclude /usr/include/llvm/MC/MCLinkerOptimizationHint.h
+%exclude /usr/include/llvm/MC/MCMachObjectWriter.h
+%exclude /usr/include/llvm/MC/MCObjectFileInfo.h
+%exclude /usr/include/llvm/MC/MCObjectStreamer.h
+%exclude /usr/include/llvm/MC/MCObjectWriter.h
+%exclude /usr/include/llvm/MC/MCParser/AsmCond.h
+%exclude /usr/include/llvm/MC/MCParser/AsmLexer.h
+%exclude /usr/include/llvm/MC/MCParser/MCAsmLexer.h
+%exclude /usr/include/llvm/MC/MCParser/MCAsmParser.h
+%exclude /usr/include/llvm/MC/MCParser/MCAsmParserExtension.h
+%exclude /usr/include/llvm/MC/MCParser/MCAsmParserUtils.h
+%exclude /usr/include/llvm/MC/MCParser/MCParsedAsmOperand.h
+%exclude /usr/include/llvm/MC/MCParser/MCTargetAsmParser.h
+%exclude /usr/include/llvm/MC/MCRegisterInfo.h
+%exclude /usr/include/llvm/MC/MCSchedule.h
+%exclude /usr/include/llvm/MC/MCSection.h
+%exclude /usr/include/llvm/MC/MCSectionCOFF.h
+%exclude /usr/include/llvm/MC/MCSectionELF.h
+%exclude /usr/include/llvm/MC/MCSectionMachO.h
+%exclude /usr/include/llvm/MC/MCStreamer.h
+%exclude /usr/include/llvm/MC/MCSubtargetInfo.h
+%exclude /usr/include/llvm/MC/MCSymbol.h
+%exclude /usr/include/llvm/MC/MCSymbolCOFF.h
+%exclude /usr/include/llvm/MC/MCSymbolELF.h
+%exclude /usr/include/llvm/MC/MCSymbolMachO.h
+%exclude /usr/include/llvm/MC/MCTargetOptions.h
+%exclude /usr/include/llvm/MC/MCTargetOptionsCommandFlags.h
+%exclude /usr/include/llvm/MC/MCValue.h
+%exclude /usr/include/llvm/MC/MCWin64EH.h
+%exclude /usr/include/llvm/MC/MCWinCOFFObjectWriter.h
+%exclude /usr/include/llvm/MC/MCWinCOFFStreamer.h
+%exclude /usr/include/llvm/MC/MCWinEH.h
+%exclude /usr/include/llvm/MC/MachineLocation.h
+%exclude /usr/include/llvm/MC/SectionKind.h
+%exclude /usr/include/llvm/MC/StringTableBuilder.h
+%exclude /usr/include/llvm/MC/SubtargetFeature.h
+%exclude /usr/include/llvm/Object/Archive.h
+%exclude /usr/include/llvm/Object/ArchiveWriter.h
+%exclude /usr/include/llvm/Object/Binary.h
+%exclude /usr/include/llvm/Object/COFF.h
+%exclude /usr/include/llvm/Object/COFFImportFile.h
+%exclude /usr/include/llvm/Object/Decompressor.h
+%exclude /usr/include/llvm/Object/ELF.h
+%exclude /usr/include/llvm/Object/ELFObjectFile.h
+%exclude /usr/include/llvm/Object/ELFTypes.h
+%exclude /usr/include/llvm/Object/Error.h
+%exclude /usr/include/llvm/Object/IRObjectFile.h
+%exclude /usr/include/llvm/Object/MachO.h
+%exclude /usr/include/llvm/Object/MachOUniversal.h
+%exclude /usr/include/llvm/Object/ModuleSummaryIndexObjectFile.h
+%exclude /usr/include/llvm/Object/ModuleSymbolTable.h
+%exclude /usr/include/llvm/Object/ObjectFile.h
+%exclude /usr/include/llvm/Object/RelocVisitor.h
+%exclude /usr/include/llvm/Object/StackMapParser.h
+%exclude /usr/include/llvm/Object/SymbolSize.h
+%exclude /usr/include/llvm/Object/SymbolicFile.h
+%exclude /usr/include/llvm/Object/Wasm.h
+%exclude /usr/include/llvm/ObjectYAML/COFFYAML.h
+%exclude /usr/include/llvm/ObjectYAML/DWARFYAML.h
+%exclude /usr/include/llvm/ObjectYAML/ELFYAML.h
+%exclude /usr/include/llvm/ObjectYAML/MachOYAML.h
+%exclude /usr/include/llvm/ObjectYAML/ObjectYAML.h
+%exclude /usr/include/llvm/ObjectYAML/YAML.h
+%exclude /usr/include/llvm/Option/Arg.h
+%exclude /usr/include/llvm/Option/ArgList.h
+%exclude /usr/include/llvm/Option/OptParser.td
+%exclude /usr/include/llvm/Option/OptSpecifier.h
+%exclude /usr/include/llvm/Option/OptTable.h
+%exclude /usr/include/llvm/Option/Option.h
+%exclude /usr/include/llvm/Pass.h
+%exclude /usr/include/llvm/PassAnalysisSupport.h
+%exclude /usr/include/llvm/PassInfo.h
+%exclude /usr/include/llvm/PassRegistry.h
+%exclude /usr/include/llvm/PassSupport.h
+%exclude /usr/include/llvm/Passes/PassBuilder.h
+%exclude /usr/include/llvm/ProfileData/Coverage/CoverageMapping.h
+%exclude /usr/include/llvm/ProfileData/Coverage/CoverageMappingReader.h
+%exclude /usr/include/llvm/ProfileData/Coverage/CoverageMappingWriter.h
+%exclude /usr/include/llvm/ProfileData/InstrProf.h
+%exclude /usr/include/llvm/ProfileData/InstrProfData.inc
+%exclude /usr/include/llvm/ProfileData/InstrProfReader.h
+%exclude /usr/include/llvm/ProfileData/InstrProfWriter.h
+%exclude /usr/include/llvm/ProfileData/ProfileCommon.h
+%exclude /usr/include/llvm/ProfileData/SampleProf.h
+%exclude /usr/include/llvm/ProfileData/SampleProfReader.h
+%exclude /usr/include/llvm/ProfileData/SampleProfWriter.h
+%exclude /usr/include/llvm/Support/AArch64TargetParser.def
+%exclude /usr/include/llvm/Support/ARMBuildAttributes.h
+%exclude /usr/include/llvm/Support/ARMEHABI.h
+%exclude /usr/include/llvm/Support/ARMTargetParser.def
+%exclude /usr/include/llvm/Support/ARMWinEH.h
+%exclude /usr/include/llvm/Support/AlignOf.h
+%exclude /usr/include/llvm/Support/Allocator.h
+%exclude /usr/include/llvm/Support/ArrayRecycler.h
+%exclude /usr/include/llvm/Support/Atomic.h
+%exclude /usr/include/llvm/Support/AtomicOrdering.h
+%exclude /usr/include/llvm/Support/BlockFrequency.h
+%exclude /usr/include/llvm/Support/BranchProbability.h
+%exclude /usr/include/llvm/Support/CBindingWrapping.h
+%exclude /usr/include/llvm/Support/COFF.h
+%exclude /usr/include/llvm/Support/COM.h
+%exclude /usr/include/llvm/Support/CachePruning.h
+%exclude /usr/include/llvm/Support/Capacity.h
+%exclude /usr/include/llvm/Support/Casting.h
+%exclude /usr/include/llvm/Support/Chrono.h
+%exclude /usr/include/llvm/Support/CodeGen.h
+%exclude /usr/include/llvm/Support/CodeGenCWrappers.h
+%exclude /usr/include/llvm/Support/CommandLine.h
+%exclude /usr/include/llvm/Support/Compiler.h
+%exclude /usr/include/llvm/Support/Compression.h
+%exclude /usr/include/llvm/Support/ConvertUTF.h
+%exclude /usr/include/llvm/Support/CrashRecoveryContext.h
+%exclude /usr/include/llvm/Support/DOTGraphTraits.h
+%exclude /usr/include/llvm/Support/DataExtractor.h
+%exclude /usr/include/llvm/Support/DataTypes.h
+%exclude /usr/include/llvm/Support/Debug.h
+%exclude /usr/include/llvm/Support/Dwarf.def
+%exclude /usr/include/llvm/Support/Dwarf.h
+%exclude /usr/include/llvm/Support/DynamicLibrary.h
+%exclude /usr/include/llvm/Support/ELF.h
+%exclude /usr/include/llvm/Support/ELFRelocs/AArch64.def
+%exclude /usr/include/llvm/Support/ELFRelocs/AMDGPU.def
+%exclude /usr/include/llvm/Support/ELFRelocs/ARM.def
+%exclude /usr/include/llvm/Support/ELFRelocs/AVR.def
+%exclude /usr/include/llvm/Support/ELFRelocs/BPF.def
+%exclude /usr/include/llvm/Support/ELFRelocs/Hexagon.def
+%exclude /usr/include/llvm/Support/ELFRelocs/Lanai.def
+%exclude /usr/include/llvm/Support/ELFRelocs/Mips.def
+%exclude /usr/include/llvm/Support/ELFRelocs/PowerPC.def
+%exclude /usr/include/llvm/Support/ELFRelocs/PowerPC64.def
+%exclude /usr/include/llvm/Support/ELFRelocs/RISCV.def
+%exclude /usr/include/llvm/Support/ELFRelocs/Sparc.def
+%exclude /usr/include/llvm/Support/ELFRelocs/SystemZ.def
+%exclude /usr/include/llvm/Support/ELFRelocs/WebAssembly.def
+%exclude /usr/include/llvm/Support/ELFRelocs/i386.def
+%exclude /usr/include/llvm/Support/ELFRelocs/x86_64.def
+%exclude /usr/include/llvm/Support/Endian.h
+%exclude /usr/include/llvm/Support/EndianStream.h
+%exclude /usr/include/llvm/Support/Errc.h
+%exclude /usr/include/llvm/Support/Errno.h
+%exclude /usr/include/llvm/Support/Error.h
+%exclude /usr/include/llvm/Support/ErrorHandling.h
+%exclude /usr/include/llvm/Support/ErrorOr.h
+%exclude /usr/include/llvm/Support/FileOutputBuffer.h
+%exclude /usr/include/llvm/Support/FileSystem.h
+%exclude /usr/include/llvm/Support/FileUtilities.h
+%exclude /usr/include/llvm/Support/Format.h
+%exclude /usr/include/llvm/Support/FormatAdapters.h
+%exclude /usr/include/llvm/Support/FormatCommon.h
+%exclude /usr/include/llvm/Support/FormatProviders.h
+%exclude /usr/include/llvm/Support/FormatVariadic.h
+%exclude /usr/include/llvm/Support/FormatVariadicDetails.h
+%exclude /usr/include/llvm/Support/FormattedStream.h
+%exclude /usr/include/llvm/Support/GCOV.h
+%exclude /usr/include/llvm/Support/GenericDomTree.h
+%exclude /usr/include/llvm/Support/GenericDomTreeConstruction.h
+%exclude /usr/include/llvm/Support/GlobPattern.h
+%exclude /usr/include/llvm/Support/GraphWriter.h
+%exclude /usr/include/llvm/Support/Host.h
+%exclude /usr/include/llvm/Support/JamCRC.h
+%exclude /usr/include/llvm/Support/LEB128.h
+%exclude /usr/include/llvm/Support/LICENSE.TXT
+%exclude /usr/include/llvm/Support/LineIterator.h
+%exclude /usr/include/llvm/Support/Locale.h
+%exclude /usr/include/llvm/Support/LockFileManager.h
+%exclude /usr/include/llvm/Support/MD5.h
+%exclude /usr/include/llvm/Support/MachO.def
+%exclude /usr/include/llvm/Support/MachO.h
+%exclude /usr/include/llvm/Support/ManagedStatic.h
+%exclude /usr/include/llvm/Support/MathExtras.h
+%exclude /usr/include/llvm/Support/Memory.h
+%exclude /usr/include/llvm/Support/MemoryBuffer.h
+%exclude /usr/include/llvm/Support/MipsABIFlags.h
+%exclude /usr/include/llvm/Support/Mutex.h
+%exclude /usr/include/llvm/Support/MutexGuard.h
+%exclude /usr/include/llvm/Support/NativeFormatting.h
+%exclude /usr/include/llvm/Support/OnDiskHashTable.h
+%exclude /usr/include/llvm/Support/Options.h
+%exclude /usr/include/llvm/Support/Path.h
+%exclude /usr/include/llvm/Support/PluginLoader.h
+%exclude /usr/include/llvm/Support/PointerLikeTypeTraits.h
+%exclude /usr/include/llvm/Support/PrettyStackTrace.h
+%exclude /usr/include/llvm/Support/Printable.h
+%exclude /usr/include/llvm/Support/Process.h
+%exclude /usr/include/llvm/Support/Program.h
+%exclude /usr/include/llvm/Support/RWMutex.h
+%exclude /usr/include/llvm/Support/RandomNumberGenerator.h
+%exclude /usr/include/llvm/Support/Recycler.h
+%exclude /usr/include/llvm/Support/RecyclingAllocator.h
+%exclude /usr/include/llvm/Support/Regex.h
+%exclude /usr/include/llvm/Support/Registry.h
+%exclude /usr/include/llvm/Support/SHA1.h
+%exclude /usr/include/llvm/Support/SMLoc.h
+%exclude /usr/include/llvm/Support/SaveAndRestore.h
+%exclude /usr/include/llvm/Support/ScaledNumber.h
+%exclude /usr/include/llvm/Support/ScopedPrinter.h
+%exclude /usr/include/llvm/Support/Signals.h
+%exclude /usr/include/llvm/Support/Solaris.h
+%exclude /usr/include/llvm/Support/SourceMgr.h
+%exclude /usr/include/llvm/Support/SpecialCaseList.h
+%exclude /usr/include/llvm/Support/StringPool.h
+%exclude /usr/include/llvm/Support/StringSaver.h
+%exclude /usr/include/llvm/Support/SwapByteOrder.h
+%exclude /usr/include/llvm/Support/SystemUtils.h
+%exclude /usr/include/llvm/Support/TarWriter.h
+%exclude /usr/include/llvm/Support/TargetParser.h
+%exclude /usr/include/llvm/Support/TargetRegistry.h
+%exclude /usr/include/llvm/Support/TargetSelect.h
+%exclude /usr/include/llvm/Support/ThreadLocal.h
+%exclude /usr/include/llvm/Support/ThreadPool.h
+%exclude /usr/include/llvm/Support/Threading.h
+%exclude /usr/include/llvm/Support/Timer.h
+%exclude /usr/include/llvm/Support/ToolOutputFile.h
+%exclude /usr/include/llvm/Support/TrailingObjects.h
+%exclude /usr/include/llvm/Support/TrigramIndex.h
+%exclude /usr/include/llvm/Support/TypeName.h
+%exclude /usr/include/llvm/Support/Unicode.h
+%exclude /usr/include/llvm/Support/UnicodeCharRanges.h
+%exclude /usr/include/llvm/Support/UniqueLock.h
+%exclude /usr/include/llvm/Support/Valgrind.h
+%exclude /usr/include/llvm/Support/Wasm.h
+%exclude /usr/include/llvm/Support/Watchdog.h
+%exclude /usr/include/llvm/Support/Win64EH.h
+%exclude /usr/include/llvm/Support/WindowsError.h
+%exclude /usr/include/llvm/Support/YAMLParser.h
+%exclude /usr/include/llvm/Support/YAMLTraits.h
+%exclude /usr/include/llvm/Support/circular_raw_ostream.h
+%exclude /usr/include/llvm/Support/raw_os_ostream.h
+%exclude /usr/include/llvm/Support/raw_ostream.h
+%exclude /usr/include/llvm/Support/raw_sha1_ostream.h
+%exclude /usr/include/llvm/Support/thread.h
+%exclude /usr/include/llvm/Support/type_traits.h
+%exclude /usr/include/llvm/Support/xxhash.h
+%exclude /usr/include/llvm/TableGen/Error.h
+%exclude /usr/include/llvm/TableGen/Main.h
+%exclude /usr/include/llvm/TableGen/Record.h
+%exclude /usr/include/llvm/TableGen/SearchableTable.td
+%exclude /usr/include/llvm/TableGen/SetTheory.h
+%exclude /usr/include/llvm/TableGen/StringMatcher.h
+%exclude /usr/include/llvm/TableGen/StringToOffsetTable.h
+%exclude /usr/include/llvm/TableGen/TableGenBackend.h
+%exclude /usr/include/llvm/Target/CostTable.h
+%exclude /usr/include/llvm/Target/GenericOpcodes.td
+%exclude /usr/include/llvm/Target/Target.td
+%exclude /usr/include/llvm/Target/TargetCallingConv.h
+%exclude /usr/include/llvm/Target/TargetCallingConv.td
+%exclude /usr/include/llvm/Target/TargetFrameLowering.h
+%exclude /usr/include/llvm/Target/TargetGlobalISel.td
+%exclude /usr/include/llvm/Target/TargetInstrInfo.h
+%exclude /usr/include/llvm/Target/TargetIntrinsicInfo.h
+%exclude /usr/include/llvm/Target/TargetItinerary.td
+%exclude /usr/include/llvm/Target/TargetLowering.h
+%exclude /usr/include/llvm/Target/TargetLoweringObjectFile.h
+%exclude /usr/include/llvm/Target/TargetMachine.h
+%exclude /usr/include/llvm/Target/TargetOpcodes.def
+%exclude /usr/include/llvm/Target/TargetOpcodes.h
+%exclude /usr/include/llvm/Target/TargetOptions.h
+%exclude /usr/include/llvm/Target/TargetRegisterInfo.h
+%exclude /usr/include/llvm/Target/TargetSchedule.td
+%exclude /usr/include/llvm/Target/TargetSelectionDAG.td
+%exclude /usr/include/llvm/Target/TargetSubtargetInfo.h
+%exclude /usr/include/llvm/Transforms/Coroutines.h
+%exclude /usr/include/llvm/Transforms/GCOVProfiler.h
+%exclude /usr/include/llvm/Transforms/IPO.h
+%exclude /usr/include/llvm/Transforms/IPO/AlwaysInliner.h
+%exclude /usr/include/llvm/Transforms/IPO/ConstantMerge.h
+%exclude /usr/include/llvm/Transforms/IPO/CrossDSOCFI.h
+%exclude /usr/include/llvm/Transforms/IPO/DeadArgumentElimination.h
+%exclude /usr/include/llvm/Transforms/IPO/ElimAvailExtern.h
+%exclude /usr/include/llvm/Transforms/IPO/ForceFunctionAttrs.h
+%exclude /usr/include/llvm/Transforms/IPO/FunctionAttrs.h
+%exclude /usr/include/llvm/Transforms/IPO/FunctionImport.h
+%exclude /usr/include/llvm/Transforms/IPO/GlobalDCE.h
+%exclude /usr/include/llvm/Transforms/IPO/GlobalOpt.h
+%exclude /usr/include/llvm/Transforms/IPO/GlobalSplit.h
+%exclude /usr/include/llvm/Transforms/IPO/InferFunctionAttrs.h
+%exclude /usr/include/llvm/Transforms/IPO/Inliner.h
+%exclude /usr/include/llvm/Transforms/IPO/Internalize.h
+%exclude /usr/include/llvm/Transforms/IPO/LowerTypeTests.h
+%exclude /usr/include/llvm/Transforms/IPO/PartialInlining.h
+%exclude /usr/include/llvm/Transforms/IPO/PassManagerBuilder.h
+%exclude /usr/include/llvm/Transforms/IPO/SCCP.h
+%exclude /usr/include/llvm/Transforms/IPO/StripDeadPrototypes.h
+%exclude /usr/include/llvm/Transforms/IPO/WholeProgramDevirt.h
+%exclude /usr/include/llvm/Transforms/InstCombine/InstCombine.h
+%exclude /usr/include/llvm/Transforms/InstCombine/InstCombineWorklist.h
+%exclude /usr/include/llvm/Transforms/InstrProfiling.h
+%exclude /usr/include/llvm/Transforms/Instrumentation.h
+%exclude /usr/include/llvm/Transforms/ObjCARC.h
+%exclude /usr/include/llvm/Transforms/PGOInstrumentation.h
+%exclude /usr/include/llvm/Transforms/SampleProfile.h
+%exclude /usr/include/llvm/Transforms/Scalar.h
+%exclude /usr/include/llvm/Transforms/Scalar/ADCE.h
+%exclude /usr/include/llvm/Transforms/Scalar/AlignmentFromAssumptions.h
+%exclude /usr/include/llvm/Transforms/Scalar/BDCE.h
+%exclude /usr/include/llvm/Transforms/Scalar/ConstantHoisting.h
+%exclude /usr/include/llvm/Transforms/Scalar/CorrelatedValuePropagation.h
+%exclude /usr/include/llvm/Transforms/Scalar/DCE.h
+%exclude /usr/include/llvm/Transforms/Scalar/DeadStoreElimination.h
+%exclude /usr/include/llvm/Transforms/Scalar/EarlyCSE.h
+%exclude /usr/include/llvm/Transforms/Scalar/Float2Int.h
+%exclude /usr/include/llvm/Transforms/Scalar/GVN.h
+%exclude /usr/include/llvm/Transforms/Scalar/GVNExpression.h
+%exclude /usr/include/llvm/Transforms/Scalar/GuardWidening.h
+%exclude /usr/include/llvm/Transforms/Scalar/IVUsersPrinter.h
+%exclude /usr/include/llvm/Transforms/Scalar/IndVarSimplify.h
+%exclude /usr/include/llvm/Transforms/Scalar/JumpThreading.h
+%exclude /usr/include/llvm/Transforms/Scalar/LICM.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopAccessAnalysisPrinter.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopDataPrefetch.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopDeletion.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopDistribute.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopIdiomRecognize.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopInstSimplify.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopPassManager.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopRotation.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopSimplifyCFG.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopStrengthReduce.h
+%exclude /usr/include/llvm/Transforms/Scalar/LoopUnrollPass.h
+%exclude /usr/include/llvm/Transforms/Scalar/LowerAtomic.h
+%exclude /usr/include/llvm/Transforms/Scalar/LowerExpectIntrinsic.h
+%exclude /usr/include/llvm/Transforms/Scalar/LowerGuardIntrinsic.h
+%exclude /usr/include/llvm/Transforms/Scalar/MemCpyOptimizer.h
+%exclude /usr/include/llvm/Transforms/Scalar/MergedLoadStoreMotion.h
+%exclude /usr/include/llvm/Transforms/Scalar/NaryReassociate.h
+%exclude /usr/include/llvm/Transforms/Scalar/NewGVN.h
+%exclude /usr/include/llvm/Transforms/Scalar/PartiallyInlineLibCalls.h
+%exclude /usr/include/llvm/Transforms/Scalar/Reassociate.h
+%exclude /usr/include/llvm/Transforms/Scalar/SCCP.h
+%exclude /usr/include/llvm/Transforms/Scalar/SROA.h
+%exclude /usr/include/llvm/Transforms/Scalar/SimplifyCFG.h
+%exclude /usr/include/llvm/Transforms/Scalar/Sink.h
+%exclude /usr/include/llvm/Transforms/Scalar/SpeculativeExecution.h
+%exclude /usr/include/llvm/Transforms/Scalar/TailRecursionElimination.h
+%exclude /usr/include/llvm/Transforms/Utils/ASanStackFrameLayout.h
+%exclude /usr/include/llvm/Transforms/Utils/AddDiscriminators.h
+%exclude /usr/include/llvm/Transforms/Utils/BasicBlockUtils.h
+%exclude /usr/include/llvm/Transforms/Utils/BreakCriticalEdges.h
+%exclude /usr/include/llvm/Transforms/Utils/BuildLibCalls.h
+%exclude /usr/include/llvm/Transforms/Utils/BypassSlowDivision.h
+%exclude /usr/include/llvm/Transforms/Utils/Cloning.h
+%exclude /usr/include/llvm/Transforms/Utils/CmpInstAnalysis.h
+%exclude /usr/include/llvm/Transforms/Utils/CodeExtractor.h
+%exclude /usr/include/llvm/Transforms/Utils/CtorUtils.h
+%exclude /usr/include/llvm/Transforms/Utils/EscapeEnumerator.h
+%exclude /usr/include/llvm/Transforms/Utils/Evaluator.h
+%exclude /usr/include/llvm/Transforms/Utils/FunctionComparator.h
+%exclude /usr/include/llvm/Transforms/Utils/FunctionImportUtils.h
+%exclude /usr/include/llvm/Transforms/Utils/GlobalStatus.h
+%exclude /usr/include/llvm/Transforms/Utils/ImportedFunctionsInliningStatistics.h
+%exclude /usr/include/llvm/Transforms/Utils/IntegerDivision.h
+%exclude /usr/include/llvm/Transforms/Utils/LCSSA.h
+%exclude /usr/include/llvm/Transforms/Utils/LibCallsShrinkWrap.h
+%exclude /usr/include/llvm/Transforms/Utils/Local.h
+%exclude /usr/include/llvm/Transforms/Utils/LoopSimplify.h
+%exclude /usr/include/llvm/Transforms/Utils/LoopUtils.h
+%exclude /usr/include/llvm/Transforms/Utils/LoopVersioning.h
+%exclude /usr/include/llvm/Transforms/Utils/LowerInvoke.h
+%exclude /usr/include/llvm/Transforms/Utils/Mem2Reg.h
+%exclude /usr/include/llvm/Transforms/Utils/MemorySSA.h
+%exclude /usr/include/llvm/Transforms/Utils/ModuleUtils.h
+%exclude /usr/include/llvm/Transforms/Utils/NameAnonGlobals.h
+%exclude /usr/include/llvm/Transforms/Utils/PromoteMemToReg.h
+%exclude /usr/include/llvm/Transforms/Utils/SSAUpdater.h
+%exclude /usr/include/llvm/Transforms/Utils/SSAUpdaterImpl.h
+%exclude /usr/include/llvm/Transforms/Utils/SanitizerStats.h
+%exclude /usr/include/llvm/Transforms/Utils/SimplifyIndVar.h
+%exclude /usr/include/llvm/Transforms/Utils/SimplifyInstructions.h
+%exclude /usr/include/llvm/Transforms/Utils/SimplifyLibCalls.h
+%exclude /usr/include/llvm/Transforms/Utils/SplitModule.h
+%exclude /usr/include/llvm/Transforms/Utils/SymbolRewriter.h
+%exclude /usr/include/llvm/Transforms/Utils/UnifyFunctionExitNodes.h
+%exclude /usr/include/llvm/Transforms/Utils/UnrollLoop.h
+%exclude /usr/include/llvm/Transforms/Utils/ValueMapper.h
+%exclude /usr/include/llvm/Transforms/Vectorize.h
+%exclude /usr/include/llvm/Transforms/Vectorize/LoopVectorize.h
+%exclude /usr/include/llvm/Transforms/Vectorize/SLPVectorizer.h
+%exclude /usr/include/llvm/XRay/Trace.h
+%exclude /usr/include/llvm/XRay/XRayRecord.h
+%exclude /usr/include/llvm/XRay/YAMLXRayRecord.h
+%exclude /usr/lib64/BugpointPasses.so
+%exclude /usr/lib64/LLVMHello.so
+%exclude /usr/lib64/LLVMgold.so
+%exclude /usr/lib64/libLLVMAMDGPUAsmParser.so
+%exclude /usr/lib64/libLLVMAMDGPUAsmPrinter.so
+%exclude /usr/lib64/libLLVMAMDGPUCodeGen.so
+%exclude /usr/lib64/libLLVMAMDGPUDesc.so
+%exclude /usr/lib64/libLLVMAMDGPUDisassembler.so
+%exclude /usr/lib64/libLLVMAMDGPUInfo.so
+%exclude /usr/lib64/libLLVMAMDGPUUtils.so
+%exclude /usr/lib64/libLLVMAnalysis.so
+%exclude /usr/lib64/libLLVMAsmParser.so
+%exclude /usr/lib64/libLLVMAsmPrinter.so
+%exclude /usr/lib64/libLLVMBPFAsmPrinter.so
+%exclude /usr/lib64/libLLVMBPFCodeGen.so
+%exclude /usr/lib64/libLLVMBPFDesc.so
+%exclude /usr/lib64/libLLVMBPFDisassembler.so
+%exclude /usr/lib64/libLLVMBPFInfo.so
+%exclude /usr/lib64/libLLVMBitReader.so
+%exclude /usr/lib64/libLLVMBitWriter.so
+%exclude /usr/lib64/libLLVMCodeGen.so
+%exclude /usr/lib64/libLLVMCore.so
+%exclude /usr/lib64/libLLVMCoroutines.so
+%exclude /usr/lib64/libLLVMCoverage.so
+%exclude /usr/lib64/libLLVMDebugInfoCodeView.so
+%exclude /usr/lib64/libLLVMDebugInfoDWARF.so
+%exclude /usr/lib64/libLLVMDebugInfoMSF.so
+%exclude /usr/lib64/libLLVMDebugInfoPDB.so
+%exclude /usr/lib64/libLLVMDemangle.so
+%exclude /usr/lib64/libLLVMExecutionEngine.so
+%exclude /usr/lib64/libLLVMGlobalISel.so
+%exclude /usr/lib64/libLLVMIRReader.so
+%exclude /usr/lib64/libLLVMInstCombine.so
+%exclude /usr/lib64/libLLVMInstrumentation.so
+%exclude /usr/lib64/libLLVMInterpreter.so
+%exclude /usr/lib64/libLLVMLTO.so
+%exclude /usr/lib64/libLLVMLibDriver.so
+%exclude /usr/lib64/libLLVMLineEditor.so
+%exclude /usr/lib64/libLLVMLinker.so
+%exclude /usr/lib64/libLLVMMC.so
+%exclude /usr/lib64/libLLVMMCDisassembler.so
+%exclude /usr/lib64/libLLVMMCJIT.so
+%exclude /usr/lib64/libLLVMMCParser.so
+%exclude /usr/lib64/libLLVMMIRParser.so
+%exclude /usr/lib64/libLLVMNVPTXAsmPrinter.so
+%exclude /usr/lib64/libLLVMNVPTXCodeGen.so
+%exclude /usr/lib64/libLLVMNVPTXDesc.so
+%exclude /usr/lib64/libLLVMNVPTXInfo.so
+%exclude /usr/lib64/libLLVMObjCARCOpts.so
+%exclude /usr/lib64/libLLVMObject.so
+%exclude /usr/lib64/libLLVMObjectYAML.so
+%exclude /usr/lib64/libLLVMOption.so
+%exclude /usr/lib64/libLLVMOrcJIT.so
+%exclude /usr/lib64/libLLVMPasses.so
+%exclude /usr/lib64/libLLVMProfileData.so
+%exclude /usr/lib64/libLLVMRuntimeDyld.so
+%exclude /usr/lib64/libLLVMScalarOpts.so
+%exclude /usr/lib64/libLLVMSelectionDAG.so
+%exclude /usr/lib64/libLLVMSupport.so
+%exclude /usr/lib64/libLLVMSymbolize.so
+%exclude /usr/lib64/libLLVMTableGen.so
+%exclude /usr/lib64/libLLVMTarget.so
+%exclude /usr/lib64/libLLVMTransformUtils.so
+%exclude /usr/lib64/libLLVMVectorize.so
+%exclude /usr/lib64/libLLVMX86AsmParser.so
+%exclude /usr/lib64/libLLVMX86AsmPrinter.so
+%exclude /usr/lib64/libLLVMX86CodeGen.so
+%exclude /usr/lib64/libLLVMX86Desc.so
+%exclude /usr/lib64/libLLVMX86Disassembler.so
+%exclude /usr/lib64/libLLVMX86Info.so
+%exclude /usr/lib64/libLLVMX86Utils.so
+%exclude /usr/lib64/libLLVMXRay.so
+%exclude /usr/lib64/libLLVMipo.so
+%exclude /usr/lib64/libLTO.so
+%exclude /usr/lib64/libclang.so
+%exclude /usr/lib64/libclangARCMigrate.so
+%exclude /usr/lib64/libclangAST.so
+%exclude /usr/lib64/libclangASTMatchers.so
+%exclude /usr/lib64/libclangAnalysis.so
+%exclude /usr/lib64/libclangBasic.so
+%exclude /usr/lib64/libclangCodeGen.so
+%exclude /usr/lib64/libclangDriver.so
+%exclude /usr/lib64/libclangDynamicASTMatchers.so
+%exclude /usr/lib64/libclangEdit.so
+%exclude /usr/lib64/libclangFormat.so
+%exclude /usr/lib64/libclangFrontend.so
+%exclude /usr/lib64/libclangFrontendTool.so
+%exclude /usr/lib64/libclangIndex.so
+%exclude /usr/lib64/libclangLex.so
+%exclude /usr/lib64/libclangParse.so
+%exclude /usr/lib64/libclangRewrite.so
+%exclude /usr/lib64/libclangRewriteFrontend.so
+%exclude /usr/lib64/libclangSema.so
+%exclude /usr/lib64/libclangSerialization.so
+%exclude /usr/lib64/libclangStaticAnalyzerCheckers.so
+%exclude /usr/lib64/libclangStaticAnalyzerCore.so
+%exclude /usr/lib64/libclangStaticAnalyzerFrontend.so
+%exclude /usr/lib64/libclangTooling.so
+%exclude /usr/lib64/libclangToolingCore.so
 /usr/lib64/clang/4.0.1/include/__clang_cuda_builtin_vars.h
 /usr/lib64/clang/4.0.1/include/__clang_cuda_cmath.h
 /usr/lib64/clang/4.0.1/include/__clang_cuda_complex_builtins.h
@@ -1848,106 +1943,10 @@ install cmake/modules/CheckAtomic.cmake %{buildroot}/usr/lib64/cmake/llvm/CheckA
 /usr/lib64/clang/4.0.1/include/xsaveoptintrin.h
 /usr/lib64/clang/4.0.1/include/xsavesintrin.h
 /usr/lib64/clang/4.0.1/include/xtestintrin.h
-/usr/lib64/libLLVMAMDGPUAsmParser.so
-/usr/lib64/libLLVMAMDGPUAsmPrinter.so
-/usr/lib64/libLLVMAMDGPUCodeGen.so
-/usr/lib64/libLLVMAMDGPUDesc.so
-/usr/lib64/libLLVMAMDGPUDisassembler.so
-/usr/lib64/libLLVMAMDGPUInfo.so
-/usr/lib64/libLLVMAMDGPUUtils.so
-/usr/lib64/libLLVMAnalysis.so
-/usr/lib64/libLLVMAsmParser.so
-/usr/lib64/libLLVMAsmPrinter.so
-/usr/lib64/libLLVMBPFAsmPrinter.so
-/usr/lib64/libLLVMBPFCodeGen.so
-/usr/lib64/libLLVMBPFDesc.so
-/usr/lib64/libLLVMBPFDisassembler.so
-/usr/lib64/libLLVMBPFInfo.so
-/usr/lib64/libLLVMBitReader.so
-/usr/lib64/libLLVMBitWriter.so
-/usr/lib64/libLLVMCodeGen.so
-/usr/lib64/libLLVMCore.so
-/usr/lib64/libLLVMCoroutines.so
-/usr/lib64/libLLVMCoverage.so
-/usr/lib64/libLLVMDebugInfoCodeView.so
-/usr/lib64/libLLVMDebugInfoDWARF.so
-/usr/lib64/libLLVMDebugInfoMSF.so
-/usr/lib64/libLLVMDebugInfoPDB.so
-/usr/lib64/libLLVMDemangle.so
-/usr/lib64/libLLVMExecutionEngine.so
-/usr/lib64/libLLVMGlobalISel.so
-/usr/lib64/libLLVMIRReader.so
-/usr/lib64/libLLVMInstCombine.so
-/usr/lib64/libLLVMInstrumentation.so
-/usr/lib64/libLLVMInterpreter.so
-/usr/lib64/libLLVMLTO.so
-/usr/lib64/libLLVMLibDriver.so
-/usr/lib64/libLLVMLineEditor.so
-/usr/lib64/libLLVMLinker.so
-/usr/lib64/libLLVMMC.so
-/usr/lib64/libLLVMMCDisassembler.so
-/usr/lib64/libLLVMMCJIT.so
-/usr/lib64/libLLVMMCParser.so
-/usr/lib64/libLLVMMIRParser.so
-/usr/lib64/libLLVMNVPTXAsmPrinter.so
-/usr/lib64/libLLVMNVPTXCodeGen.so
-/usr/lib64/libLLVMNVPTXDesc.so
-/usr/lib64/libLLVMNVPTXInfo.so
-/usr/lib64/libLLVMObjCARCOpts.so
-/usr/lib64/libLLVMObject.so
-/usr/lib64/libLLVMObjectYAML.so
-/usr/lib64/libLLVMOption.so
-/usr/lib64/libLLVMOrcJIT.so
-/usr/lib64/libLLVMPasses.so
-/usr/lib64/libLLVMProfileData.so
-/usr/lib64/libLLVMRuntimeDyld.so
-/usr/lib64/libLLVMScalarOpts.so
-/usr/lib64/libLLVMSelectionDAG.so
-/usr/lib64/libLLVMSupport.so
-/usr/lib64/libLLVMSymbolize.so
-/usr/lib64/libLLVMTableGen.so
-/usr/lib64/libLLVMTarget.so
-/usr/lib64/libLLVMTransformUtils.so
-/usr/lib64/libLLVMVectorize.so
-/usr/lib64/libLLVMX86AsmParser.so
-/usr/lib64/libLLVMX86AsmPrinter.so
-/usr/lib64/libLLVMX86CodeGen.so
-/usr/lib64/libLLVMX86Desc.so
-/usr/lib64/libLLVMX86Disassembler.so
-/usr/lib64/libLLVMX86Info.so
-/usr/lib64/libLLVMX86Utils.so
-/usr/lib64/libLLVMXRay.so
-/usr/lib64/libLLVMipo.so
-/usr/lib64/libLTO.so
-/usr/lib64/libclang.so
-/usr/lib64/libclangARCMigrate.so
-/usr/lib64/libclangAST.so
-/usr/lib64/libclangASTMatchers.so
-/usr/lib64/libclangAnalysis.so
-/usr/lib64/libclangBasic.so
-/usr/lib64/libclangCodeGen.so
-/usr/lib64/libclangDriver.so
-/usr/lib64/libclangDynamicASTMatchers.so
-/usr/lib64/libclangEdit.so
-/usr/lib64/libclangFormat.so
-/usr/lib64/libclangFrontend.so
-/usr/lib64/libclangFrontendTool.so
-/usr/lib64/libclangIndex.so
-/usr/lib64/libclangLex.so
-/usr/lib64/libclangParse.so
-/usr/lib64/libclangRewrite.so
-/usr/lib64/libclangRewriteFrontend.so
-/usr/lib64/libclangSema.so
-/usr/lib64/libclangSerialization.so
-/usr/lib64/libclangStaticAnalyzerCheckers.so
-/usr/lib64/libclangStaticAnalyzerCore.so
-/usr/lib64/libclangStaticAnalyzerFrontend.so
-/usr/lib64/libclangTooling.so
-/usr/lib64/libclangToolingCore.so
 
 %files doc
 %defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
+%exclude /usr/share/man/man1/scan-build.1
 
 %files lib
 %defattr(-,root,root,-)
