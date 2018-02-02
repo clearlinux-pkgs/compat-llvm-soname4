@@ -6,7 +6,7 @@
 #
 Name     : compat-llvm-soname4
 Version  : 4.0.1
-Release  : 4
+Release  : 5
 URL      : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source0  : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source1  : http://releases.llvm.org/4.0.1/cfe-4.0.1.src.tar.xz
