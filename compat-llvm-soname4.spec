@@ -6,7 +6,7 @@
 #
 Name     : compat-llvm-soname4
 Version  : 4.0.1
-Release  : 5
+Release  : 6
 URL      : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source0  : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source1  : http://releases.llvm.org/4.0.1/cfe-4.0.1.src.tar.xz
@@ -98,15 +98,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504833854
+export SOURCE_DATE_EPOCH=1517620992
 mkdir clr-build
 pushd clr-build
 cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=/usr/lib64 -DCMAKE_AR=/usr/bin/gcc-ar -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -DLLVM_ENABLE_ZLIB:BOOL=ON  -DLLVM_LIBDIR_SUFFIX=64   -DLLVM_BINUTILS_INCDIR=/usr/include -DLLVM_TARGETS_TO_BUILD="X86;BPF;AMDGPU;NVPTX" -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_CXX1Y=ON  -DC_INCLUDE_DIRS="/usr/include/c++:/usr/include/c++/x86_64-generic-linux:/usr/include"  -DLLVM_ENABLE_LTO=OFF -DLLVM_USE_LINKER=ld
-make VERBOSE=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1504833854
+export SOURCE_DATE_EPOCH=1517620992
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -225,29 +225,21 @@ install cmake/modules/CheckAtomic.cmake %{buildroot}/usr/lib64/cmake/llvm/CheckA
 %defattr(-,root,root,-)
 %exclude /usr/share/clang/clang-format-bbedit.applescript
 %exclude /usr/share/clang/clang-format-diff.py
-%exclude /usr/share/clang/clang-format-diff.pyc
-%exclude /usr/share/clang/clang-format-diff.pyo
 %exclude /usr/share/clang/clang-format-sublime.py
-%exclude /usr/share/clang/clang-format-sublime.pyc
-%exclude /usr/share/clang/clang-format-sublime.pyo
 %exclude /usr/share/clang/clang-format.el
 %exclude /usr/share/clang/clang-format.py
-%exclude /usr/share/clang/clang-format.pyc
-%exclude /usr/share/clang/clang-format.pyo
 %exclude /usr/share/scan-build/scanview.css
 %exclude /usr/share/scan-build/sorttable.js
 %exclude /usr/share/scan-view/FileRadar.scpt
 %exclude /usr/share/scan-view/GetRadarVersion.scpt
 %exclude /usr/share/scan-view/Reporter.py
-%exclude /usr/share/scan-view/Reporter.pyc
-%exclude /usr/share/scan-view/Reporter.pyo
 %exclude /usr/share/scan-view/ScanView.py
-%exclude /usr/share/scan-view/ScanView.pyc
-%exclude /usr/share/scan-view/ScanView.pyo
 %exclude /usr/share/scan-view/bugcatcher.ico
 %exclude /usr/share/scan-view/startfile.py
-%exclude /usr/share/scan-view/startfile.pyc
-%exclude /usr/share/scan-view/startfile.pyo
+/usr/share/clang/__pycache__/clang-format-sublime.cpython-36.pyc
+/usr/share/clang/__pycache__/clang-format.cpython-36.pyc
+/usr/share/scan-view/__pycache__/Reporter.cpython-36.pyc
+/usr/share/scan-view/__pycache__/startfile.cpython-36.pyc
 
 %files dev
 %defattr(-,root,root,-)
