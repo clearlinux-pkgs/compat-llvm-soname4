@@ -1,1 +1,3 @@
 install cmake/modules/CheckAtomic.cmake %{buildroot}/usr/lib64/cmake/llvm/CheckAtomic.cmake
+rm -fr %{buildroot}/usr/share/clang/__pycache__
+rm -fr %{buildroot}/usr/share/scan-view/__pycache__
