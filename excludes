@@ -1711,3 +1711,7 @@
 /usr/lib64/libclangTooling.so
 /usr/lib64/libclangToolingCore.so
 /usr/share/man/man1/scan-build.1
+/usr/share/scan-view/__pycache__/startfile.cpython-36.pyc
+/usr/share/scan-view/__pycache__/Reporter.cpython-36.pyc
+/usr/share/clang/__pycache__/clang-format.cpython-36.pyc
+/usr/share/clang/__pycache__/clang-format-sublime.cpython-36.pyc

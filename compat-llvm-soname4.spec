@@ -6,7 +6,7 @@
 #
 Name     : compat-llvm-soname4
 Version  : 4.0.1
-Release  : 7
+Release  : 8
 URL      : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source0  : http://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz
 Source1  : http://releases.llvm.org/4.0.1/cfe-4.0.1.src.tar.xz
@@ -98,15 +98,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1517627784
+export SOURCE_DATE_EPOCH=1517707537
 mkdir clr-build
 pushd clr-build
 cmake .. -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS:BOOL=ON -DLIB_INSTALL_DIR:PATH=/usr/lib64 -DCMAKE_AR=/usr/bin/gcc-ar -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_RANLIB=/usr/bin/gcc-ranlib -DLLVM_ENABLE_ZLIB:BOOL=ON  -DLLVM_LIBDIR_SUFFIX=64   -DLLVM_BINUTILS_INCDIR=/usr/include -DLLVM_TARGETS_TO_BUILD="X86;BPF;AMDGPU;NVPTX" -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_CXX1Y=ON  -DC_INCLUDE_DIRS="/usr/include/c++:/usr/include/c++/x86_64-generic-linux:/usr/include"  -DLLVM_ENABLE_LTO=OFF -DLLVM_USE_LINKER=ld
-make  %{?_smp_mflags}
+make VERBOSE=1  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1517627784
+export SOURCE_DATE_EPOCH=1517707537
 rm -rf %{buildroot}
 pushd clr-build
 %make_install
@@ -225,6 +225,8 @@ rm -fr %{buildroot}/usr/share/scan-view/__pycache__
 
 %files data
 %defattr(-,root,root,-)
+%exclude /usr/share/clang/__pycache__/clang-format-sublime.cpython-36.pyc
+%exclude /usr/share/clang/__pycache__/clang-format.cpython-36.pyc
 %exclude /usr/share/clang/clang-format-bbedit.applescript
 %exclude /usr/share/clang/clang-format-diff.py
 %exclude /usr/share/clang/clang-format-sublime.py
@@ -236,12 +238,10 @@ rm -fr %{buildroot}/usr/share/scan-view/__pycache__
 %exclude /usr/share/scan-view/GetRadarVersion.scpt
 %exclude /usr/share/scan-view/Reporter.py
 %exclude /usr/share/scan-view/ScanView.py
+%exclude /usr/share/scan-view/__pycache__/Reporter.cpython-36.pyc
+%exclude /usr/share/scan-view/__pycache__/startfile.cpython-36.pyc
 %exclude /usr/share/scan-view/bugcatcher.ico
 %exclude /usr/share/scan-view/startfile.py
-/usr/share/clang/__pycache__/clang-format-sublime.cpython-36.pyc
-/usr/share/clang/__pycache__/clang-format.cpython-36.pyc
-/usr/share/scan-view/__pycache__/Reporter.cpython-36.pyc
-/usr/share/scan-view/__pycache__/startfile.cpython-36.pyc
 
 %files dev
 %defattr(-,root,root,-)
